@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Components\Component.cs" />
+    <Compile Include="Game\Components\ComponentTypeComparer.cs" />
     <Compile Include="Game\Components\DrawableComponent.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Worlds\World.cs" />
