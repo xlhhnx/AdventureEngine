@@ -2,7 +2,7 @@
 
 public interface Component
 {
-    Entity ParentEntity { get; }
+    Entity ParentEntity { get; set; }
 
     void Update(GameTime gameTime);
 }
