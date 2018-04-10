@@ -1,8 +1,22 @@
 ﻿using Microsoft.Xna.Framework;
 
-public interface Component
+public abstract class Component
 {
-    Entity ParentEntity { get; set; }
+    /* Properties */
+    public Entity ParentEntity
+    {
+        get { return _parentEntity; }
+        set { _parentEntity = value; }
+    }
 
-    void Update(GameTime gameTime);
+    /* Vaiables */
+    protected Entity _parentEntity;
+
+    /* Methods */
+    public Component(Entity parentEntity)
+    {
+        _parentEntity = parentEntity;
+    }
+
+    public abstract void Update(GameTime gameTime);
 }

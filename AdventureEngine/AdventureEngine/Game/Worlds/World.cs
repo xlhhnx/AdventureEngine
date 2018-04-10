@@ -3,14 +3,23 @@ using System.Collections.Generic;
 
 public abstract class World
 {
-    public bool Visible { get; set; }
-    public List<Entity> Entities { get; }
+    /* Properties */
+    public bool Visible
+    {
+        get { return _visible; }
+        set { _visible = value; }
+    }
 
+    public List<Entity> Entities
+    {
+        get { return _entities; }
+    }
 
+    /* Variables */
     protected bool _visible;
     protected List<Entity> _entities;
 
-
+    /* Methods */
     public World(bool visible = false)
     {
         _visible = visible;

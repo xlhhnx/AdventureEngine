@@ -4,22 +4,39 @@ using System.Linq;
 
 public abstract class Entity
 {
-    public bool Visible { get; set; }
-    public World ParentWorld { get; set; }
-    public List<Component> Components { get; set; }
-    public List<DrawableComponent> DrawableComponents { get; set; }
+    /* Properties */
+    public bool Visible
+    {
+        get { return _visible; }
+        set { _visible = value; }
+    }
 
+    public World ParentWorld
+    {
+        get { return _parentWorld; }
+        set { _parentWorld = value; }
+    }
 
+    public List<Component> Components
+    {
+        get { return _components; }
+    }
+
+    public List<DrawableComponent> DrawableComponents
+    {
+        get { return _drawableComponents; }
+    }
+
+    /* Variables */
     protected bool _visible;
     protected World _parentWorld;
     protected List<Component> _components;
-    // All components in _drawableComponents should also be in _components
-    protected List<DrawableComponent> _drawableComponents;
+    protected List<DrawableComponent> _drawableComponents; // All components in _drawableComponents should also be in _components
 
-
+    /* Methods */
     public Entity(World parentWorld, bool visible = false)
     {
-        _visibile = visible;
+        _visible = visible;
         _parentWorld = parentWorld;
 
         _components = new List<Component>();

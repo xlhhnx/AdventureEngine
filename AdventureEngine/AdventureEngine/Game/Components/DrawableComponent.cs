@@ -1,8 +1,18 @@
 ﻿using Microsoft.Xna.Framework;
 
-public interface DrawableComponent : Component
+public abstract class DrawableComponent : Component
 {
-    bool Visible { get; set; }
+    /* Properties */
+    public bool Visible { get; set; }
 
-    void Draw(GameTime gameTime);
+    /* Variables */
+    protected bool _visible;
+
+    /* Methods */
+    public DrawableComponent(Entity parentEntity, bool visible = false) : base(parentEntity)
+    {
+        _visible = visible;
+    }
+
+    public abstract void Draw(GameTime gameTime);
 }
