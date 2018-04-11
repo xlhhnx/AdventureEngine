@@ -1,5 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
-using System;
+using System.Linq;
 using System.Collections.Generic;
 
 public class ContentBatch
@@ -13,6 +13,11 @@ public class ContentBatch
     public string BatchId
     {
         get { return _batchId; }
+    }
+
+    public ContentManager ContentManager
+    {
+        get { return _contentManager; }
     }
 
     public List<AssetObject> Assets
@@ -43,14 +48,19 @@ public class ContentBatch
             _batchId = batchId;
 
         // Retrieve asset definitions
-        List<AssetDefinition> assetDefinitions = _graphicsManager.AssetDefinitions.FindAll(e => e.BatchIds.Contains(batchId));
+        List<AssetDefinition> assetDefinitions = new List<AssetDefinition>(
+            from asset in _graphicsManager.AssetDefinitions
+            where asset.BatchIds.Contains(BatchId)
+            select asset
+            );
         
         for (int i = 0; i < assetDefinitions.Count;)
         {
             if (_graphicsManager.AssetObjects.ContainsKey(assetDefinitions[i].AssetId))
             {
+                string assetId = assetDefinitions[i].AssetId;
+                _graphicsManager.AssetObjects[assetId].AddParentBatch(this);
                 assetDefinitions.RemoveAt(i);
-                _graphicsManager.AssetObjects[assetDefinitions[i].AssetId].AddParentBatch(this);
             }
             else
             {
@@ -58,7 +68,21 @@ public class ContentBatch
             }
         }
 
-        // TODO: Load assets
+        // Load assets
+        foreach (AssetDefinition definition in assetDefinitions)
+        {
+            AssetObject asset = null;
+
+            switch (definition.AssetType)
+            {
+                case ("Texture2D"): { asset = Texture2DAsset.Load(definition, this); } break;
+                case ("SpriteFont"): { asset = SpriteFontAsset.Load(definition, this); } break;
+                case ("Effect"): { asset = EffectAsset.Load(definition, this); } break;
+            }
+
+            if (asset != null)
+                _assets.Add(asset);
+        }
 
         _loaded = true;
     }

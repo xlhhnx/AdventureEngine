@@ -50,9 +50,11 @@
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Worlds\World.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
-    <Compile Include="Graphics\Loading\AssetLoader.cs" />
     <Compile Include="Graphics\Objects\AssetDefinition.cs" />
     <Compile Include="Graphics\Objects\AssetObject.cs" />
+    <Compile Include="Graphics\Objects\Assets\EffectAsset.cs" />
+    <Compile Include="Graphics\Objects\Assets\SpriteFontAsset.cs" />
+    <Compile Include="Graphics\Objects\Assets\Texture2DAsset.cs" />
     <Compile Include="Graphics\Objects\ContentBatch.cs" />
     <Compile Include="Graphics\Objects\ContentBatchComparer.cs" />
     <Compile Include="Graphics\Objects\GraphicsObject.cs" />

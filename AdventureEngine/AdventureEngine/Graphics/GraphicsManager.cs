@@ -39,20 +39,19 @@ public class GraphicsManager
 
     public void LoadAssetDefinitions(string filePath)
     {
-        // TODO: Load file definitions
         using (StreamReader reader = new StreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read)))
         {
             while (!reader.EndOfStream)
             {
                 string path = string.Empty;
                 string assetId = string.Empty;
-                Type assetType = null;
+                string assetType = string.Empty;
                 List<string> batchIds = new List<string>();
 
                 string line = reader.ReadLine();
                 List<string> attributes = new List<string>(
                     line.Split(new char[] { ',' })
-                    );
+                );
 
                 foreach (string attribute in attributes)
                 {
@@ -63,7 +62,7 @@ public class GraphicsManager
                     {
                         case ("filePath"): { path = pair[1]; } break;
                         case ("assetId"): { assetId = pair[1]; } break;
-                        case ("assetType"): { assetType = ParseTypeString(pair[1]); } break;
+                        case ("assetType"): { assetType = pair[1]; } break;
                         case ("batchId"): { batchIds.Add(pair[1]); } break;
                     }
                 }
@@ -79,7 +78,7 @@ public class GraphicsManager
 
     public bool LoadContentBatch(string batchId)
     {
-        if (_contentBatches.Find(e => e.BatchId == batchId) != null) return false; // If the batch already exists, dont reload it.
+        if (_contentBatches.Find(cb => cb.BatchId == batchId) != null) return false; // If the batch already exists, dont reload it.
 
         ContentBatch batch = new ContentBatch(this);
         batch.Load(batchId);
@@ -93,7 +92,7 @@ public class GraphicsManager
 
     public void ReloadContentBatch(string batchId)
     {
-        ContentBatch batch = _contentBatches.Find(e => e.BatchId == batchId);
+        ContentBatch batch = _contentBatches.Find(cb => cb.BatchId == batchId);
         if (batch == null) return; // If the batch doesn't exist, dont try to reload it.
 
         foreach (AssetObject asset in batch.Assets)

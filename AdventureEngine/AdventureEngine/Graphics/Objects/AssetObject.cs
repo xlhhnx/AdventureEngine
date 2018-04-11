@@ -27,6 +27,7 @@ public abstract class AssetObject
 
     public void AddParentBatch(ContentBatch batch)
     {
-        _parentContentBatches.Add(batch);
+        if (!_parentContentBatches.Contains(batch))
+            _parentContentBatches.Add(batch);
     }
 }

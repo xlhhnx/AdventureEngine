@@ -14,7 +14,7 @@ public class AssetDefinition
         get { return _assetId; }
     }
 
-    public Type AssetType
+    public string AssetType
     {
         get { return _assetType; }
     }
@@ -27,11 +27,11 @@ public class AssetDefinition
     /* Variables */
     protected string _filePath;
     protected string _assetId;
-    protected Type _assetType;
+    protected string _assetType;
     protected List<string> _batchIds;
 
     /* Methods */
-    public AssetDefinition(string filePath, string assetId, Type assetType, List<string> batchIds)
+    public AssetDefinition(string filePath, string assetId, string assetType, List<string> batchIds)
     {
         _filePath = filePath;
         _assetId = assetId;
