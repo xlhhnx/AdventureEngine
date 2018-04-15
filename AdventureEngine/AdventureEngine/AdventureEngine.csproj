@@ -34,6 +34,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,15 +53,22 @@
     <Compile Include="Game\Components\DrawableComponent.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Worlds\World.cs" />
+    <Compile Include="Assets\AssetManager.cs" />
+    <Compile Include="Assets\Objects\AssetDefinition.cs" />
+    <Compile Include="Assets\Objects\AssetObject.cs" />
+    <Compile Include="Assets\Objects\Types\EffectAsset.cs" />
+    <Compile Include="Assets\Objects\Types\SpriteFontAsset.cs" />
+    <Compile Include="Assets\Objects\Types\Texture2DAsset.cs" />
+    <Compile Include="Assets\Objects\ContentBatch.cs" />
+    <Compile Include="Assets\Comparers\ContentBatchComparer.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
-    <Compile Include="Graphics\Objects\AssetDefinition.cs" />
-    <Compile Include="Graphics\Objects\AssetObject.cs" />
-    <Compile Include="Graphics\Objects\Assets\EffectAsset.cs" />
-    <Compile Include="Graphics\Objects\Assets\SpriteFontAsset.cs" />
-    <Compile Include="Graphics\Objects\Assets\Texture2DAsset.cs" />
-    <Compile Include="Graphics\Objects\ContentBatch.cs" />
-    <Compile Include="Graphics\Objects\ContentBatchComparer.cs" />
+    <Compile Include="Graphics\Objects\Factories\ImageFactory.cs" />
+    <Compile Include="Graphics\Objects\Factories\SpriteFactory.cs" />
+    <Compile Include="Graphics\Objects\Factories\TextFactory.cs" />
     <Compile Include="Graphics\Objects\GraphicsObject.cs" />
+    <Compile Include="Graphics\Objects\Types\Image.cs" />
+    <Compile Include="Graphics\Objects\Types\Sprite.cs" />
+    <Compile Include="Graphics\Objects\Types\Text.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +81,9 @@
     <Folder Include="UI\Windows\" />
     <Folder Include="Video\Loading\" />
     <Folder Include="Video\Objects\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

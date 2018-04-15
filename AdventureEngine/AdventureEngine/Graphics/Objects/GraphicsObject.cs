@@ -17,6 +17,9 @@ public abstract class GraphicsObject
         set { _enabled = value; }
     }
 
+    public abstract Vector2 DrawPosition { get; set; }
+    public abstract Vector2 DrawDimensions { get; set; }
+
     /* Variables */
     protected bool _visible;
     protected bool _enabled;
@@ -24,5 +27,6 @@ public abstract class GraphicsObject
 
     /* Methods*/
     public abstract void Update(GameTime gameTime);
-    public abstract void Draw(GameTime gameTime, [Optional]Vector2 drawPosition, [Optional]SpriteBatch spriteBatch);
+    public abstract void Draw(GameTime gameTime);
+    public abstract void Draw(GameTime gameTime, Vector2? drawPosition, SpriteBatch spriteBatch);
 }
