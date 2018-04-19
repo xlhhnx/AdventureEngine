@@ -69,13 +69,17 @@
     <Compile Include="Graphics\Objects\Types\Image.cs" />
     <Compile Include="Graphics\Objects\Types\Sprite.cs" />
     <Compile Include="Graphics\Objects\Types\Text.cs" />
+    <Compile Include="Input\ButtonState.cs" />
+    <Compile Include="Input\Controllers\KeyboardController.cs" />
+    <Compile Include="Input\Controllers\MouseController.cs" />
+    <Compile Include="Input\InputController.cs" />
+    <Compile Include="Input\InputManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\Loading\" />
     <Folder Include="Audio\Objects\" />
     <Folder Include="Game\Systems\Dialogue\" />
-    <Folder Include="Input\Controllers\" />
     <Folder Include="UI\Controls\" />
     <Folder Include="UI\Screens\" />
     <Folder Include="UI\Windows\" />

@@ -1,0 +1,1 @@
+﻿public enum ButtonState { Down, Pressed, Up, Released }
