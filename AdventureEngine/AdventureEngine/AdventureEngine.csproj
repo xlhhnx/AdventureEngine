@@ -48,6 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Communication\Message.cs" />
+    <Compile Include="Communication\MessageQueue.cs" />
+    <Compile Include="Communication\Observable.cs" />
+    <Compile Include="Communication\Observer.cs" />
+    <Compile Include="Communication\Subscriber.cs" />
     <Compile Include="Game\Components\Component.cs" />
     <Compile Include="Game\Components\ComponentTypeComparer.cs" />
     <Compile Include="Game\Components\DrawableComponent.cs" />

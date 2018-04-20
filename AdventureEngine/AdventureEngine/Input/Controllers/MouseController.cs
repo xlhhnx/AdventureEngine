@@ -36,26 +36,34 @@ public class MouseController : InputController
             switch (_buttonStates[button]) {
                 case (ButtonState.Up):
                     {
-                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed) _buttonStates[button] = ButtonState.Pressed;
-                        else _buttonStates[button] = ButtonState.Up;
+                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                            _buttonStates[button] = ButtonState.Pressed;
+                        else
+                            _buttonStates[button] = ButtonState.Up;
                     }
                     break;
                 case (ButtonState.Pressed):
                     {
-                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed) _buttonStates[button] = ButtonState.Down;
-                        else _buttonStates[button] = ButtonState.Released;
+                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                            _buttonStates[button] = ButtonState.Down;
+                        else
+                            _buttonStates[button] = ButtonState.Released;
                     }
                     break;
                 case (ButtonState.Down):
                     {
-                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed) _buttonStates[button] = ButtonState.Down;
-                        else _buttonStates[button] = ButtonState.Released;
+                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                            _buttonStates[button] = ButtonState.Down;
+                        else
+                            _buttonStates[button] = ButtonState.Released;
                     }
                     break;
                 case (ButtonState.Released):
                     {
-                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed) _buttonStates[button] = ButtonState.Pressed;
-                        else _buttonStates[button] = ButtonState.Up;
+                        if (_previousButtonStates[button] == Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+                            _buttonStates[button] = ButtonState.Pressed;
+                        else
+                            _buttonStates[button] = ButtonState.Up;
                     }
                     break;
             }

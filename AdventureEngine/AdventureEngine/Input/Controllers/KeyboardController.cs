@@ -31,25 +31,33 @@ public class KeyboardController : InputController
             switch (_keyStates[k]) {
                 case (ButtonState.Up):
                     {
-                        if (_currentKeyboardState.IsKeyDown(k)) _keyStates[k] = ButtonState.Pressed;
-                        else _keyStates[k] = ButtonState.Up;
+                        if (_currentKeyboardState.IsKeyDown(k))
+                            _keyStates[k] = ButtonState.Pressed;
+                        else
+                            _keyStates[k] = ButtonState.Up;
                     }break;
                 case (ButtonState.Pressed):
                     {
-                        if (_currentKeyboardState.IsKeyDown(k)) _keyStates[k] = ButtonState.Down;
-                        else _keyStates[k] = ButtonState.Released;
+                        if (_currentKeyboardState.IsKeyDown(k))
+                            _keyStates[k] = ButtonState.Down;
+                        else
+                            _keyStates[k] = ButtonState.Released;
                     }
                     break;
                 case (ButtonState.Down):
                     {
-                        if (_currentKeyboardState.IsKeyDown(k)) _keyStates[k] = ButtonState.Down;
-                        else _keyStates[k] = ButtonState.Released;
+                        if (_currentKeyboardState.IsKeyDown(k))
+                            _keyStates[k] = ButtonState.Down;
+                        else
+                            _keyStates[k] = ButtonState.Released;
                     }
                     break;
                 case (ButtonState.Released):
                     {
-                        if (_currentKeyboardState.IsKeyDown(k)) _keyStates[k] = ButtonState.Pressed;
-                        else _keyStates[k] = ButtonState.Up;
+                        if (_currentKeyboardState.IsKeyDown(k))
+                            _keyStates[k] = ButtonState.Pressed;
+                        else
+                            _keyStates[k] = ButtonState.Up;
                     }
                     break;
             }
