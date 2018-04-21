@@ -26,9 +26,7 @@ public class MouseController : InputController
 
         // Handle mouse location
         if (_previousMouseState.Position != _currentMouseState.Position)
-        {
-            // TODO: Enqueue MouseMoveMessage
-        }
+            MessageQueue.EnqueueMessage(new MouseMoveMessage(_currentMouseState.Position, this));
 
         // Handle mouse buttons
         foreach (string button in _previousButtonStates.Keys)
@@ -68,14 +66,11 @@ public class MouseController : InputController
                     break;
             }
         }
-
-        // TODO: Enqueue MouseButtonsStateMessage
+        MessageQueue.EnqueueMessage(new MouseButtonStatesMessage(_buttonStates, this));
 
         // Handle mouse scroll wheel
         if (_previousMouseState.ScrollWheelValue != _currentMouseState.ScrollWheelValue)
-        {
-            // TODO: Enqueue ScrollWheelValueChangeMessage
-        }
+            MessageQueue.EnqueueMessage(new MouseScrollWheelChangedMessage(_currentMouseState.ScrollWheelValue - _previousMouseState.ScrollWheelValue, this));
 
         _previousMouseState = _currentMouseState;
     }
