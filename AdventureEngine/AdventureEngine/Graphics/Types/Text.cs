@@ -117,6 +117,11 @@ public class Text : GraphicsObject
         }
     }
 
+    public Text Copy()
+    {
+        return new Text(_spriteBatch, _spriteFontAsset, _drawPosition, _drawDimensions, _color, _disabledColor, _fullText);
+    }
+
     private string TrimText(string text, Vector2 dimensions)
     {
         if (_spriteFontAsset.Loaded) {

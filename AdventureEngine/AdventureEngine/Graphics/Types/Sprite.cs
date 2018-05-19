@@ -55,4 +55,10 @@ public class Sprite : Image
                 );
         }
     }
+
+    public Sprite Copy()
+    {
+        return new Sprite(_spriteBatch, _texture2DAsset, _sourceRectangle.GetPosition(), _sourceRectangle.GetDimensions()
+            , DrawPosition.Copy(), DrawDimensions.Copy(), _color, _rows, _columns, _looping, _enabled, _visible);
+    }
 }

@@ -40,6 +40,12 @@ public class Image : GraphicsObject
         // No op
     }
 
+    public Image Copy()
+    {
+        return new Image(_spriteBatch, _texture2DAsset, _sourceRectangle.GetPosition(), _sourceRectangle.GetDimensions()
+            , DrawPosition.Copy(), DrawDimensions.Copy(), _color, _enabled, _visible);
+    }
+
     public override void Draw(GameTime gameTime)
     {
         if (Visible && _texture2DAsset.Loaded)

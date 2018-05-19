@@ -57,7 +57,7 @@ public static class MessageQueue
                 msg.ExecutionTime = gameTime.ElapsedGameTime;
             }
 
-            LogManager.WriteLog(msg.LogLevel, _logName, msg.ToString());
+            LogManager.Write(msg.LogLevel, _logName, msg.ToString());
             foreach (Subscriber sub in _subscribers)
                 sub.ReceiveMessage(msg);
         }

@@ -3,15 +3,8 @@
 public abstract class AssetObject
 {
     /* Properties */
-    public bool Loaded
-    {
-        get { return _parentContentBatches.Find(p => p.Loaded) != null; }
-    }
-
-    public string AssetId
-    {
-        get { return _assetId; }
-    }
+    public bool Loaded { get { return _parentContentBatches.Find(p => p.Loaded) != null; } }
+    public string AssetId { get { return _assetId; } }
 
     /* Variables */
     protected string _assetId;

@@ -4,25 +4,10 @@ using System.Collections.Generic;
 public class AssetDefinition
 {
     /* Properties */
-    public string FilePath
-    {
-        get { return _filePath; }
-    }
-
-    public string AssetId
-    {
-        get { return _assetId; }
-    }
-
-    public string AssetType
-    {
-        get { return _assetType; }
-    }
-
-    public List<string> BatchIds
-    {
-        get { return _batchIds; }
-    }
+    public string FilePath { get { return _filePath; } }
+    public string AssetId { get { return _assetId; } }
+    public string AssetType { get { return _assetType; } }
+    public List<string> BatchIds { get { return _batchIds; } }
 
     /* Variables */
     protected string _filePath;

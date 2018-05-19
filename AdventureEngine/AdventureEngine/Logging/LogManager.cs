@@ -46,7 +46,7 @@ public static class LogManager
     {
         Logger _logger = null;
 
-        if (_loggers.ContainsKey(name))
+        if (_initialized && _loggers.ContainsKey(name))
         {
             _logger = _loggers[name];
         }
@@ -61,7 +61,7 @@ public static class LogManager
     /// <param name="logger">The logger to be added.</param>
     public static void AddLogger(string name, Logger logger)
     {
-        if (!_loggers.ContainsKey(name))
+        if (_initialized && !_loggers.ContainsKey(name))
         {
             _loggers.Add(name, logger);
         }
@@ -73,7 +73,7 @@ public static class LogManager
     /// <param name="name">The name of the logger to be removed.</param>
     public static void RemoveLogger(string name)
     {
-        if (_loggers.ContainsKey(name))
+        if (_initialized && _loggers.ContainsKey(name))
         {
             _loggers.Remove(name);
         }
@@ -104,10 +104,10 @@ public static class LogManager
     /// </param>
     /// <param name="logName">The name to be used to look up the logger to use.</param>
     /// <param name="message">The message that is to be written to the log.</param>
-    public static void WriteLog(int logLevel, string logName, string message)
+    public static void Write(int logLevel, string logName, string message)
     {
         var logMessage = $"{ParseLogLevel(logLevel)} : {message}";
-        if (logLevel <= _logLevel)
+        if (_initialized && logLevel <= _logLevel)
         {
             Console.WriteLine(logMessage);
         }

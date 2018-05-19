@@ -29,7 +29,6 @@ namespace TestingApplication
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             LogManager.Initialize(3); // 3 => INFO, 4 => VERBOSE
             MessageQueue.Initialize();
 
@@ -49,7 +48,6 @@ namespace TestingApplication
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
         }
 
         /// <summary>
@@ -58,7 +56,6 @@ namespace TestingApplication
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
@@ -82,7 +79,7 @@ namespace TestingApplication
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            // Draw logic here.
 
             base.Draw(gameTime);
         }

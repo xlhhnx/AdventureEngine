@@ -1,30 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Newtonsoft.Json;
 
 public class AssetManager
 {
     // Properties
-    public IServiceProvider ServiceProvider
-    {
-        get { return _serviceProvider; }
-    }
-
-    public List<AssetDefinition> AssetDefinitions
-    {
-        get { return _assetDefinitions; }
-    }
-
-    public Dictionary<string, AssetObject> AssetObjects
-    {
-        get { return _assetObjects; }
-    }
+    public IServiceProvider ServiceProvider { get { return _serviceProvider; } }
+    public Dictionary<string, ContentBatch> ContentBatches { get { return _contentBatches; } }
+    public Dictionary<string, AssetDefinition> AssetDefinitions { get { return _assetDefinitions; } }
+    public Dictionary<string, AssetObject> AssetObjects { get { return _assetObjects; } }
 
     // Variables
-    protected List<AssetDefinition> _assetDefinitions;
-    protected List<ContentBatch> _contentBatches;
+    protected Dictionary<string, ContentBatch> _contentBatches;
+    protected Dictionary<string, AssetDefinition> _assetDefinitions;
     protected Dictionary<string, AssetObject> _assetObjects;
     protected IServiceProvider _serviceProvider;
 
@@ -33,15 +22,15 @@ public class AssetManager
     {
         _serviceProvider = serviceProvider;
 
-        _assetDefinitions = new List<AssetDefinition>();
-        _contentBatches = new List<ContentBatch>();
+        _assetDefinitions = new Dictionary<string, AssetDefinition>();
+        _contentBatches = new Dictionary<string, ContentBatch>();
         _assetObjects = new Dictionary<string, AssetObject>();
     }
 
     public void LoadAssetDefinitions(string filePath)
     {
         bool collecting = false;
-        string currentJSON = string.Empty;
+        string currentJSON = "";
 
         using (StreamReader reader = new StreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read)))
         {
@@ -61,9 +50,8 @@ public class AssetManager
                 if (line.Contains("}"))
                 {
                     collecting = false;
-                    _assetDefinitions.Add(
-                        JsonConvert.DeserializeObject<AssetDefinition>(currentJSON)
-                        );
+                    var definition = JsonConvert.DeserializeObject<AssetDefinition>(currentJSON);
+                    _assetDefinitions.Add(definition.AssetId, definition);
                     currentJSON = string.Empty;
                 }
             }
@@ -72,7 +60,7 @@ public class AssetManager
 
     public bool LoadContentBatch(string batchId)
     {
-        if (_contentBatches.Find(cb => cb.BatchId == batchId) != null) return false; // If the batch already exists, dont reload it.
+        if (!_contentBatches.ContainsKey(batchId)) return false;
 
         ContentBatch batch = new ContentBatch(this);
         batch.Load(batchId);
@@ -80,14 +68,14 @@ public class AssetManager
         foreach (AssetObject asset in batch.Assets)
             _assetObjects.Add(asset.AssetId, asset);
 
-        _contentBatches.Add(batch);
+        _contentBatches.Add(batchId, batch);
         return true;
     }
 
     public void ReloadContentBatch(string batchId)
     {
-        ContentBatch batch = _contentBatches.Find(cb => cb.BatchId == batchId);
-        if (batch == null) return; // If the batch doesn't exist, dont try to reload it.
+        if (!_contentBatches.ContainsKey(batchId)) return;
+        ContentBatch batch = _contentBatches[batchId];
 
         foreach (AssetObject asset in batch.Assets)
             _assetObjects.Remove(asset.AssetId);
@@ -97,8 +85,6 @@ public class AssetManager
 
         foreach (AssetObject asset in batch.Assets)
             _assetObjects.Add(asset.AssetId, asset);
-
-        _contentBatches.Add(batch);
     }
 
     private Type ParseTypeString(string typeString)
