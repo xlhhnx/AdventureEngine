@@ -11,22 +11,30 @@ public class KeyboardController : InputController
     // Variables
     protected KeyboardState _previousKeyboardState;
     protected Dictionary<Keys, ButtonState> _keyStates;
+    protected List<Keys> _allKeys;
+    protected KeyboardStateMessage _keyboardStateMessage;
 
     // Methods
     public KeyboardController()
     {
         _previousKeyboardState = new KeyboardState();
         _keyStates = new Dictionary<Keys, ButtonState>();
+        _allKeys = new List<Keys>();
 
         foreach (Keys k in Enum.GetValues(typeof(Keys)).Cast<Keys>())
+        {
             _keyStates.Add(k, ButtonState.Up);
+            _allKeys.Add(k);
+        }
+
+        _keyboardStateMessage = new KeyboardStateMessage(new Dictionary<Keys, ButtonState>(_keyStates), this);
     }
 
     public void Update(GameTime gameTime)
     {
-        KeyboardState _currentKeyboardState = Keyboard.GetState();
+        var _currentKeyboardState = Keyboard.GetState();
 
-        foreach (Keys k in _keyStates.Keys)
+        foreach (Keys k in _allKeys)
         {
             switch (_keyStates[k]) {
                 case (ButtonState.Up):
@@ -62,8 +70,13 @@ public class KeyboardController : InputController
                     break;
             }
         }
-
-        // TODO: Enqueue KeyboardStateMessage
+        
+        var message = new KeyboardStateMessage(new Dictionary<Keys, ButtonState>(_keyStates), this);
+        if (!message.Equals(_keyboardStateMessage))
+        {
+            _keyboardStateMessage = message;
+            MessageQueue.EnqueueMessage(_keyboardStateMessage);
+        }
 
         _previousKeyboardState = _currentKeyboardState;
     }

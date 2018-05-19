@@ -10,13 +10,21 @@ public class MouseController : InputController
     // Variables
     protected MouseState _previousMouseState;
     protected Dictionary<string, ButtonState> _buttonStates;
+    protected MouseButtonStatesMessage _lastButtonStatesMessage;
 
     // Methods
     public MouseController()
     {
         _previousMouseState = new MouseState();
-        _buttonStates = new Dictionary<string, ButtonState>();
-
+        _buttonStates = new Dictionary<string, ButtonState>()
+        {
+            { "LeftButton", ButtonState.Up },
+            { "MiddleButton", ButtonState.Up },
+            { "RightButton", ButtonState.Up },
+            { "ExtraButton1", ButtonState.Up },
+            { "ExtraButton2", ButtonState.Up }
+        };
+        _lastButtonStatesMessage = new MouseButtonStatesMessage(new Dictionary<string, ButtonState>(_buttonStates), this);
     }
 
     public void Update(GameTime gameTime)
@@ -66,7 +74,14 @@ public class MouseController : InputController
                     break;
             }
         }
-        MessageQueue.EnqueueMessage(new MouseButtonStatesMessage(_buttonStates, this));
+
+        // Handle mouse button states message
+        var message = new MouseButtonStatesMessage(new Dictionary<string, ButtonState>(_buttonStates), this);
+        if (!message.Equals(_lastButtonStatesMessage))
+        {
+            _lastButtonStatesMessage = message;
+            MessageQueue.EnqueueMessage(message);
+        }
 
         // Handle mouse scroll wheel
         if (_previousMouseState.ScrollWheelValue != _currentMouseState.ScrollWheelValue)

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 
 public class GraphicsManager
 {
@@ -7,29 +8,29 @@ public class GraphicsManager
 
     // Variables
     protected ImageFactory _imageFactory;
-    protected SpriteFactory _spriteFctory;
+    protected SpriteFactory _spriteFactory;
     protected TextFactory _textFactory;
 
     // Methods
-    public GraphicsManager()
+    public GraphicsManager(SpriteBatch defaultSpriteBatch)
     {
         _imageFactory = new ImageFactory();
-        _spriteFctory = new SpriteFactory();
+        _spriteFactory = new SpriteFactory(defaultSpriteBatch);
         _textFactory = new TextFactory();
     }
 
     public Image GetImage()
     {
-
+        throw new NotImplementedException();
     }
 
     public Sprite GetSprite()
     {
-
+        throw new NotImplementedException();
     }
 
     public Text GetText()
     {
-
+        throw new NotImplementedException();
     }
 }

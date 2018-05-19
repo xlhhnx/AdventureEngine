@@ -3,15 +3,9 @@
 public abstract class Message
 {
     // Properties
-    public string Type
-    {
-        get { return _type; }
-    }
-
-    public object Sender
-    {
-        get {  return _sender; }
-    }
+    public int LogLevel { get { return _logLevel; } }
+    public string Type { get { return _type; } }
+    public object Sender { get { return _sender; } }
 
     public TimeSpan ExecutionTime
     {
@@ -20,14 +14,21 @@ public abstract class Message
     }
 
     // Variables
+    protected int _logLevel;
     protected string _type;
     protected object _sender;
     protected TimeSpan _executionTime;
 
-    // MEthods
+    // Methods
     public Message(string type, object sender)
     {
         _type = type;
         _sender = sender;
+        _logLevel = 4;
+    }
+
+    public override int GetHashCode()
+    {
+        return Type.GetHashCode() + Sender.GetHashCode();
     }
 }

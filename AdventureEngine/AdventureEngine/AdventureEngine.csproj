@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdventureEngine</RootNamespace>
     <AssemblyName>AdventureEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -77,16 +78,23 @@
     <Compile Include="Input\ButtonState.cs" />
     <Compile Include="Input\Controllers\KeyboardController.cs" />
     <Compile Include="Input\Controllers\MouseController.cs" />
+    <Compile Include="Input\HoldTimeTracker.cs" />
     <Compile Include="Input\InputController.cs" />
     <Compile Include="Input\InputManager.cs" />
+    <Compile Include="Input\Messages\ButtonsMessage.cs" />
+    <Compile Include="Input\Messages\KeyboardStateMessage.cs" />
     <Compile Include="Input\Messages\MouseButtonStatesMessage.cs" />
     <Compile Include="Input\Messages\MouseMoveMessage.cs" />
     <Compile Include="Input\Messages\MouseScrollWheelChangedMessage.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Audio\Loading\" />
     <Folder Include="Audio\Objects\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Game\Commands\" />
     <Folder Include="Game\Systems\Dialogue\" />
     <Folder Include="UI\Controls\" />
     <Folder Include="UI\Screens\" />
