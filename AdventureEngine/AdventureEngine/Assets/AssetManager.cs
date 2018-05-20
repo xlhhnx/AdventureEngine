@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using Newtonsoft.Json;
+using System.Linq;
 
 public class AssetManager
 {
@@ -29,32 +29,14 @@ public class AssetManager
 
     public void LoadAssetDefinitions(string filePath)
     {
-        bool collecting = false;
-        string currentJSON = "";
+        var assetDefinitions = File.ReadAllLines(filePath)
+                                   .Where(l => l.Length > 0)
+                                   .Select(l => AssetDefinition.Load(l))
+                                   .Where(ad => ad != null);
 
-        using (StreamReader reader = new StreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read)))
+        foreach (AssetDefinition assetDefinition in assetDefinitions)
         {
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-
-                // IF line is an object start THEN set collecting flag
-                if (line.Contains("{"))
-                    collecting = true;
-
-                // IF in an object THEN add the line to the string
-                if (collecting)
-                    currentJSON += '\n' + line;
-
-                // IF line is an object end THEN deserialize the whole object
-                if (line.Contains("}"))
-                {
-                    collecting = false;
-                    var definition = JsonConvert.DeserializeObject<AssetDefinition>(currentJSON);
-                    _assetDefinitions.Add(definition.AssetId, definition);
-                    currentJSON = string.Empty;
-                }
-            }
+            _assetDefinitions.Add(assetDefinition.AssetId, assetDefinition);
         }
     }
 
@@ -85,17 +67,5 @@ public class AssetManager
 
         foreach (AssetObject asset in batch.Assets)
             _assetObjects.Add(asset.AssetId, asset);
-    }
-
-    private Type ParseTypeString(string typeString)
-    {
-        Type type = null;
-
-        switch (typeString)
-        {
-            // TODO: Add cases
-        }
-
-        return type;
     }
 }

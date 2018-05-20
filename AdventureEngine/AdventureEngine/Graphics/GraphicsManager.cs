@@ -1,8 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Runtime.InteropServices;
 
 public class GraphicsManager
@@ -41,32 +41,14 @@ public class GraphicsManager
 
     public void LoadGraphicDefinitions(string filePath)
     {
-        bool collecting = false;
-        string currentJSON = "";
+        var graphicDefinitions = File.ReadAllLines(filePath)
+                                     .Where(l => l.Length > 0)
+                                     .Select(l => GraphicDefinition.Load(l))
+                                     .Where(gd => gd != null);
 
-        using (var reader = new StreamReader(new FileStream(filePath, FileMode.Open, FileAccess.Read)))
+        foreach (GraphicDefinition graphicDefinition in graphicDefinitions)
         {
-            while (!reader.EndOfStream)
-            {
-                string line = reader.ReadLine();
-
-                // IF line is an object start THEN set collecting flag
-                if (line.Contains("{"))
-                    collecting = true;
-
-                // IF in an object THEN add the line to the string
-                if (collecting)
-                    currentJSON += '\n' + line;
-
-                // IF line is an object end THEN deserialize the whole object
-                if (line.Contains("}"))
-                {
-                    collecting = false;
-                    var definition = JsonConvert.DeserializeObject<GraphicDefinition>(currentJSON);
-                    _graphicDefinitions.Add(definition.GraphicId, definition);
-                    currentJSON = string.Empty;
-                }
-            }
+            _graphicDefinitions.Add(graphicDefinition.GraphicId, graphicDefinition);
         }
     }
 
@@ -80,12 +62,12 @@ public class GraphicsManager
         {
             if (!_assetManager.AssetObjects.ContainsKey(id))
             {
-                LogManager.Write(1, _logName, $"ASSET_OBJECT with id={id} is not loaded.");
+                LogManager.Write(1, $"ASSET_OBJECT with id={id} is not loaded.", _logName);
                 return null;
             }
             else if (!(_assetManager.AssetObjects[id] is Texture2DAsset))
             {
-                LogManager.Write(1, _logName, $"ASSET_OBJECT with id={id} is not of expected type TEXTURE_2D_ASSET.");
+                LogManager.Write(1, $"ASSET_OBJECT with id={id} is not of expected type TEXTURE_2D_ASSET.", _logName);
                 return null;
             }
 
@@ -96,7 +78,7 @@ public class GraphicsManager
         }
         else
         {
-            LogManager.Write(1, _logName, $"Could not find IMAGE with id={id}");
+            LogManager.Write(1, $"Could not find IMAGE with id={id}", _logName);
         }
 
         return null;
@@ -112,12 +94,12 @@ public class GraphicsManager
         {
             if (!_assetManager.AssetObjects.ContainsKey(id))
             {
-                LogManager.Write(1, _logName, $"ASSET_OBJECT with id={id} is not loaded.");
+                LogManager.Write(1, $"ASSET_OBJECT with id={id} is not loaded.", _logName);
                 return null;
             }
             else if (!(_assetManager.AssetObjects[id] is Texture2DAsset))
             {
-                LogManager.Write(1, _logName, $"ASSET_OBJECT with id={id} is not of expected type TEXTURE_2D_ASSET.");
+                LogManager.Write(1, $"ASSET_OBJECT with id={id} is not of expected type TEXTURE_2D_ASSET.", _logName);
                 return null;
             }
 
@@ -128,7 +110,7 @@ public class GraphicsManager
         }
         else
         {
-            LogManager.Write(1, _logName, $"Could no find the SPRITE with id={id}");
+            LogManager.Write(1, $"Could no find the SPRITE with id={id}", _logName);
             return null;
         }
     }
@@ -143,12 +125,12 @@ public class GraphicsManager
         {
             if (!_assetManager.AssetObjects.ContainsKey(id))
             {
-                LogManager.Write(1, _logName, $"ASSET_OBJECT with id={id} is not loaded.");
+                LogManager.Write(1, $"ASSET_OBJECT with id={id} is not loaded.", _logName);
                 return null;
             }
             else if (!(_assetManager.AssetObjects[id] is SpriteFontAsset))
             {
-                LogManager.Write(1, _logName, $"ASSET_OBJECT with id={id} is not of expected type SPRITE_FONT_ASSET.");
+                LogManager.Write(1, $"ASSET_OBJECT with id={id} is not of expected type SPRITE_FONT_ASSET.", _logName);
                 return null;
             }
 
@@ -159,7 +141,7 @@ public class GraphicsManager
         }
         else
         {
-            LogManager.Write(1, _logName, $"Could no find the TEXT with id={id}");
+            LogManager.Write(1, $"Could no find the TEXT with id={id}", _logName);
             return null;
         }
     }

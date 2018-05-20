@@ -43,4 +43,51 @@ public class GraphicDefinition
     {
         return _parameters.ContainsKey(s);
     }
+
+    /// <summary>
+    /// Builds a GraphicDefinition using a string input.
+    /// </summary>
+    /// <param name="line">A string in the format 'GraphicId=[string];GraphicType=[string];Parameters=[string]:[string],...,[string]:[string]'.</param>
+    /// <returns>GraphicDefinition if the format is correct, otherwise null.</returns>
+    public static GraphicDefinition Load(string line)
+    {
+        var graphicId = "";
+        var graphicType = "";
+        var parameters = new Dictionary<string, string>();
+
+        var split = line.Split(';');
+        foreach (string s in split)
+        {
+            var pair = s.Trim().Split('=');
+            switch(pair[0]){
+                case ("GraphicId"): { graphicId = pair[1]; }
+                    break;
+                case ("GraphicType"): { graphicType = pair[1]; }
+                    break;
+                case ("Parameters"):
+                    {
+                        var paramPairs = pair[1].Split(',');
+                        foreach (string param in paramPairs)
+                        {
+                            var paramSplit = param.Split(':');
+                            parameters.Add(paramSplit[0], paramSplit[1]);
+                        }
+                    }
+                    break;
+            }
+        }
+
+        if (graphicId != "" && graphicType != "" && parameters.Count > 0)
+        {
+            return new GraphicDefinition(graphicId, graphicType)
+            {
+                _parameters = parameters
+            };
+        }
+        else
+        {
+            LogManager.Write(1, $"Could not create GRAPHIC_DEFINITION because the definition line is missing one or more fields. line='{line}'");
+            return null;
+        }
+    }
 }

@@ -49,9 +49,9 @@ public class ContentBatch
 
         // Retrieve asset definitions
         List<AssetDefinition> assetDefinitions = new List<AssetDefinition>(
-            from asset in _assetManager.AssetDefinitions
-            where asset.BatchIds.Contains(BatchId)
-            select asset
+            _assetManager.AssetDefinitions.Keys
+                         .Where(k => _assetManager.AssetDefinitions[k].BatchIds.Contains(batchId))
+                         .Select(k => _assetManager.AssetDefinitions[k])
             );
         
         for (int i = 0; i < assetDefinitions.Count;)

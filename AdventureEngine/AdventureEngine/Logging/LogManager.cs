@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 
 /// <summary>
 /// Manages all loggers for writing information to both the console and log files.
@@ -104,8 +105,10 @@ public static class LogManager
     /// </param>
     /// <param name="logName">The name to be used to look up the logger to use.</param>
     /// <param name="message">The message that is to be written to the log.</param>
-    public static void Write(int logLevel, string logName, string message)
+    public static void Write(int logLevel, string message, [Optional]string logName)
     {
+        if (logName == null) logName = GlobalConfiguration.DefaultLogName;
+
         var logMessage = $"{ParseLogLevel(logLevel)} : {message}";
         if (_initialized && logLevel <= _logLevel)
         {
