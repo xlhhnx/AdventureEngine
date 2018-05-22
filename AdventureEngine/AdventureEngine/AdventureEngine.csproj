@@ -57,14 +57,6 @@
     <Compile Include="Game\Components\DrawableComponent.cs" />
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Worlds\World.cs" />
-    <Compile Include="Assets\AssetManager.cs" />
-    <Compile Include="Assets\AssetDefinition.cs" />
-    <Compile Include="Assets\AssetObject.cs" />
-    <Compile Include="Assets\Types\EffectAsset.cs" />
-    <Compile Include="Assets\Types\SpriteFontAsset.cs" />
-    <Compile Include="Assets\Types\Texture2DAsset.cs" />
-    <Compile Include="Assets\ContentBatch.cs" />
-    <Compile Include="Assets\Comparers\ContentBatchComparer.cs" />
     <Compile Include="Graphics\GraphicDefinition.cs" />
     <Compile Include="Graphics\Extensions\RectangleExtensions.cs" />
     <Compile Include="Graphics\Extensions\Vector2Extensions.cs" />
@@ -104,6 +96,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.Assets.csproj">
+      <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>
+      <Name>AdventureEngine.Assets</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
