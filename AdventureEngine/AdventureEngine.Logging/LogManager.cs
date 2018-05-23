@@ -53,37 +53,37 @@ public class LogManager
     }
 
     /// <summary>
-    /// Writes a message to a file using a logger found with the file path.
+    /// Writes a loglogMessage to a file using a logger found with the file path.
     /// </summary>
-    /// <param name="filePath">The file path used to determine which logger to use to write the message.</param>
-    /// <param name="message">A message to be written to the log.</param>
-    public void Write(string filePath, string message)
+    /// <param name="filePath">The file path used to determine which logger to use to write the loglogMessage.</param>
+    /// <param name="loglogMessage">A loglogMessage to be written to the log.</param>
+    public void Write(string filePath, string loglogMessage)
     {
         if (ContainsLogger(filePath))
         {
-            _loggers[filePath].Write(message);
+            _loggers[filePath].Write(loglogMessage);
         }
         else
         {
-            Write(_defualtErrorLogPath, $"Failed to find logger with filePath={filePath}. Failed to write message='{message}'", LogLevel.ERROR);
+            Write(_defualtErrorLogPath, $"Failed to find logger with filePath={filePath}. Failed to write loglogMessage='{logMessage}'", LogLevel.ERROR);
         }
     }
 
     /// <summary>
-    /// Writes a message to a file using a logger found with the file path.
+    /// Writes a logMessage to a file using a logger found with the file path.
     /// </summary>
-    /// <param name="filePath">The file path used to determine which logger to use to write the message.</param>
-    /// <param name="message">A message to be written to the log.</param>
-    /// <param name="logLevel">The log level this message should be logged under.</param>
-    public void Write(string filePath, string message, LogLevel logLevel)
+    /// <param name="filePath">The file path used to determine which logger to use to write the logMessage.</param>
+    /// <param name="logMessage">A logMessage to be written to the log.</param>
+    /// <param name="logLevel">The log level this logMessage should be logged under.</param>
+    public void Write(string filePath, string logMessage, LogLevel logLevel)
     {
         if (ContainsLogger(filePath))
         {
-            _loggers[filePath].Write(message, logLevel);
+            _loggers[filePath].Write(logMessage, logLevel);
         }
         else
         {
-            Write(_defualtErrorLogPath, $"Failed to find logger with filePath={filePath}. Failed to write message='{message}'", LogLevel.ERROR);
+            Write(_defualtErrorLogPath, $"Failed to find logger with filePath={filePath}. Failed to write logMessage='{logMessage}'", LogLevel.ERROR);
         }
     }
 }

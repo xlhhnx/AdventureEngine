@@ -73,27 +73,27 @@ public class Logger
     }
 
     /// <summary>
-    /// Writes a message into the log file using the default log level.
+    /// Writes a logMessage into the log file using the default log level.
     /// </summary>
-    /// <param name="message">The message to be logged.</param>
-    public void Write(string message)
+    /// <param name="logMessage">The logMessage to be logged.</param>
+    public void Write(string logMessage)
     {
         if (_fileOpen)
         {
-            _writer.WriteLine($"{_defaultLogLevel} : {message}");
+            _writer.WriteLine($"{_defaultLogLevel} : {logMessage}");
         }
     }
 
     /// <summary>
-    /// Writes a message into the log file using the provided log level.
+    /// Writes a logMessage into the log file using the provided log level.
     /// </summary>
-    /// <param name="message">The message to be logged.</param>
-    /// <param name="logLevel">The log level this message should be logged under.</param>
-    public void Write(string message, LogLevel logLevel)
+    /// <param name="logMessage">The logMessage to be logged.</param>
+    /// <param name="logLevel">The log level this logMessage should be logged under.</param>
+    public void Write(string logMessage, LogLevel logLevel)
     {
         if (_fileOpen)
         {
-            _writer.WriteLine($"{logLevel} : {message}");
+            _writer.WriteLine($"{logLevel} : {logMessage}");
         }
     }
 }

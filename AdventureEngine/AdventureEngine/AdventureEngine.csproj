@@ -96,9 +96,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.Assets.csproj">
+    <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj">
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>
-      <Name>AdventureEngine.Assets</Name>
+      <Name>AdventureEngine.AssetManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
