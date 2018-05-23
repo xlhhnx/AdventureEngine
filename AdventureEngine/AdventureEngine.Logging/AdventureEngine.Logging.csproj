@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}</ProjectGuid>
+    <ProjectGuid>{40375B04-268C-4D23-B402-43ED772F927A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdventureEngine.Assets</RootNamespace>
-    <AssemblyName>AdventureEngine.Assets</AssemblyName>
+    <RootNamespace>AdventureEngine.Logging</RootNamespace>
+    <AssemblyName>AdventureEngine.Logging</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,7 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,22 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Asset.cs" />
-    <Compile Include="AssetBatch.cs" />
-    <Compile Include="AssetDefinition.cs" />
-    <Compile Include="AssetManager.cs" />
-    <Compile Include="Assets\SpriteFontAsset.cs" />
-    <Compile Include="Assets\Texture2DAsset.cs" />
-    <Compile Include="Loading\AssetBatchLoader.cs" />
-    <Compile Include="Loading\AssetLoader.cs" />
-    <Compile Include="Loading\LoadingMode.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="LogLevel.cs" />
+    <Compile Include="LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AdventureEngine.Logging\AdventureEngine.Logging.csproj">
-      <Project>{40375b04-268c-4d23-b402-43ed772f927a}</Project>
-      <Name>AdventureEngine.Logging</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

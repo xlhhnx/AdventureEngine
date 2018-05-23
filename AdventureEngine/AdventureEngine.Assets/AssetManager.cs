@@ -3,7 +3,15 @@ using System.Collections.Generic;
 
 public class AssetManager
 {    
+    /// <summary>
+    /// Gets the logger for the AssetManager.
+    /// </summary>
+    public Logger Logger { get { return _logger; } }
+
     protected IServiceProvider _serviceProvider;
+    protected Logger _logger;
+    protected AssetBatchLoader _assetBatchLoader;
+    protected AssetLoader _assetLoader;
     protected Dictionary<string, string> _assetBatchDefinitions;
     protected Dictionary<string, AssetBatch> _assetBatches;
     protected Dictionary<string, AssetDefinition> _assetDefinitions;
@@ -13,9 +21,13 @@ public class AssetManager
     /// Constructs an AssetManager
     /// </summary>
     /// <param name="serviceProvider">The service provider that will be used for all ContentManagers.</param>
-    public AssetManager(IServiceProvider serviceProvider)
+    public AssetManager(IServiceProvider serviceProvider, Logger logger)
     {
         _serviceProvider = serviceProvider;
+        _logger = logger;
+
+        _assetBatchLoader = new AssetBatchLoader(serviceProvider, this);
+        _assetLoader = new AssetLoader(this);
     }
 
     /// <summary>
@@ -25,7 +37,7 @@ public class AssetManager
     /// <param name="mode">The loading mode to determine how much of the batches to load.</param>
     public void LoadAssetBatchFile(string filePath, LoadingMode mode)
     {
-        var definitions = AssetBatchLoader.LoadDefinition(filePath);
+        var definitions = _assetBatchLoader.LoadDefinition(filePath);
         foreach (var batchId in definitions.Keys)
         {
             if (!_assetBatchDefinitions.ContainsKey(batchId))
@@ -34,7 +46,7 @@ public class AssetManager
             }
             else
             {
-                // TODO: Throw Warning
+                _logger.Write($"Failed to load AssetBatchDefinition with Id={batchId}. An AssetBatchDefinition with that Id already exists.", LogLevel.WARNING);
             }
         }
 
@@ -43,16 +55,16 @@ public class AssetManager
             return;
         }
         
-        var assetBatches = AssetBatchLoader.LoadAll(_serviceProvider, filePath);
+        var assetBatches = _assetBatchLoader.LoadAll(filePath);
         foreach (var ab in assetBatches)
         {
-            if (_assetBatchDefinitions.ContainsKey(ab.Id))
+            if (!_assetBatches.ContainsKey(ab.Id))
             {
                 _assetBatches.Add(ab.Id, ab);
             }
             else
             {
-                // TODO: Throw Warning
+                _logger.Write($"Failed to load AssetBatch with Id={ab.Id}. An AssetBatch with that Id already exists.", LogLevel.WARNING);
             }
         }
 
@@ -76,26 +88,26 @@ public class AssetManager
     {
         if (mode == LoadingMode.Lazy)
         {
-            var definition = AssetBatchLoader.LoadDefinition(batchId, filePath);
+            var definition = _assetBatchLoader.LoadDefinition(batchId, filePath);
             if (!_assetBatchDefinitions.ContainsKey(batchId))
             {
                 _assetBatchDefinitions.Add(batchId, definition);
             }
             else
             {
-                // TODO: Throw Warning
+                _logger.Write($"Failed to load AssetBatchDefinition with Id={batchId}. An AssetBatchDefinition with that Id already exists.", LogLevel.WARNING);
             }
             return;
         }
 
-        var assetBatch = AssetBatchLoader.Load(_serviceProvider, batchId, filePath);
+        var assetBatch = _assetBatchLoader.Load(batchId, filePath);
         if (!_assetBatches.ContainsKey(batchId))
         {
             _assetBatches.Add(batchId, assetBatch);
         }
         else
         {
-            // TODO: Throw Warning
+            _logger.Write($"Failed to load AssetBatch with Id={batchId}. An AssetBatch with that Id already exists.", LogLevel.WARNING);
         }
 
         if (mode == LoadingMode.Aggressive)
@@ -114,7 +126,7 @@ public class AssetManager
     {
         if (ContainsBatchDefinition(batchDefinitionId))
         {
-            var assetBatch = AssetBatchLoader.Load(_serviceProvider, _assetBatchDefinitions[batchDefinitionId]);
+            var assetBatch = _assetBatchLoader.Load(_assetBatchDefinitions[batchDefinitionId]);
             _assetBatches.Add(assetBatch.Id, assetBatch);
 
         }
@@ -135,17 +147,17 @@ public class AssetManager
     {
         if (loadAssetBatch && _assetBatchDefinitions.ContainsKey(batchId) && !_assetBatches.ContainsKey(batchId))
         {
-            var tmpAssetBatch = AssetBatchLoader.Load(_serviceProvider, _assetBatchDefinitions[batchId]);
+            var tmpAssetBatch = _assetBatchLoader.Load(_assetBatchDefinitions[batchId]);
             _assetBatches.Add(batchId, tmpAssetBatch);
         }
         else if (!loadAssetBatch && !_assetBatches.ContainsKey(batchId))
         {
-            // TODO: Throw Error
+            _logger.Write($"Failed to load AssetDefinitions for AssetBatch.Id={batchId}. The AssetBatch does not exist.", LogLevel.ERROR);
             return;
         }
 
         var assetBatch = _assetBatches[batchId];
-        var definitions = AssetLoader.LoadDefinition(assetBatch);
+        var definitions = _assetLoader.LoadDefinition(assetBatch);
         foreach (var def in definitions)
         {
             if (def != null)
@@ -168,12 +180,12 @@ public class AssetManager
         }
         else if (!_assetBatches.ContainsKey(batchId) || !_assetBatches[batchId].Defined)
         {
-            // TODO: Throw Error
+            _logger.Write($"Failed to load Assets for AssetBatch.Id={batchId}. The AssetBatch does not exist.", LogLevel.ERROR);
             return;
         }
 
         var assetBatch = _assetBatches[batchId];
-        var assets = AssetLoader.LoadAsset(assetBatch, this);
+        var assets = _assetLoader.LoadAsset(assetBatch, this);
         foreach (var a in assets)
         {
             if (a != null)
@@ -218,12 +230,12 @@ public class AssetManager
             }
             else
             {
-                // TODO: Throw Error
+                _logger.Write($"Failed to find an AssetBatch the contains Asset.Id={assetId}.", LogLevel.ERROR);
             }
         }
         else
         {
-            // TODO: Throw Error
+            _logger.Write($"Failed to find an Asset or AssetDefinition with Id={assetId}.", LogLevel.ERROR);
         }
     }
 
@@ -280,7 +292,7 @@ public class AssetManager
         }
         else
         {
-            // TODO: Throw Error
+            _logger.Write($"Failed to find AssetBatch with Id={batchId}.", LogLevel.ERROR);
             return null;
         }
     }
@@ -298,7 +310,7 @@ public class AssetManager
         }
         else
         {
-            // TODO: Throw Error
+            _logger.Write($"Failed to find AssetDefinition with Id={assetId}.", LogLevel.ERROR);
             return null;
         }
     }
@@ -316,7 +328,7 @@ public class AssetManager
         }
         else
         {
-            // TODO: Throw Error
+            _logger.Write($"Failed to find Asset with Id={assetId}.", LogLevel.ERROR);
             return null;
         }
     }

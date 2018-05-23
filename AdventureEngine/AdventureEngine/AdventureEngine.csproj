@@ -79,8 +79,6 @@
     <Compile Include="Input\Messages\MouseButtonStatesMessage.cs" />
     <Compile Include="Input\Messages\MouseMoveMessage.cs" />
     <Compile Include="Input\Messages\MouseScrollWheelChangedMessage.cs" />
-    <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Logging\LogManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

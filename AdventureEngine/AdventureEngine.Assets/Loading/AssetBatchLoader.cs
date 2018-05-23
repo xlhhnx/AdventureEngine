@@ -3,16 +3,31 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-public static class AssetBatchLoader
+public class AssetBatchLoader
 {
+    protected IServiceProvider _serviceProvider;
+    protected AssetManager _assetManager;
+
+    /// <summary>
+    /// Constructs an AssetBatchLoader.
+    /// </summary>
+    /// <param name="serviceProvider">An IServiceProvider that will be passed to the new AssetBatch.</param>
+    /// <param name="assetManager">The AssetManager that created this AssetBatchLoader.</param>
+    public AssetBatchLoader(IServiceProvider serviceProvider, AssetManager assetManager)
+    {
+        _serviceProvider = serviceProvider;
+        _assetManager = assetManager;
+    }
+
     /// <summary>
     /// Builds an AssetBatch out of a string,
     /// </summary>
-    /// <param name="serviceProvider">An IServiceProvider that will be passed to the new AssetBatch.</param>
     /// <param name="definition">The string that will be parsed into an AssetBatch.</param>
     /// <returns>An AssetBatch or null.</returns>
-    public static AssetBatch Load(IServiceProvider serviceProvider, string definition)
+    public AssetBatch Load(string definition)
     {
+        var errorList = new List<string>();
+
         var batchId = "";
         var assetDefinitionsFilePath = "";
         var rootDirectory = "";
@@ -21,9 +36,9 @@ public static class AssetBatchLoader
         var type = arguments[0];
         var parameters = arguments.Where(l => l.Contains("="));
 
-        if (type.ToLower() == "assetbatch")
+        if (type.ToLower() != "assetbatch")
         {
-            // TODO: Throw Error
+            
             return null;
         }
 
@@ -40,50 +55,54 @@ public static class AssetBatchLoader
             }
         }
 
-        if (batchId == "" || assetDefinitionsFilePath == "")
+        if (batchId == "") errorList.Add("Failed to parse batch Id.");
+        if (assetDefinitionsFilePath == "") errorList.Add("Failed to parse AssetDefinitionsFilePath.");
+
+        if (errorList.Count > 0)
         {
-            // TODO: Throw Error
+            foreach (var err in errorList)
+            {
+                _assetManager.Logger.Write(err, LogLevel.ERROR);
+            }
             return null;
         }
 
         if (rootDirectory != "")
         {
-            return new AssetBatch(serviceProvider, batchId, assetDefinitionsFilePath, rootDirectory);
+            return new AssetBatch(_serviceProvider, batchId, assetDefinitionsFilePath, rootDirectory);
         }
         else
         {
-            return new AssetBatch(serviceProvider, batchId, assetDefinitionsFilePath);
+            return new AssetBatch(_serviceProvider, batchId, assetDefinitionsFilePath);
         }
     }
 
     /// <summary>
     /// Reads thruogh a file to find a line to parse into a specific AssetBatch.
     /// </summary>
-    /// <param name="serviceProvider">An IServiceProvider that will be passed to the new AssetBatch.</param>
     /// <param name="assetBatchId">The Id of the AssetBatch to parse. Used to find the correct line to parse.</param>
     /// <param name="filePath">The path to the file that contains the AssetBatch definitions.</param>
     /// <returns>An AsestBtch or null.</returns>
-    public static AssetBatch Load(IServiceProvider serviceProvider, string assetBatchId, string filePath)
+    public AssetBatch Load(string assetBatchId, string filePath)
     {
         var assetBatchDefinition = File.ReadAllLines(filePath)
                                        .Where(l => l.Length > 0)
                                        .Where(l => l.ToLower().Contains("assetbatch;") && l.ToLower().Contains($"Id={assetBatchId.ToLower()}"))
                                        .First();
-        return Load(serviceProvider, assetBatchDefinition);
+        return Load(assetBatchDefinition);
     }
 
     /// <summary>
     /// Reads through a file to build all of the contained AssetBatches.
     /// </summary>
-    /// <param name="serviceProvider">An IServiceProvider that will be passed to the new AssetBatch.</param>
     /// <param name="filePath">The path to the file that contains the AssetBatch definitions.</param>
     /// <returns>A list of all the AssetBatches contained in the file.</returns>
-    public static List<AssetBatch> LoadAll(IServiceProvider serviceProvider, string filePath)
+    public List<AssetBatch> LoadAll(string filePath)
     {
         var assetBatches = File.ReadAllLines(filePath)
                                .Where(l => l.Length > 0)
                                .Where(l => l.ToLower().Contains("assetbatch;"))
-                               .Select(l => Load(serviceProvider, l));
+                               .Select(l => Load(l));
         return new List<AssetBatch>(assetBatches);
     }
 
@@ -93,7 +112,7 @@ public static class AssetBatchLoader
     /// <param name="assetBatchId">he Id of the AssetBatch to parse. Used to find the correct line to parse.</param>
     /// <param name="filePath">The path to the file that contains the AssetBatch definitions.</param>
     /// <returns>A string that defines an AssetBatch.</returns>
-    public static string LoadDefinition(string assetBatchId, string filePath)
+    public string LoadDefinition(string assetBatchId, string filePath)
     {
         var definition = File.ReadAllLines(filePath)
                              .Where(l => l.Length > 0)
@@ -107,7 +126,7 @@ public static class AssetBatchLoader
     /// </summary>
     /// <param name="filePath">The path to the file that contains the AssetBatch definitions.</param>
     /// <returns></returns>
-    public static Dictionary<string, string> LoadDefinition(string filePath)
+    public Dictionary<string, string> LoadDefinition(string filePath)
     {
         var definitions = File.ReadAllLines(filePath)
                               .Where(l => l.Length > 0)
@@ -121,7 +140,7 @@ public static class AssetBatchLoader
     /// </summary>
     /// <param name="definition">A definition of an AssetBatch.</param>
     /// <returns>An AssetBatch Id or empty_string.</returns>
-    private static string GetBatchId(string definition)
+    private string GetBatchId(string definition)
     {
         var arguments = definition.Split(';');
         foreach (var arg in arguments)
@@ -133,7 +152,7 @@ public static class AssetBatchLoader
             }
         }
 
-        // TODO: Throw Error
+        _assetManager.Logger.Write($"Failed to find the batch Id in definition='{definition}'", LogLevel.ERROR);
         return "";
     }
 }

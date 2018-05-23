@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingApplication", "Testi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Assets", "AdventureEngine.Assets\AdventureEngine.Assets.csproj", "{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Logging", "AdventureEngine.Logging\AdventureEngine.Logging.csproj", "{40375B04-268C-4D23-B402-43ED772F927A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +42,14 @@ Global
 		{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}.Release|x86.Build.0 = Release|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Debug|x86.Build.0 = Debug|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Release|x86.ActiveCfg = Release|Any CPU
+		{40375B04-268C-4D23-B402-43ED772F927A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
