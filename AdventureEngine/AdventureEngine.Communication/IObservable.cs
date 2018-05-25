@@ -1,4 +1,4 @@
-﻿public interface Observable
+﻿public interface IObservable
 {
     void Subscribe(Observer observer);
     void Unsubscribe(Observer observer);

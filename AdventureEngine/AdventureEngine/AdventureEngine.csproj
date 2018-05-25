@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Extensions\StringExtensions.cs" />
     <Compile Include="Communication\Message.cs" />
     <Compile Include="Communication\MessageQueue.cs" />
     <Compile Include="Communication\Observable.cs" />
@@ -58,8 +57,6 @@
     <Compile Include="Game\Entities\Entity.cs" />
     <Compile Include="Game\Worlds\World.cs" />
     <Compile Include="Graphics\GraphicDefinition.cs" />
-    <Compile Include="Graphics\Extensions\RectangleExtensions.cs" />
-    <Compile Include="Graphics\Extensions\Vector2Extensions.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\Factories\ImageFactory.cs" />
     <Compile Include="Graphics\Factories\SpriteFactory.cs" />
