@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}</ProjectGuid>
+    <ProjectGuid>{EFC32A9A-0E8E-4CC1-BBFC-7645EC43650F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdventureEngine</RootNamespace>
-    <AssemblyName>AdventureEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>AdventureEngine._2DGraphics</RootNamespace>
+    <AssemblyName>AdventureEngine.2DGraphics</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,52 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\GlobalConfiguration.cs" />
-    <Compile Include="Game\Components\Component.cs" />
-    <Compile Include="Game\Components\ComponentTypeComparer.cs" />
-    <Compile Include="Game\Components\DrawableComponent.cs" />
-    <Compile Include="Game\Entities\Entity.cs" />
-    <Compile Include="Game\Worlds\World.cs" />
-    <Compile Include="Graphics\GraphicDefinition.cs" />
-    <Compile Include="Graphics\GraphicsManager.cs" />
-    <Compile Include="Graphics\Factories\ImageFactory.cs" />
-    <Compile Include="Graphics\Factories\SpriteFactory.cs" />
-    <Compile Include="Graphics\Factories\TextFactory.cs" />
-    <Compile Include="Graphics\GraphicsObject.cs" />
-    <Compile Include="Graphics\Types\Image.cs" />
-    <Compile Include="Graphics\Types\Sprite.cs" />
-    <Compile Include="Graphics\Types\Text.cs" />
-    <Compile Include="Input\ButtonState.cs" />
-    <Compile Include="Input\Controllers\KeyboardController.cs" />
-    <Compile Include="Input\Controllers\MouseController.cs" />
-    <Compile Include="Input\HoldTimeTracker.cs" />
-    <Compile Include="Input\InputController.cs" />
-    <Compile Include="Input\InputManager.cs" />
-    <Compile Include="Input\Messages\ButtonsMessage.cs" />
-    <Compile Include="Input\Messages\KeyboardStateMessage.cs" />
-    <Compile Include="Input\Messages\MouseButtonStatesMessage.cs" />
-    <Compile Include="Input\Messages\MouseMoveMessage.cs" />
-    <Compile Include="Input\Messages\MouseScrollWheelChangedMessage.cs" />
+    <Compile Include="Graphic.cs" />
+    <Compile Include="GraphicDefinition.cs" />
+    <Compile Include="GraphicsManager.cs" />
+    <Compile Include="Graphics\Image.cs" />
+    <Compile Include="Graphics\Sprite.cs" />
+    <Compile Include="Graphics\Text.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Audio\Loading\" />
-    <Folder Include="Audio\Objects\" />
-    <Folder Include="Game\Commands\" />
-    <Folder Include="Game\Systems\Dialogue\" />
-    <Folder Include="UI\Controls\" />
-    <Folder Include="UI\Screens\" />
-    <Folder Include="UI\Windows\" />
-    <Folder Include="Video\Loading\" />
-    <Folder Include="Video\Objects\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj">
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>
       <Name>AdventureEngine.AssetManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AdventureEngine.Extensions\AdventureEngine.Extensions.csproj">
+      <Project>{37161754-aa79-4b90-90db-e4fa64688940}</Project>
+      <Name>AdventureEngine.Extensions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

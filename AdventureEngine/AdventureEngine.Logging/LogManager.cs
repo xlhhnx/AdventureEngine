@@ -56,12 +56,12 @@ public class LogManager
     /// Writes a loglogMessage to a file using a logger found with the file path.
     /// </summary>
     /// <param name="filePath">The file path used to determine which logger to use to write the loglogMessage.</param>
-    /// <param name="loglogMessage">A loglogMessage to be written to the log.</param>
-    public void Write(string filePath, string loglogMessage)
+    /// <param name="logMessage">A loglogMessage to be written to the log.</param>
+    public void Write(string filePath, string logMessage)
     {
         if (ContainsLogger(filePath))
         {
-            _loggers[filePath].Write(loglogMessage);
+            _loggers[filePath].Write(logMessage);
         }
         else
         {

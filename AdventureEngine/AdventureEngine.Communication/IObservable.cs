@@ -1,6 +1,6 @@
 ﻿public interface IObservable
 {
-    void Subscribe(Observer observer);
-    void Unsubscribe(Observer observer);
-    bool Observing(Observer observer);
+    void Subscribe(IObserver observer);
+    void Unsubscribe(IObserver observer);
+    bool Observing(IObserver observer);
 }
