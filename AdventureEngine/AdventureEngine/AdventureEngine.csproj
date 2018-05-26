@@ -45,7 +45,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\GlobalConfiguration.cs" />
     <Compile Include="Game\Components\Component.cs" />
     <Compile Include="Game\Components\ComponentTypeComparer.cs" />
     <Compile Include="Game\Components\DrawableComponent.cs" />
@@ -60,29 +59,11 @@
     <Compile Include="Graphics\Types\Image.cs" />
     <Compile Include="Graphics\Types\Sprite.cs" />
     <Compile Include="Graphics\Types\Text.cs" />
-    <Compile Include="Input\ButtonState.cs" />
-    <Compile Include="Input\Controllers\KeyboardController.cs" />
-    <Compile Include="Input\Controllers\MouseController.cs" />
-    <Compile Include="Input\HoldTimeTracker.cs" />
-    <Compile Include="Input\InputController.cs" />
-    <Compile Include="Input\InputManager.cs" />
-    <Compile Include="Input\Messages\ButtonsMessage.cs" />
-    <Compile Include="Input\Messages\KeyboardStateMessage.cs" />
-    <Compile Include="Input\Messages\MouseButtonStatesMessage.cs" />
-    <Compile Include="Input\Messages\MouseMoveMessage.cs" />
-    <Compile Include="Input\Messages\MouseScrollWheelChangedMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Audio\Loading\" />
-    <Folder Include="Audio\Objects\" />
     <Folder Include="Game\Commands\" />
     <Folder Include="Game\Systems\Dialogue\" />
-    <Folder Include="UI\Controls\" />
-    <Folder Include="UI\Screens\" />
-    <Folder Include="UI\Windows\" />
-    <Folder Include="Video\Loading\" />
-    <Folder Include="Video\Objects\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
