@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeFile1.cs" />
     <Compile Include="Game\Components\Component.cs" />
     <Compile Include="Game\Components\ComponentTypeComparer.cs" />
     <Compile Include="Game\Components\DrawableComponent.cs" />

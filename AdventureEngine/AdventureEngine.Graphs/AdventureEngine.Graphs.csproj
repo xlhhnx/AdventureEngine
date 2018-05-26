@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{591A5B90-1835-48B5-94A7-2F3D4725F391}</ProjectGuid>
+    <ProjectGuid>{98CF88EC-290F-4BDC-B2D1-8F729EAB7AEC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdventureEngine.Mapping</RootNamespace>
-    <AssemblyName>AdventureEngine.Mapping</AssemblyName>
+    <RootNamespace>AdventureEngine.Graphs</RootNamespace>
+    <AssemblyName>AdventureEngine.Graphs</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Framework, Version=3.4.0.456, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,23 +40,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Game\Components\IComponent.cs" />
-    <Compile Include="Game\Components\IDrawableComponent.cs" />
-    <Compile Include="Game\Entites\IEntity.cs" />
-    <Compile Include="Game\IWorld.cs" />
-    <Compile Include="Maps\Grids\2D\Grid2D.cs" />
-    <Compile Include="Maps\Grids\2D\Tile2D.cs" />
-    <Compile Include="Maps\Grids\2D\TileEdge2D.cs" />
-    <Compile Include="Maps\Grids\3D\Grid3D.cs" />
+    <Compile Include="DirectedEdge.cs" />
+    <Compile Include="Graph.cs" />
+    <Compile Include="IEdge.cs" />
+    <Compile Include="INode.cs" />
+    <Compile Include="IWeightedEdge.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\AdventureEngine.Graphs\AdventureEngine.Graphs.csproj">
-      <Project>{98cf88ec-290f-4bdc-b2d1-8f729eab7aec}</Project>
-      <Name>AdventureEngine.Graphs</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
