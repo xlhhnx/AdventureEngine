@@ -2,9 +2,13 @@
 
 public interface IComponent
 {
-    string Id { get; }
-    string Name { get; }
-    IEntity Entity { get; }
+    /// <summary>
+    /// Gets the Id of the entity this component belongs to.
+    /// </summary>
+    string EntityId { get; }
 
-    void Update(GameTime gameTime);
+    /// <summary>
+    /// Gets the name of the component.
+    /// </summary>
+    string Name { get; }
 }

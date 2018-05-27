@@ -46,11 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeFile1.cs" />
-    <Compile Include="Game\Components\Component.cs" />
-    <Compile Include="Game\Components\ComponentTypeComparer.cs" />
-    <Compile Include="Game\Components\DrawableComponent.cs" />
-    <Compile Include="Game\Entities\Entity.cs" />
-    <Compile Include="Game\Worlds\World.cs" />
     <Compile Include="Graphics\GraphicDefinition.cs" />
     <Compile Include="Graphics\GraphicsManager.cs" />
     <Compile Include="Graphics\Factories\ImageFactory.cs" />
@@ -62,10 +57,7 @@
     <Compile Include="Graphics\Types\Text.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game\Commands\" />
-    <Folder Include="Game\Systems\Dialogue\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

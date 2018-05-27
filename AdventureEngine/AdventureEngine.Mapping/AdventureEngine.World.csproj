@@ -44,15 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Game\ComponentComparer.cs" />
+    <Compile Include="Game\Components\HealthComponent.cs" />
     <Compile Include="Game\Components\IComponent.cs" />
-    <Compile Include="Game\Components\IDrawableComponent.cs" />
-    <Compile Include="Game\Entites\IEntity.cs" />
+    <Compile Include="Game\Components\PositionComponent.cs" />
     <Compile Include="Game\IWorld.cs" />
+    <Compile Include="Game\Systems\ISystem.cs" />
     <Compile Include="Maps\Grids\2D\Grid2D.cs" />
     <Compile Include="Maps\Grids\2D\Tile2D.cs" />
-    <Compile Include="Maps\Grids\2D\TileEdge2D.cs" />
+    <Compile Include="Maps\Grids\TileEdge.cs" />
     <Compile Include="Maps\Grids\3D\Grid3D.cs" />
+    <Compile Include="Maps\Grids\3D\Tile3D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
