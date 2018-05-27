@@ -1,44 +1,23 @@
-﻿using System.Collections.Generic;
-
-public class Asset
+﻿public abstract class Asset
 {
     /// <summary>
-    /// Gets a flag that defines whether the Asset is currently loaded.
+    /// Gets the id of the asset.
     /// </summary>
-    public bool Loaded
-    {
-        get
-        {
-            foreach (var id in _batchIds)
-            {
-                if (_assetManager.ContainsBatch(id) && _assetManager.GetBatch(id).Loaded == true)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-    }
+    public string Id { get { return _id; } }
 
     /// <summary>
-    /// Get the Id of the Asset.
+    /// Determines if the asset is currently Loaded.
     /// </summary>
-    public string Id { get { return _assetId; } }
+    public abstract bool Loaded { get; set; }
 
-    protected string _assetId;
-    protected AssetManager _assetManager;
-    protected List<string> _batchIds;
+    protected string _id;
 
     /// <summary>
-    /// Constructs an Asset.
+    /// Creates an asset.
     /// </summary>
-    /// <param name="assetId">The unique Id of the Asset.</param>
-    /// <param name="assetManager">The AssetManager that initially loaded the Asset.</param>
-    /// <param name="batchIds">The list of BatchIds corresponding to batches that this Asset belongs to.</param>
-    public Asset(string assetId, AssetManager assetManager, List<string> batchIds)
+    /// <param name="id">THe id of the asset.</param>
+    public Asset(string id)
     {
-        _assetId = assetId;
-        _assetManager = assetManager;
-        _batchIds = batchIds;
+        _id = id;
     }
 }

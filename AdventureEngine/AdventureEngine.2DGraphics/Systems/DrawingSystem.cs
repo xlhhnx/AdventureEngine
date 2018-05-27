@@ -101,7 +101,7 @@ public class DrawingSystem : ISystem
     private void UpdateSprite(Sprite sprite, GameTime gameTime)
     {
         sprite.ElapsedTime += gameTime.ElapsedGameTime;
-        if (sprite.ElapsedTime.TotalMilliseconds > Configuration.Graphics.FrameTime)
+        if (sprite.ElapsedTime.TotalMilliseconds > Graphics2DConfiguration.FrameTime)
         {
             sprite.ChangeFrame();
         }

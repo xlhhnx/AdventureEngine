@@ -43,13 +43,9 @@
   <ItemGroup>
     <Compile Include="Asset.cs" />
     <Compile Include="AssetBatch.cs" />
-    <Compile Include="AssetDefinition.cs" />
     <Compile Include="AssetManager.cs" />
     <Compile Include="Assets\SpriteFontAsset.cs" />
     <Compile Include="Assets\Texture2DAsset.cs" />
-    <Compile Include="Loading\AssetBatchLoader.cs" />
-    <Compile Include="Loading\AssetLoader.cs" />
-    <Compile Include="Loading\LoadingMode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

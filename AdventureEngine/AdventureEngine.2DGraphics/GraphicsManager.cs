@@ -2,26 +2,6 @@
 
 public class GraphicsManager
 {
-    /// <summary>
-    /// Gets a copy of the graphic found using the id provided.
-    /// </summary>
-    /// <param name="s">The id of the graphic</param>
-    /// <returns>A graphic or null.</returns>
-    public Graphic this[string id]
-    {
-        get
-        {
-            if (_graphics.ContainsKey(id))
-            {
-                return _graphics[id].Copy();
-            }
-            else
-            {
-                return null;
-            }
-        }
-    }
-
     protected Dictionary<string, Graphic> _graphics;
 
     /// <summary>
@@ -45,26 +25,14 @@ public class GraphicsManager
     }
 
     /// <summary>
-    /// Removes a graphic from the dictionary.
+    /// Gets a graphic.
     /// </summary>
-    /// <param name="id">The id used to determine which graphic to remove.</param>
-    public void RemoveGraphic(string id)
+    /// <param name="id">The id of the graphic to get.</param>
+    /// <returns>A graphic or null.</returns>
+    public Graphic GetGraphic(string id)
     {
-        if (_graphics.ContainsKey(id))
-        {
-            _graphics.Remove(id);
-        }
-    }
-
-    /// <summary>
-    /// Removes a graphic from the dictionary.
-    /// </summary>
-    /// <param name="graphic">The graphic to remove.</param>
-    public void RemoveGraphic(Graphic graphic)
-    {
-        if (_graphics.ContainsKey(graphic.Id))
-        {
-            _graphics.Remove(graphic.Id);
-        }
+        Graphic graphic = null;
+        _graphics.TryGetValue(id, out graphic);
+        return graphic;
     }
 }

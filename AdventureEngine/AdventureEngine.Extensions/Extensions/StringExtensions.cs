@@ -22,10 +22,8 @@ public static class StringExtensions
     /// Parses a string into a color.
     /// </summary>
     /// <param name="s">The string to be parsed.</param>
-    /// <returns>A Color or null.</returns>
-    public static Color? ToColor(this string s)
+    public static Color ToColor(this string s)
     {
-        
         if (Regex.IsMatch(s, @"\([0-9]*,[0-9]*,[0-9]*,[0-9]*\)"))
         {
             var rgba = Regex.Match(s, @"\([0-9]*,[0-9]*,[0-9]*,[0-9]*\)").Value;
@@ -38,7 +36,7 @@ public static class StringExtensions
             var b = byte.Parse(split[2]);
             var a = byte.Parse(split[3]);
 
-            return new Color(r,g,b,a);
+            return new Color(r, g, b, a);
         }
         else if (Regex.IsMatch(s, @"\([0-9]*,[0-9]*,[0-9]*\)"))
         {
@@ -52,7 +50,7 @@ public static class StringExtensions
             var b = byte.Parse(split[2]);
             var a = (byte)255;
 
-            return new Color(r,g,b,a);
+            return new Color(r, g, b, a);
         }
         else if (s.StartsWith("#"))
         {
@@ -63,7 +61,7 @@ public static class StringExtensions
             var b = byte.Parse(s.Substring(5, 2), NumberStyles.HexNumber);
             var a = (byte)255;
 
-            return new Color(r,g,b,a);
+            return new Color(r, g, b, a);
         }
         else if (s.StartsWith("0x"))
         {
@@ -78,7 +76,25 @@ public static class StringExtensions
         }
         else
         {
-            return null;
+            return new Color();
         }
+    }
+
+    /// <summary>
+    /// Parses a string into a bool.
+    /// </summary>
+    /// <param name="s">The string to parse.</param>
+    public static bool ToBool(this string s)
+    {
+        return s.Trim().ToLower() == "true" || s.Trim().ToLower() == "1";
+    }
+
+    /// <summary>
+    /// Parses a string into an int.
+    /// </summary>
+    /// <param name="s">The string to parse.</param>
+    public static int ToInt32(this string s)
+    {
+        return Convert.ToInt32(s);
     }
 }

@@ -1,109 +1,117 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
 
 public class AssetBatch
 {
-    /// <summary>
-    /// Gets and Sets the _definitionsLoaded flag.
-    /// </summary>
-    public bool Defined
+    public string Id
     {
-        get { return _definitionsLoaded; }
-        set { _definitionsLoaded = value; }
+        get { return _id; }
     }
 
     /// <summary>
-    /// Gets and Sets the _assetsLoaded flag.
+    /// Determines if the asset batch is loaded.
     /// </summary>
     public bool Loaded
     {
-        get { return _assetsLoaded; }
-        set { _assetsLoaded = value; }
+        get { return _loaded; }
+        set { _loaded = value; }
     }
 
     /// <summary>
-    /// Gets the ID of this AssetBatch.
+    /// Gets the content manager.
     /// </summary>
-    public string Id { get { return _assetBatchId; } }
+    public ContentManager Content { get { return _contentManager; } }
 
     /// <summary>
-    /// Gets the file path for this AssetBatch's AssetDefinitions.
+    /// Gets and Sets the dictionary describing the paths to file and the ids inside that belong to this batch.
     /// </summary>
-    public string AssetDefinitionsFilePath { get { return _assetDefinitionsFilePath; } }
-
-    /// <summary>
-    /// Gets the ContentManager for this AssetBatch.
-    /// </summary>
-    public ContentManager ContentManager { get { return _contentManager; } }
-
-    /// <summary>
-    /// Gets the AssetDefinitions in this AssetBatch. 
-    /// </summary>
-    public List<AssetDefinition> AssetDefinitions { get { return _assetDefinitions; } }
-
-    protected bool _definitionsLoaded;
-    protected bool _assetsLoaded;
-    protected string _assetBatchId;
-    protected string _assetDefinitionsFilePath;
-    protected List<AssetDefinition> _assetDefinitions;
-    protected List<Asset> _assets;
-    protected ContentManager _contentManager;
-
-    /// <summary>
-    /// Constructs an AssetBatch.
-    /// </summary>
-    /// <param name="serviceProvider">A IServiceProvider that will be passed to the ContentManager constructor.</param>
-    /// <param name="assetBatchId">A unique ID for the new AssetBatch.</param>
-    /// <param name="rootDirectory">A directory path that will be used as the root directory of the ContentManager.</param>
-    public AssetBatch(IServiceProvider serviceProvider, string assetBatchId, string assetDefinitionsFilePath, [Optional]string rootDirectory)
+    public Dictionary<string, List<string>> FileIdDictionary
     {
-        _assetBatchId = assetBatchId;
+        get { return _fileIdDictionary; }
+        set { _fileIdDictionary = value; }
+    }
 
-        if (rootDirectory == null)
-        {
-            _contentManager = new ContentManager(serviceProvider);
-        }
-        else
-        {
-            _contentManager = new ContentManager(serviceProvider, rootDirectory);
-        }
+    /// <summary>
+    /// Gets and Sets the list of assets that are part of the batch.
+    /// </summary>
+    public List<Asset> Assets
+    {
+        get { return _assets; }
+        set { _assets = value; }
+    }
 
-        _definitionsLoaded = false;
-        _assetsLoaded = false;
-        _assetDefinitions = new List<AssetDefinition>();
+    protected string _id;
+    protected bool _loaded;
+    protected ContentManager _contentManager;
+    // FilePath => List<Id>
+    protected Dictionary<string, List<string>> _fileIdDictionary;
+    protected List<Asset> _assets;
+
+    /// <summary>
+    /// Creates an asset batch.
+    /// </summary>
+    /// <param name="serviceProvider">The service provider used to create the content manager.</param>
+    public AssetBatch(string id, IServiceProvider serviceProvider)
+    {
+        _id = id;
+        _contentManager = new ContentManager(serviceProvider);
+        _fileIdDictionary = new Dictionary<string, List<string>>();
         _assets = new List<Asset>();
     }
 
     /// <summary>
-    /// Adds a single AssetDefinition to the list.
+    /// Creates an asset batch.
     /// </summary>
-    /// <param name="assetDefinition">An AssetDefinition to be added to the list.</param>
-    public void AddAssetDefinition(AssetDefinition assetDefinition)
+    /// <param name="serviceProvider">The service provider used to create the content manager.</param>
+    /// <param name="rootDirectory">THe root directory given to the content manager.</param>
+    public AssetBatch(IServiceProvider serviceProvider, string rootDirectory)
     {
-        if (!_assetDefinitions.Contains(assetDefinition))
+        _contentManager = new ContentManager(serviceProvider, rootDirectory);
+        _assets = new List<Asset>();
+    }
+
+    /// <summary>
+    /// Adds an asset definition to the asset batch.
+    /// </summary>
+    /// <param name="filePath">The path to the file that describes the asset.</param>
+    /// <param name="assetId">The id of the asset.</param>
+    public void AddAssetDefinition(string filePath, string assetId)
+    {
+        if (_fileIdDictionary.ContainsKey(filePath))
         {
-            _assetDefinitions.Add(assetDefinition);
+            _fileIdDictionary[filePath].Add(assetId);
+        }
+        else
+        {
+            _fileIdDictionary.Add(filePath, new List<string>() { assetId });
         }
     }
 
     /// <summary>
-    /// Adds an ICollection of AssetDefinitions to the list.
+    /// Removes an seet definition from the asset batch.
     /// </summary>
-    /// <param name="assetDefinitions">An ICollection of AssetDefinitions to be added to the list.</param>
-    public void AddAssetDefinition(ICollection<AssetDefinition> assetDefinitions)
+    /// <param name="filePath">The path to the file that describes the asset.</param>
+    /// <param name="assetId">The id of the asset.</param>
+    public void RemoveAssetDefinition(string filePath, string assetId)
     {
-        foreach (AssetDefinition ad in assetDefinitions)
+        if (_fileIdDictionary.ContainsKey(filePath))
         {
-            AddAssetDefinition(ad);
+            if (_fileIdDictionary[filePath].Count == 1)
+            {
+                _fileIdDictionary.Remove(filePath);
+            }
+            else
+            {
+                _fileIdDictionary[filePath].Remove(assetId);
+            }
         }
     }
 
     /// <summary>
-    /// Adds a single Asset to the list.
+    /// Adds an asset to the batch.
     /// </summary>
-    /// <param name="asset">An Asset to be added to the list.</param>
+    /// <param name="asset">The asset to add.</param>
     public void AddAsset(Asset asset)
     {
         if (!_assets.Contains(asset))
@@ -113,33 +121,15 @@ public class AssetBatch
     }
 
     /// <summary>
-    /// Adds an ICollection of Assets to the list.
+    /// Unloads all assets and unloads the content manager.
     /// </summary>
-    /// <param name="assets">An ICollection of Assets to be added to the list.</param>
-    public void AddAsset(ICollection<Asset> assets)
+    public void Unload()
     {
-        foreach (Asset a in assets)
+        _loaded = false;
+        foreach (Asset a in _assets)
         {
-            AddAsset(a);
+            a.Loaded = false;
         }
-    }
-
-    /// <summary>
-    /// Sets the _assetsLoaded flag to false, empties the Assets list, and unloads the ContentManager.
-    /// </summary>
-    public void UnloadAssets()
-    {
-        _assetsLoaded = false;
-        _assets = new List<Asset>();
         _contentManager.Unload();
-    }
-
-    /// <summary>
-    /// Sets the _definitionsLoaded flag to falseand empties the AssetDefinitions list.
-    /// </summary>
-    public void UnloadDefinitions()
-    {
-        _definitionsLoaded = false;
-        _assetDefinitions = new List<AssetDefinition>();
     }
 }

@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Graphics2DConfiguration.cs" />
     <Compile Include="Graphic.cs" />
     <Compile Include="GraphicDefinition.cs" />
     <Compile Include="GraphicsManager.cs" />
@@ -59,13 +60,9 @@
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>
       <Name>AdventureEngine.AssetManagement</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Configuration\AdventureEngine.Configuration.csproj">
-      <Project>{81594a52-f13d-445b-9d87-294f2505068b}</Project>
-      <Name>AdventureEngine.Configuration</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Extensions\AdventureEngine.Extensions.csproj">
+    <ProjectReference Include="..\AdventureEngine.Extensions\AdventureEngine.Common.csproj">
       <Project>{37161754-aa79-4b90-90db-e4fa64688940}</Project>
-      <Name>AdventureEngine.Extensions</Name>
+      <Name>AdventureEngine.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Mapping\AdventureEngine.World.csproj">
       <Project>{591a5b90-1835-48b5-94a7-2f3d4725f391}</Project>
