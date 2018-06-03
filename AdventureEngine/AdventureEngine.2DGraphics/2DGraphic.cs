@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-public abstract class Graphic : IComponent
+public abstract class Graphic2D : IComponent
 {
     public virtual string EntityId { get { return _entityId; } }
     public virtual string Name { get { return _name; } }
@@ -53,5 +53,5 @@ public abstract class Graphic : IComponent
     /// Copies the graphic.
     /// </summary>
     /// <returns>A new graphic exactly matching this graphic.</returns>
-    public abstract Graphic Copy();
+    public abstract Graphic2D Copy();
 }

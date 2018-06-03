@@ -76,7 +76,7 @@ public class Sprite : Image
             );
     }
 
-    public override Graphic Copy()
+    public override Graphic2D Copy()
     {
         return new Sprite(_entityId, _name, _texture2DAsset, _sourceRectangle.GetPosition(), _sourceRectangle.GetDimensions(), _color, _positionOffset, _dimensions, _rows, _columns, _looping, _enabled, _visible);
     }

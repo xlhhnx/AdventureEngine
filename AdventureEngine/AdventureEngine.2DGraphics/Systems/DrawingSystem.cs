@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-public class DrawingSystem : ISystem
+public class DrawingSystem : IDrawableSystem
 {
     protected SpriteBatch _spriteBatch;
     protected IWorld _world;
@@ -46,7 +46,7 @@ public class DrawingSystem : ISystem
         var components = new List<IComponent>();
         if (_world.Entities.TryGetValue(entityId, out components))
         {
-            PositionComponent position = null;
+            Position position = null;
             var sprites = new List<Sprite>();
             var images = new List<Image>();
             var texts = new List<Text>();
@@ -71,9 +71,9 @@ public class DrawingSystem : ISystem
                     continue;
                 }
 
-                if (position != null && comp.GetType() == typeof(PositionComponent))
+                if (position != null && comp.GetType() == typeof(Position))
                 {
-                    position = comp as PositionComponent;
+                    position = comp as Position;
                     continue;
                 }
             }
@@ -107,38 +107,38 @@ public class DrawingSystem : ISystem
         }
     }
 
-    private void DrawSprite(Sprite sprite, PositionComponent pComp)
+    private void DrawSprite(Sprite sprite, Position position)
     {
         if (sprite.Visible && sprite.Texture2DAsset.Loaded)
         {
-            var position = pComp.Position + sprite.PositionOffset;
-            var destRect = new Rectangle(position.ToPoint(), sprite.Dimensions.ToPoint());
+            var truePos = position._Position + sprite.PositionOffset;
+            var destRect = new Rectangle(truePos.ToPoint(), sprite.Dimensions.ToPoint());
             _spriteBatch.Draw(sprite.Texture2DAsset.Texture, destRect, sprite.SourceRectangle, sprite.Color);
         }
     }
 
-    private void DrawImage(Image image, PositionComponent pComp)
+    private void DrawImage(Image image, Position position)
     {
         if (image.Visible && image.Texture2DAsset.Loaded)
         {
-            var position = pComp.Position + image.PositionOffset;
-            var destRect = new Rectangle(position.ToPoint(), image.Dimensions.ToPoint());
+            var truePos = position._Position + image.PositionOffset;
+            var destRect = new Rectangle(truePos.ToPoint(), image.Dimensions.ToPoint());
             _spriteBatch.Draw(image.Texture2DAsset.Texture, destRect, image.SourceRectangle, image.Color);
         }
     }
 
-    private void DrawText(Text text, PositionComponent pComp)
+    private void DrawText(Text text, Position position)
     {
         if (text.Visible && text.SpriteFontAsset.Loaded)
         {
-            var position = pComp.Position + text.PositionOffset;
+            var truePos = position._Position + text.PositionOffset;
             if (text.Visible && text.Enabled)
             {
-                _spriteBatch.DrawString(text.SpriteFontAsset.SpriteFont, text.DrawText, position, text.Color);
+                _spriteBatch.DrawString(text.SpriteFontAsset.SpriteFont, text.DrawText, truePos, text.Color);
             }
             else
             {
-                _spriteBatch.DrawString(text.SpriteFontAsset.SpriteFont, text.DrawText, position, text.DisabledColor);
+                _spriteBatch.DrawString(text.SpriteFontAsset.SpriteFont, text.DrawText, truePos, text.DisabledColor);
             }
         }
     }

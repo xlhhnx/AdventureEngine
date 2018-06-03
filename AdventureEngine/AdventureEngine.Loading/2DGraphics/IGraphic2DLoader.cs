@@ -8,12 +8,12 @@ public interface IGraphic2DLoader
     /// <param name="filePath">The path to the file that containst the graphic definition.</param>
     /// <param name="id">The id of the graphic to load.</param>
     /// <returns>A graphic or null.</returns>
-    Graphic LoadGraphic(string filePath, string id);
+    Graphic2D LoadGraphic(string filePath, string id);
 
     /// <summary>
     /// Loads all graphics in a file.
     /// </summary>
     /// <param name="filePath">The path to the file that containst the graphic definitions.</param>
     /// <returns>A list of graphics.</returns>
-    List<Graphic> LoadGraphics(string filePath);
+    List<Graphic2D> LoadGraphics(string filePath);
 }

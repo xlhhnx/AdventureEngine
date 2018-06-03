@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-public class Image : Graphic
+public class Image : Graphic2D
 {    
     /// <summary>
     /// Gets the texture asset for this image.
@@ -40,7 +40,7 @@ public class Image : Graphic
         _visible = visible;
     }
     
-    public override Graphic Copy()
+    public override Graphic2D Copy()
     {
         return new Image(_entityId, _name, _texture2DAsset, _sourceRectangle.GetPosition(), _sourceRectangle.GetDimensions(), _color, _positionOffset, _dimensions, _enabled, _visible);
     }

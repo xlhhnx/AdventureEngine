@@ -45,10 +45,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\ComponentComparer.cs" />
-    <Compile Include="Game\Components\HealthComponent.cs" />
+    <Compile Include="Game\Components\Health.cs" />
     <Compile Include="Game\Components\IComponent.cs" />
-    <Compile Include="Game\Components\PositionComponent.cs" />
+    <Compile Include="Game\Components\Position.cs" />
     <Compile Include="Game\IWorld.cs" />
+    <Compile Include="Game\Systems\IDrawableSystem.cs" />
     <Compile Include="Game\Systems\ISystem.cs" />
     <Compile Include="Maps\Grids\2D\Grid2D.cs" />
     <Compile Include="Maps\Grids\2D\Tile2D.cs" />

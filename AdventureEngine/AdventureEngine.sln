@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.CollisionMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.ArtificialIntelligence", "AdventureEngine.ArtificialIntelligence\AdventureEngine.ArtificialIntelligence.csproj", "{A8F4D792-CCC2-46AE-BBF9-A8DF681BB44A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Physics", "AdventureEngine.Physics\AdventureEngine.Physics.csproj", "{B4D86B71-D027-45CE-B0F1-CDA921F2B2D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.2DPhysics", "AdventureEngine.Physics\AdventureEngine.2DPhysics.csproj", "{B4D86B71-D027-45CE-B0F1-CDA921F2B2D2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Graphs", "AdventureEngine.Graphs\AdventureEngine.Graphs.csproj", "{98CF88EC-290F-4BDC-B2D1-8F729EAB7AEC}"
 EndProject

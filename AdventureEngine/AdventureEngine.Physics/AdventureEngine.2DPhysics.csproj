@@ -44,13 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Components\PhysicsComponent.cs" />
+    <Compile Include="Components\Acceleration.cs" />
+    <Compile Include="Components\Circle.cs" />
+    <Compile Include="Components\Density.cs" />
+    <Compile Include="Components\Friction.cs" />
+    <Compile Include="Components\Mass.cs" />
+    <Compile Include="Components\OrientedBox.cs" />
+    <Compile Include="Components\Restitution.cs" />
+    <Compile Include="Components\Bounds.cs" />
+    <Compile Include="Components\Velocity.cs" />
+    <Compile Include="Collision.cs" />
+    <Compile Include="Physics2DCollisionResolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Physics2DCollisionDetector.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Systems\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\AdventureEngine.Mapping\AdventureEngine.World.csproj">
       <Project>{591a5b90-1835-48b5-94a7-2f3d4725f391}</Project>

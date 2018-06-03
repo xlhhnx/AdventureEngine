@@ -13,7 +13,7 @@ public class Graphic2DLoader : IGraphic2DLoader
         _assetManager = assetManager;
     }
 
-    public Graphic LoadGraphic(string filePath, string id)
+    public Graphic2D LoadGraphic(string filePath, string id)
     {
         var graphic = File.ReadAllLines(filePath).Where(l => l.Trim().Length > 0)
                                                  .Where(l => l.Trim().StartsWith("graphic"))
@@ -23,7 +23,7 @@ public class Graphic2DLoader : IGraphic2DLoader
         return graphic;
     }
 
-    public List<Graphic> LoadGraphics(string filePath)
+    public List<Graphic2D> LoadGraphics(string filePath)
     {
         var graphics = File.ReadAllLines(filePath).Where(l => l.Trim().Length > 0)
                                                  .Where(l => l.Trim().StartsWith("graphic"))
@@ -32,9 +32,9 @@ public class Graphic2DLoader : IGraphic2DLoader
         return graphics;
     }
 
-    private Graphic ParseGraphic(string graphicDefinition)
+    private Graphic2D ParseGraphic(string graphicDefinition)
     {
-        Graphic graphic = null;
+        Graphic2D graphic = null;
         var arguments = graphicDefinition.Split(';');
 
         // If the string provided is not a graphic definition return null

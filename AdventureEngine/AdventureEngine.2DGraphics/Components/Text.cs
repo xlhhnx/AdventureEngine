@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.InteropServices;
 
-public class Text : Graphic
+public class Text : Graphic2D
 {
     /// <summary>
     /// Gets and Sets the full text.
@@ -153,7 +153,7 @@ public class Text : Graphic
     //    }
     //}
 
-    public override Graphic Copy()
+    public override Graphic2D Copy()
     {
         return new Text(_entityId, _name, _spriteFontAsset, _color, _disabledColor, _positionOffset, _dimensions, _fullText);
     }
