@@ -44,17 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Effect.cs" />
-    <Compile Include="GraphicType.cs" />
-    <Compile Include="IGraphicsManager.cs" />
+    <Compile Include="Assets\Effect.cs" />
+    <Compile Include="Assets\GraphicType.cs" />
+    <Compile Include="Managers\IGraphicsManager.cs" />
     <Compile Include="Configuration\Graphics2DConfiguration.cs" />
-    <Compile Include="BaseGraphic2D.cs" />
-    <Compile Include="GraphicDefinition.cs" />
-    <Compile Include="GraphicsManager.cs" />
+    <Compile Include="Assets\BaseGraphic2D.cs" />
+    <Compile Include="Managers\GraphicsManager.cs" />
     <Compile Include="Components\Image.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\Text.cs" />
-    <Compile Include="IGraphic2D.cs" />
+    <Compile Include="Assets\IGraphic2D.cs" />
     <Compile Include="Loading\Graphic2DLoader.cs" />
     <Compile Include="Loading\IGraphic2DLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

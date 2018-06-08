@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public class AudioLoader
+public class AudioLoader : IAudioLoader
 {
-    public Sound LoadSound(string id, AudioAsset audioAsset)
+    protected Dictionary<string, string[]> _stagedFiles;
+    protected AssetManager _assetManager;
+
+    public AudioLoader(AssetManager assetManager)
+    {
+        _assetManager = assetManager;
+    }
+
+    public Sound LoadSound(AudioAsset audioAsset, string id)
     {
         if (!audioAsset.Loaded || !(audioAsset.Stream is AudioFileReader) ) return null;
 
@@ -21,8 +29,25 @@ public class AudioLoader
         return new Sound(id, audioData, audioAsset);
     }
 
-    public Song LoadSong(string id, AudioAsset audioAsset)
+    public Song LoadSong(AudioAsset audioAsset, string id)
     {
         return new Song(id, audioAsset);
+    }
+
+    public IAudio LoadAudio(AudioAsset audioAsset, string id, AudioType audioType)
+    {
+        switch (audioType) {
+            case (AudioType.Song): return LoadSong(audioAsset, id);
+            case (AudioType.Sound): return LoadSound(audioAsset, id);
+            default: return null;
+        }
+    }
+
+    public List<IAudio> LoadAudios(Dictionary<string, AudioAsset> idAudioAssetDictionary, AudioType audioType)
+    {
+        var audios = new List<IAudio>();
+        foreach (var id in idAudioAssetDictionary.Keys) audios.Add(LoadAudio(idAudioAssetDictionary[id], id, audioType));
+
+        return audios;
     }
 }

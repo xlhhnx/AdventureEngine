@@ -44,14 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Audio.cs" />
-    <Compile Include="AudioManager.cs" />
-    <Compile Include="AudioPlayer.cs" />
+    <Compile Include="Actors\IAudioPlayer.cs" />
+    <Compile Include="Assets\BaseAudio.cs" />
+    <Compile Include="Managers\AudioManager.cs" />
+    <Compile Include="Actors\AudioPlayer.cs" />
+    <Compile Include="Assets\AudioType.cs" />
+    <Compile Include="Assets\IAudio.cs" />
     <Compile Include="Loading\AudioLoader.cs" />
-    <Compile Include="Song.cs" />
+    <Compile Include="Loading\IAudioLoader.cs" />
+    <Compile Include="Assets\Song.cs" />
+    <Compile Include="Managers\IAudioManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sound.cs" />
-    <Compile Include="SoundSampleProvider.cs" />
+    <Compile Include="Assets\Sound.cs" />
+    <Compile Include="Assets\SoundSampleProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -1,6 +1,6 @@
 ﻿using NAudio.Wave;
 
-public class Song : Audio
+public class Song : BaseAudio
 {
     public Song(string id, AudioAsset audioAsset) : base(id, audioAsset)
     { }

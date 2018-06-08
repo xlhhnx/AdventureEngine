@@ -3,7 +3,7 @@ using NAudio.Wave;
 using System.Runtime.InteropServices;
 using NAudio.Wave.SampleProviders;
 
-public class AudioPlayer : IDisposable
+public class AudioPlayer : IAudioPlayer
 {
     public TimeSpan CurrentTime
     {
@@ -29,11 +29,15 @@ public class AudioPlayer : IDisposable
         _soundOutput.Play();
     }
 
-    public void PlaySound(Sound sound)
+    public void PlaySound(IAudio sound)
     {
-        var input = sound.CreateSampleProvider();
-        var correctChannelInput = ConvertToCorrectChannelCount(input);
-        _mixer.AddMixerInput(correctChannelInput);
+        if (sound is Sound)
+        {
+            var s = sound as Sound;
+            var input = s.CreateSampleProvider();
+            var correctChannelInput = ConvertToCorrectChannelCount(input);
+            _mixer.AddMixerInput(correctChannelInput);
+        }
     }
 
     public void Play()
@@ -60,11 +64,15 @@ public class AudioPlayer : IDisposable
         }
     }
 
-    public void NewSong(Song song)
+    public void NewSong(IAudio song)
     {
-        Stop();
-        _songStream = song.CreateWaveStream();
-        _songOutput.Init(_songStream);
+        if (song is Song)
+        {
+            var s = song as Song;
+            Stop();
+            _songStream = s.CreateWaveStream();
+            _songOutput.Init(_songStream);
+        }
     }
 
     public void Dispose()

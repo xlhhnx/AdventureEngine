@@ -1,6 +1,6 @@
 ﻿using NAudio.Wave;
 
-public class Sound : Audio
+public class Sound : BaseAudio
 {
     public float[] AudioData { get { return _audioData; } }
     public WaveFormat WaveFormat
