@@ -8,4 +8,5 @@ public interface IWorld
 
     void Update(GameTime gameTime);
     void Draw();
+    string Serialize();
 }

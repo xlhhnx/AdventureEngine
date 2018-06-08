@@ -44,14 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="2DGraphics\Graphic2DLoader.cs" />
-    <Compile Include="Assets\AssetLoader.cs" />
-    <Compile Include="Assets\IAssetLoader.cs" />
-    <Compile Include="2DGraphics\IGraphic2DLoader.cs" />
     <Compile Include="LoadingConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="2DGraphics\" />
     <Folder Include="Communication\" />
     <Folder Include="UserInterface\" />
     <Folder Include="World\" />

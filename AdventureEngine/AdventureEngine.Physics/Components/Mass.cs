@@ -2,8 +2,8 @@
 
 public class Mass : IComponent
 {
-    public string EntityId    {        get        {            throw new NotImplementedException();        }    }
-    public string Name    {        get        {            throw new NotImplementedException();        }    }
+    public string EntityId { get { throw new NotImplementedException(); } }
+    public string Name { get { throw new NotImplementedException(); } }
 
     /// <summary>
     /// Gets and Sets the mass of the entity.
@@ -38,5 +38,10 @@ public class Mass : IComponent
         _entityId = entityId;
         _name = name;
         _Mass = mass;
+    }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
     }
 }

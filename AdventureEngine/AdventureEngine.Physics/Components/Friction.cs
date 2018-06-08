@@ -1,4 +1,6 @@
-﻿public class Friction : IComponent
+﻿using System;
+
+public class Friction : IComponent
 {
     public string EntityId { get { return _entityId; } }
     public string Name { get { return _name; } }
@@ -39,5 +41,10 @@
         _name = name;
         _staticFriction = staticFriction;
         _dynamicFriction = dynamicFriction;
+    }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
     }
 }

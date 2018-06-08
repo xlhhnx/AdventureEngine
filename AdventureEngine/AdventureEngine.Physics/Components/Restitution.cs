@@ -1,4 +1,6 @@
-﻿public class Restitution : IComponent
+﻿using System;
+
+public class Restitution : IComponent
 {
     public string EntityId { get { return _entityId; } }
     public string Name { get { return _name; } }
@@ -27,5 +29,10 @@
         _entityId = entityId;
         _name = name;
         _restitution = restitution;
+    }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
     }
 }

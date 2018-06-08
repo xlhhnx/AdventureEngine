@@ -31,4 +31,9 @@ public class Acceleration : IComponent
         _name = name;
         _acceleration = acceleration;
     }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
+    }
 }

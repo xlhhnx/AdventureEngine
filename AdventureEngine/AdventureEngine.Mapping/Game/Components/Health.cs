@@ -30,4 +30,9 @@ public class Health : IComponent
         _name = name;
         _health = health;
     }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
+    }
 }

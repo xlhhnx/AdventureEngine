@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 public abstract class Bounds : IComponent
 {
@@ -28,5 +29,10 @@ public abstract class Bounds : IComponent
         _entityId = entityId;
         _name = name;
         _positionOffset = positionOffset;
+    }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
     }
 }

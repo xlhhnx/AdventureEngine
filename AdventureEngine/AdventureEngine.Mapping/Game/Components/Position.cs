@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 public class Position : IComponent
 {
@@ -29,5 +30,10 @@ public class Position : IComponent
         _entityId = entityId;
         _name = name;
         _position = position;
+    }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
     }
 }

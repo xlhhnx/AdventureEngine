@@ -44,17 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Effect.cs" />
+    <Compile Include="GraphicType.cs" />
+    <Compile Include="IGraphicsManager.cs" />
     <Compile Include="Configuration\Graphics2DConfiguration.cs" />
-    <Compile Include="2DGraphic.cs" />
+    <Compile Include="BaseGraphic2D.cs" />
     <Compile Include="GraphicDefinition.cs" />
     <Compile Include="GraphicsManager.cs" />
     <Compile Include="Components\Image.cs" />
     <Compile Include="Components\Sprite.cs" />
     <Compile Include="Components\Text.cs" />
+    <Compile Include="IGraphic2D.cs" />
+    <Compile Include="Loading\Graphic2DLoader.cs" />
+    <Compile Include="Loading\IGraphic2DLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Systems\DrawingSystem.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Messges\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj">
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>
@@ -67,6 +75,10 @@
     <ProjectReference Include="..\AdventureEngine.Mapping\AdventureEngine.World.csproj">
       <Project>{591a5b90-1835-48b5-94a7-2f3d4725f391}</Project>
       <Name>AdventureEngine.World</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AdventureEngine.Messages\AdventureEngine.Messaging.csproj">
+      <Project>{6054df5b-c4e4-43bd-b9f0-5adb159379f6}</Project>
+      <Name>AdventureEngine.Messaging</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -3,11 +3,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.InteropServices;
 
-public class Text : Graphic2D
+public class Text : BaseGraphic2D, IComponent
 {
-    /// <summary>
-    /// Gets and Sets the full text.
-    /// </summary>
+    public override bool Loaded { get { return _spriteFontAsset.Loaded; } }
+    public string DrawText { get { return _drawText; } }
+    public virtual string EntityId { get { return _entityId; } }
+    public virtual string Name { get { return _name; } }
+
     public string FullText
     {
         get { return _fullText; }
@@ -18,14 +20,9 @@ public class Text : Graphic2D
         }
     }
 
-    /// <summary>
-    /// Gets the text that will be drawn.
-    /// </summary>
-    public string DrawText { get { return _drawText; } }
+    public override GraphicType GraphicType { get { return GraphicType.Text; } }
+    public SpriteFontAsset SpriteFontAsset { get { return _spriteFontAsset; } }
 
-    /// <summary>
-    /// Gets the dimensions of th ecurrent text based on the sprite font.
-    /// </summary>
     public Vector2? TextDimensions
     {
         get
@@ -40,30 +37,22 @@ public class Text : Graphic2D
             }
         }
     }
-
-    /// <summary>
-    /// Gets the sprite font asset.
-    /// </summary>
-    public SpriteFontAsset SpriteFontAsset { get { return _spriteFontAsset; } }
-
-    /// <summary>
-    /// Gets and Sets the color of the text if enabled.
-    /// </summary>
+    
     public Color Color
     {
         get { return _color; }
         set { _color = value; }
     }
 
-    /// <summary>
-    /// Gets and Sets the color of the text if disbled.
-    /// </summary>
     public Color DisabledColor
     {
         get { return _disabledColor; }
         set { _disabledColor = value; }
     }
 
+
+    protected string _entityId;
+    protected string _name;
     protected string _fullText;
     protected string _drawText;
     protected Color _color;
@@ -72,16 +61,7 @@ public class Text : Graphic2D
     protected Vector2 _drawDimensions;
     protected SpriteFontAsset _spriteFontAsset;
 
-    /// <summary>
-    /// Creates a text.
-    /// </summary>
-    /// <param name="spriteBatch">The spritebatch used to draw the text by default.</param>
-    /// <param name="spriteFontAsset">The sprite font that should be used to draw the text.</param>
-    /// <param name="drawPosition">The position where the text should be drawn.</param>
-    /// <param name="drawDimensions">The dimensions with which the text should be drawn.</param>
-    /// <param name="color">The color of the text.</param>
-    /// <param name="disabledColor">The color of the text when disabled.</param>
-    /// <param name="fullText">The full text.</param>
+
     public Text(string entityId, string name, SpriteFontAsset spriteFontAsset, Color color, Color disabledColor, Vector2 positionOffset, Vector2 dimensions, string fullText)
     {
         _entityId = entityId;
@@ -94,15 +74,7 @@ public class Text : Graphic2D
         _fullText = fullText;
         _drawText = TrimText(fullText, _drawDimensions);
     }
-
-    ///// <summary>
-    ///// Draws a string of text.
-    ///// </summary>
-    ///// <param name="gameTime">The current game time.</param>
-    ///// <param name="fullText">The text to be drawn.</param>
-    ///// <param name="drawPosition">The location where the text should be drawn.</param>
-    ///// <param name="drawDimensions">The dimensions the text should be drawn within.</param>
-    ///// <param name="spriteBatch">The spritebatch that should be used to draw the text.</param>
+    
     //public virtual void DrawLine(GameTime gameTime, string fullText, [Optional]Vector2 drawPosition, [Optional]Vector2 drawDimensions, [Optional]SpriteBatch spriteBatch)
     //{
     //    Vector2 _drawPosition = this._drawPosition;
@@ -153,17 +125,11 @@ public class Text : Graphic2D
     //    }
     //}
 
-    public override Graphic2D Copy()
+    public override IGraphic2D Copy()
     {
         return new Text(_entityId, _name, _spriteFontAsset, _color, _disabledColor, _positionOffset, _dimensions, _fullText);
     }
 
-    /// <summary>
-    /// Trims text to the draw dimensions.
-    /// </summary>
-    /// <param name="text">The full text.</param>
-    /// <param name="dimensions">The allowed dimensions.</param>
-    /// <returns>A string short enough to it in the dimensions or and ellipsis.</returns>
     public string TrimText(string text, Vector2 dimensions)
     {
         if (_spriteFontAsset.Loaded) {
@@ -185,5 +151,10 @@ public class Text : Graphic2D
             return workingString + ellipsis;
         }
         return null;
+    }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
     }
 }

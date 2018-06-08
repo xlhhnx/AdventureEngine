@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 
 public class Velocity : IComponent
 {
@@ -29,5 +30,10 @@ public class Velocity : IComponent
         _entityId = entityId;
         _name = name;
         _velocity = velocity;
+    }
+
+    public string Serilize()
+    {
+        throw new NotImplementedException();
     }
 }

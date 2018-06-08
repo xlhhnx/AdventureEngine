@@ -71,8 +71,8 @@ public class Physics2DCollisionDetector
         var translation = truePos2 - truePos1;
         var closest = translation;
 
-        closest.X = Clamp(closest.X, -box.Extent.X, box.Extent.X);
-        closest.Y = Clamp(closest.Y, -box.Extent.Y, box.Extent.Y);
+        closest.X = Utility.Clamp(closest.X, -box.Extent.X, box.Extent.X);
+        closest.Y = Utility.Clamp(closest.Y, -box.Extent.Y, box.Extent.Y);
 
         var inside = false;
         if (translation == closest)
@@ -188,19 +188,5 @@ public class Physics2DCollisionDetector
             }
         }
         return null;
-    }
-
-    public float Clamp(float value, float minimum, float maximum)
-    {
-        if (value < minimum)
-        {
-            value = minimum;
-        }
-        else if (value < maximum)
-        {
-            value = maximum;
-        }
-
-        return value;
     }
 }

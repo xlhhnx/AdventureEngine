@@ -1,0 +1,1 @@
+﻿public enum GraphicType { Image, Sprite, Text, Effect }

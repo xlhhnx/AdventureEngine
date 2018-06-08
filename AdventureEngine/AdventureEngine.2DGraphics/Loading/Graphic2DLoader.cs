@@ -6,6 +6,7 @@ using System.Linq;
 
 public class Graphic2DLoader : IGraphic2DLoader
 {
+    protected Dictionary<string, string[]> _stagedFiles;
     protected AssetManager _assetManager;
 
     public Graphic2DLoader(AssetManager assetManager)
@@ -13,28 +14,160 @@ public class Graphic2DLoader : IGraphic2DLoader
         _assetManager = assetManager;
     }
 
-    public Graphic2D LoadGraphic(string filePath, string id)
+    public Text LoadText(string filePath, string id)
     {
-        var graphic = File.ReadAllLines(filePath).Where(l => l.Trim().Length > 0)
-                                                 .Where(l => l.Trim().StartsWith("graphic"))
-                                                 .Where(l => l.Contains(id))
-                                                 .Select(l => ParseGraphic(l))
-                                                 .FirstOrDefault();
+        string[] fileContents;
+
+        if (_stagedFiles.ContainsKey(filePath))
+        {
+            fileContents = _stagedFiles[filePath];
+        }
+        else
+        {
+            fileContents = File.ReadAllLines(filePath);
+        }
+
+        var text = fileContents.Where(l => l.Trim().Length > 0)
+                                  .Where(l => l.Trim().StartsWith("graphic"))
+                                  .Where(l => l.ToLower().Contains("text"))
+                                  .Where(l => l.Contains(id))
+                                  .Select(l => ParseGraphic(l))
+                                  .FirstOrDefault();
+        return text as Text;
+    }
+
+    public Image LoadImage(string filePath, string id)
+    {
+        string[] fileContents;
+
+        if (_stagedFiles.ContainsKey(filePath))
+        {
+            fileContents = _stagedFiles[filePath];
+        }
+        else
+        {
+            fileContents = File.ReadAllLines(filePath);
+        }
+
+        var image = fileContents.Where(l => l.Trim().Length > 0)
+                                  .Where(l => l.Trim().StartsWith("graphic"))
+                                  .Where(l => l.ToLower().Contains("image"))
+                                  .Where(l => l.Contains(id))
+                                  .Select(l => ParseGraphic(l))
+                                  .FirstOrDefault();
+        return image as Image;
+    }
+
+    public Sprite LoadSprite(string filePath, string id)
+    {
+        string[] fileContents;
+
+        if (_stagedFiles.ContainsKey(filePath))
+        {
+            fileContents = _stagedFiles[filePath];
+        }
+        else
+        {
+            fileContents = File.ReadAllLines(filePath);
+        }
+
+        var sprite = fileContents.Where(l => l.Trim().Length > 0)
+                                  .Where(l => l.Trim().StartsWith("graphic"))
+                                  .Where(l => l.ToLower().Contains("sprite"))
+                                  .Where(l => l.Contains(id))
+                                  .Select(l => ParseGraphic(l))
+                                  .FirstOrDefault();
+        return sprite as Sprite;
+    }
+
+    public Effect LoadEffect(string filePath, string id)
+    {
+        string[] fileContents;
+
+        if (_stagedFiles.ContainsKey(filePath))
+        {
+            fileContents = _stagedFiles[filePath];
+        }
+        else
+        {
+            fileContents = File.ReadAllLines(filePath);
+        }
+
+        var effect = fileContents.Where(l => l.Trim().Length > 0)
+                                  .Where(l => l.Trim().StartsWith("graphic"))
+                                  .Where(l => l.ToLower().Contains("effect"))
+                                  .Where(l => l.Contains(id))
+                                  .Select(l => ParseGraphic(l))
+                                  .FirstOrDefault();
+        return effect as Effect;
+    }
+
+    public IGraphic2D LoadGraphic(string filePath, string id)
+    {
+        string[] fileContents;
+
+        if (_stagedFiles.ContainsKey(filePath))
+        {
+            fileContents = _stagedFiles[filePath];
+        }
+        else
+        {
+            fileContents = File.ReadAllLines(filePath);
+        }
+
+        var graphic = fileContents.Where(l => l.Trim().Length > 0)
+                                  .Where(l => l.Trim().StartsWith("graphic"))
+                                  .Where(l => l.Contains(id))
+                                  .Select(l => ParseGraphic(l))
+                                  .FirstOrDefault();
         return graphic;
     }
 
-    public List<Graphic2D> LoadGraphics(string filePath)
+    public List<IGraphic2D> LoadGraphics(string filePath)
     {
-        var graphics = File.ReadAllLines(filePath).Where(l => l.Trim().Length > 0)
-                                                 .Where(l => l.Trim().StartsWith("graphic"))
-                                                 .Select(l => ParseGraphic(l))
-                                                 .ToList();
+        string[] fileContents;
+
+        if (_stagedFiles.ContainsKey(filePath))
+        {
+            fileContents = _stagedFiles[filePath];
+        }
+        else
+        {
+            fileContents = File.ReadAllLines(filePath);
+        }
+
+        var graphics = fileContents.Where(l => l.Trim().Length > 0)
+                                   .Where(l => l.Trim().StartsWith("graphic"))
+                                   .Select(l => ParseGraphic(l))
+                                   .ToList();
         return graphics;
     }
 
-    private Graphic2D ParseGraphic(string graphicDefinition)
+    public void StageFile(string filePath, bool overwrite = false)
     {
-        Graphic2D graphic = null;
+        if (!_stagedFiles.ContainsKey(filePath))
+        {
+            var fileContents = File.ReadAllLines(filePath);
+            _stagedFiles.Add(filePath, fileContents);
+        }
+        else if (overwrite)
+        {
+            var fileContents = File.ReadAllLines(filePath);
+            _stagedFiles[filePath] = fileContents;
+        }
+    }
+
+    public void UnstageFile(string filePath)
+    {
+        if (_stagedFiles.ContainsKey(filePath))
+        {
+            _stagedFiles.Remove(filePath);
+        }
+    }
+
+    private IGraphic2D ParseGraphic(string graphicDefinition)
+    {
+        BaseGraphic2D graphic = null;
         var arguments = graphicDefinition.Split(';');
 
         // If the string provided is not a graphic definition return null
@@ -56,11 +189,12 @@ public class Graphic2DLoader : IGraphic2DLoader
             }
         }
 
-        switch (type.Trim().ToLower())
+        switch (type.ToLower())
         {
             case ("text"): { graphic = ParseText(id, parameters); } break;
             case ("image"): { graphic = ParseImage(id, parameters); } break;
             case ("sprite"): { graphic = ParseSprite(id, parameters); } break;
+            case ("effect"): { graphic = ParseEffect(id, parameters); } break;
         }
 
         return graphic;
@@ -119,7 +253,7 @@ public class Graphic2DLoader : IGraphic2DLoader
             }
         }
 
-        var spriteFontAsset = _assetManager.GetAsset(spriteFontAssetId);
+        var spriteFontAsset = _assetManager.GetSpriteFontAsset(spriteFontAssetId);
         if (spriteFontAsset == null)
         {
             spriteFontAsset = _assetManager.DefaultSpriteFontAsset;
@@ -193,7 +327,7 @@ public class Graphic2DLoader : IGraphic2DLoader
             }
         }
 
-        var texture2DAsset = _assetManager.GetAsset(texture2DAssetId);
+        var texture2DAsset = _assetManager.GetTexture2DAsset(texture2DAssetId);
         if (texture2DAsset == null)
         {
             texture2DAsset = _assetManager.DefaultTexture2DAsset;
@@ -285,12 +419,17 @@ public class Graphic2DLoader : IGraphic2DLoader
             }
         }
 
-        var texture2DAsset = _assetManager.GetAsset(texture2DAssetId);
+        var texture2DAsset = _assetManager.GetTexture2DAsset(texture2DAssetId);
         if (texture2DAsset == null)
         {
             texture2DAsset = _assetManager.DefaultTexture2DAsset;
         }
 
         return new Sprite(id, name, (Texture2DAsset)texture2DAsset, sourcePosition, sourceDimensions, color, positionOffset, dimensions, rows,  columns, looping, enabled, visible);
+    }
+
+    private Effect ParseEffect(string id, List<string> parameters)
+    {
+        return new Effect();
     }
 }
