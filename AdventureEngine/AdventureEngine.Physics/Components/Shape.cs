@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Xna.Framework;
 
-public abstract class Bounds : IComponent
+public abstract class Shape : IComponent
 {
     public string EntityId { get { return _entityId; } }
     public string Name { get { return _name; } }
@@ -24,7 +24,7 @@ public abstract class Bounds : IComponent
     protected string _name;
     protected Vector2 _positionOffset;
 
-    public Bounds(string entityId, string name, Vector2 positionOffset)
+    public Shape(string entityId, string name, Vector2 positionOffset)
     {
         _entityId = entityId;
         _name = name;

@@ -56,10 +56,6 @@
       <Project>{efc32a9a-0e8e-4cc1-bbfc-7645ec43650f}</Project>
       <Name>AdventureEngine.2DGraphics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.ArtificialIntelligence\AdventureEngine.ArtificialIntelligence.csproj">
-      <Project>{a8f4d792-ccc2-46ae-bbf9-a8df681bb44a}</Project>
-      <Name>AdventureEngine.ArtificialIntelligence</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj">
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>
       <Name>AdventureEngine.AssetManagement</Name>
@@ -88,10 +84,6 @@
       <Project>{8c6963a1-636f-4fef-ba35-549163921213}</Project>
       <Name>AdventureEngine.Input</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Loading\AdventureEngine.Loading.csproj">
-      <Project>{0ef8f2c1-bf9d-49f1-a175-80c39c8b7b2b}</Project>
-      <Name>AdventureEngine.Loading</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Logging\AdventureEngine.Logging.csproj">
       <Project>{40375b04-268c-4d23-b402-43ed772f927a}</Project>
       <Name>AdventureEngine.Logging</Name>
@@ -119,10 +111,6 @@
     <ProjectReference Include="..\AdventureEngine.UserInterface\AdventureEngine.UserInterface.csproj">
       <Project>{6233e22f-b775-410d-9af0-68ad7cfb413b}</Project>
       <Name>AdventureEngine.UserInterface</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.VideoManagement\AdventureEngine.VideoManagement.csproj">
-      <Project>{1972c74e-8824-41ab-b71d-64ce36fb73f6}</Project>
-      <Name>AdventureEngine.VideoManagement</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

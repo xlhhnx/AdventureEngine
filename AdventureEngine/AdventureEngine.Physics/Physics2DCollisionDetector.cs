@@ -14,24 +14,24 @@ public class Physics2DCollisionDetector
     public Collision DetectCollision(string entity1, string entity2)
     {
         Collision collision = null;
-        Bounds shape1 = null;
-        Bounds shape2 = null;
+        Shape shape1 = null;
+        Shape shape2 = null;
         Position position1 = null;
         Position position2 = null;
         if (_world.Entities.ContainsKey(entity1))
         {
-            shape1 = _world.Entities[entity1].Where(c => c is Bounds)
+            shape1 = _world.Entities[entity1].Where(c => c is Shape)
                                              .FirstOrDefault()
-                                             as Bounds;
+                                             as Shape;
             position1 = _world.Entities[entity1].Where(c => c is Position)
                                              .FirstOrDefault()
                                              as Position;
         }
         if (_world.Entities.ContainsKey(entity2))
         {
-            shape2 = _world.Entities[entity2].Where(c => c is Bounds)
+            shape2 = _world.Entities[entity2].Where(c => c is Shape)
                                              .FirstOrDefault()
-                                             as Bounds;
+                                             as Shape;
             position2 = _world.Entities[entity2].Where(c => c is Position)
                                              .FirstOrDefault()
                                              as Position;

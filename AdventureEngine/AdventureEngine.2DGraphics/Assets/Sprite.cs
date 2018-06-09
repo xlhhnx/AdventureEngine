@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-public class Sprite : Image, IComponent
+public class Sprite : Image
 {
     public override bool Loaded { get { return _texture2DAsset.Loaded; } }
     
@@ -31,8 +31,8 @@ public class Sprite : Image, IComponent
     protected TimeSpan _elapsedTime;
 
 
-    public Sprite(string entityId, string name, Texture2DAsset texture2DAsset, Vector2 sourcePosition, Vector2 sourceDimensions, Color color, Vector2 positionOffset, Vector2 dimensions, int rows, int columns, bool looping = true, bool enabled = true, bool visible = true) 
-        : base(entityId, name, texture2DAsset, sourcePosition, sourceDimensions, color, positionOffset, dimensions, enabled, visible)
+    public Sprite(Texture2DAsset texture2DAsset, Vector2 sourcePosition, Vector2 sourceDimensions, Color color, Vector2 positionOffset, Vector2 dimensions, int rows, int columns, bool looping = true, bool enabled = true, bool visible = true) 
+        : base(texture2DAsset, sourcePosition, sourceDimensions, color, positionOffset, dimensions, enabled, visible)
     {
         _sourcePosition = sourcePosition;
         _sourceDimensions = sourceDimensions;
@@ -66,6 +66,6 @@ public class Sprite : Image, IComponent
 
     public override IGraphic2D Copy()
     {
-        return new Sprite(_entityId, _name, _texture2DAsset, _sourceRectangle.GetPosition(), _sourceRectangle.GetDimensions(), _color, _positionOffset, _dimensions, _rows, _columns, _looping, _enabled, _visible);
+        return new Sprite(_texture2DAsset, _sourceRectangle.GetPosition(), _sourceRectangle.GetDimensions(), _color, _positionOffset, _dimensions, _rows, _columns, _looping, _enabled, _visible);
     }
 }

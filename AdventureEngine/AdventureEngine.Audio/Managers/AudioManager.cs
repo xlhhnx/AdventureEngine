@@ -83,4 +83,9 @@ public class AudioManager
         if (_soundDictionary.ContainsKey(id)) return _soundDictionary[id];
         else return null;
     }
+
+    public void ReceiveMessage(Message message)
+    {
+        // TODO: Handle messages
+    }
 }

@@ -259,7 +259,7 @@ public class Graphic2DLoader : IGraphic2DLoader
             spriteFontAsset = _assetManager.DefaultSpriteFontAsset;
         }
 
-        return new Text(id, name, (SpriteFontAsset)spriteFontAsset, color, disabledColor, positionOffset, dimensions, fullText);
+        return new Text(spriteFontAsset, color, disabledColor, positionOffset, dimensions, fullText);
     }
 
     private Image ParseImage(string id, List<string> parameters)
@@ -333,7 +333,7 @@ public class Graphic2DLoader : IGraphic2DLoader
             texture2DAsset = _assetManager.DefaultTexture2DAsset;
         }
 
-        return new Image(id, name, (Texture2DAsset)texture2DAsset, sourcePosition, sourceDimensions, color, positionOffset, dimensions, enabled, visible);
+        return new Image(texture2DAsset, sourcePosition, sourceDimensions, color, positionOffset, dimensions, enabled, visible);
     }
 
     private Sprite ParseSprite(string id, List<string> parameters)
@@ -425,7 +425,7 @@ public class Graphic2DLoader : IGraphic2DLoader
             texture2DAsset = _assetManager.DefaultTexture2DAsset;
         }
 
-        return new Sprite(id, name, (Texture2DAsset)texture2DAsset, sourcePosition, sourceDimensions, color, positionOffset, dimensions, rows,  columns, looping, enabled, visible);
+        return new Sprite(texture2DAsset, sourcePosition, sourceDimensions, color, positionOffset, dimensions, rows,  columns, looping, enabled, visible);
     }
 
     private Effect ParseEffect(string id, List<string> parameters)

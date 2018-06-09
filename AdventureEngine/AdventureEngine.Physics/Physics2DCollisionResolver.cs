@@ -23,8 +23,8 @@ public class Physics2DCollisionResolver
         Restitution restitution2 = null;
         Friction friction1 = null;
         Friction friction2 = null;
-        Bounds shape1 = null;
-        Bounds shape2 = null;
+        Shape shape1 = null;
+        Shape shape2 = null;
 
         if (_world.Entities.ContainsKey(collision.Entity1))
         {
@@ -43,9 +43,9 @@ public class Physics2DCollisionResolver
             friction1 = _world.Entities[collision.Entity1].Where(c => c is Friction)
                                                           .FirstOrDefault()
                                                           as Friction;
-            shape1 = _world.Entities[collision.Entity1].Where(c => c is Bounds)
+            shape1 = _world.Entities[collision.Entity1].Where(c => c is Shape)
                                                        .FirstOrDefault()
-                                                       as Bounds;
+                                                       as Shape;
         }
         if (_world.Entities.ContainsKey(collision.Entity2))
         {
@@ -64,9 +64,9 @@ public class Physics2DCollisionResolver
             friction2 = _world.Entities[collision.Entity2].Where(c => c is Friction)
                                                           .FirstOrDefault()
                                                           as Friction;
-            shape2 = _world.Entities[collision.Entity2].Where(c => c is Bounds)
+            shape2 = _world.Entities[collision.Entity2].Where(c => c is Shape)
                                                        .FirstOrDefault()
-                                                       as Bounds;
+                                                       as Shape;
         }
 
         var truePos1 = position1._Position + shape1.PositionOffset;

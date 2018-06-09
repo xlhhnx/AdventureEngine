@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-public interface IAudioManager
+public interface IAudioManager : ISubscriber
 {
     IAudioPlayer Player { get; set; }
     IAudioLoader Loader { get; set; }

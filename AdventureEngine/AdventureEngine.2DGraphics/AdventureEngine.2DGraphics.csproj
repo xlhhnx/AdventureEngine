@@ -46,13 +46,16 @@
   <ItemGroup>
     <Compile Include="Assets\Effect.cs" />
     <Compile Include="Assets\GraphicType.cs" />
+    <Compile Include="Components\ImageComponent.cs" />
+    <Compile Include="Components\SpriteComponent.cs" />
+    <Compile Include="Components\TextComponent.cs" />
     <Compile Include="Managers\IGraphicsManager.cs" />
     <Compile Include="Configuration\Graphics2DConfiguration.cs" />
     <Compile Include="Assets\BaseGraphic2D.cs" />
     <Compile Include="Managers\GraphicsManager.cs" />
-    <Compile Include="Components\Image.cs" />
-    <Compile Include="Components\Sprite.cs" />
-    <Compile Include="Components\Text.cs" />
+    <Compile Include="Assets\Image.cs" />
+    <Compile Include="Assets\Sprite.cs" />
+    <Compile Include="Assets\Text.cs" />
     <Compile Include="Assets\IGraphic2D.cs" />
     <Compile Include="Loading\Graphic2DLoader.cs" />
     <Compile Include="Loading\IGraphic2DLoader.cs" />

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-public class OrientedBox : Bounds
+public class OrientedBox : Shape
 {
     public override float Area { get { return _extent.X * _extent.Y * 4; } }
     

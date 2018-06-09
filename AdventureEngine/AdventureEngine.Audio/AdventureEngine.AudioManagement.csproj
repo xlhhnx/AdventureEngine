@@ -70,6 +70,10 @@
       <Project>{37161754-aa79-4b90-90db-e4fa64688940}</Project>
       <Name>AdventureEngine.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AdventureEngine.Messages\AdventureEngine.Messaging.csproj">
+      <Project>{6054df5b-c4e4-43bd-b9f0-5adb159379f6}</Project>
+      <Name>AdventureEngine.Messaging</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />

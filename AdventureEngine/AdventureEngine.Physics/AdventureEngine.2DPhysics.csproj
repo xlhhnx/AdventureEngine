@@ -51,7 +51,7 @@
     <Compile Include="Components\Mass.cs" />
     <Compile Include="Components\OrientedBox.cs" />
     <Compile Include="Components\Restitution.cs" />
-    <Compile Include="Components\Bounds.cs" />
+    <Compile Include="Components\Shape.cs" />
     <Compile Include="Components\Velocity.cs" />
     <Compile Include="Collision.cs" />
     <Compile Include="Physics2DCollisionResolver.cs" />

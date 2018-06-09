@@ -3,12 +3,10 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.InteropServices;
 
-public class Text : BaseGraphic2D, IComponent
+public class Text : BaseGraphic2D
 {
     public override bool Loaded { get { return _spriteFontAsset.Loaded; } }
     public string DrawText { get { return _drawText; } }
-    public virtual string EntityId { get { return _entityId; } }
-    public virtual string Name { get { return _name; } }
 
     public string FullText
     {
@@ -50,9 +48,7 @@ public class Text : BaseGraphic2D, IComponent
         set { _disabledColor = value; }
     }
 
-
-    protected string _entityId;
-    protected string _name;
+    
     protected string _fullText;
     protected string _drawText;
     protected Color _color;
@@ -62,10 +58,8 @@ public class Text : BaseGraphic2D, IComponent
     protected SpriteFontAsset _spriteFontAsset;
 
 
-    public Text(string entityId, string name, SpriteFontAsset spriteFontAsset, Color color, Color disabledColor, Vector2 positionOffset, Vector2 dimensions, string fullText)
+    public Text(SpriteFontAsset spriteFontAsset, Color color, Color disabledColor, Vector2 positionOffset, Vector2 dimensions, string fullText)
     {
-        _entityId = entityId;
-        _name = name;
         _spriteFontAsset = spriteFontAsset;
         _color = color;
         _disabledColor = disabledColor;
@@ -74,60 +68,10 @@ public class Text : BaseGraphic2D, IComponent
         _fullText = fullText;
         _drawText = TrimText(fullText, _drawDimensions);
     }
-    
-    //public virtual void DrawLine(GameTime gameTime, string fullText, [Optional]Vector2 drawPosition, [Optional]Vector2 drawDimensions, [Optional]SpriteBatch spriteBatch)
-    //{
-    //    Vector2 _drawPosition = this._drawPosition;
-    //    Vector2 _drawDimensions = this._drawDimensions;
-    //    SpriteBatch _spriteBatch = this._spriteBatch;
-
-    //    // Handle optional parameters
-    //    if (drawPosition != null) _drawPosition = drawPosition;
-    //    if (drawDimensions != null) _drawDimensions = drawDimensions;
-    //    if (spriteBatch != null) _spriteBatch = spriteBatch;
-
-    //    string _drawText = TrimText(fullText, _drawDimensions);
-
-    //    if (Visible && _spriteFontAsset.Loaded)
-    //    {
-    //        if (Enabled)
-    //        {
-    //            _spriteBatch.DrawString(_spriteFontAsset.SpriteFont, _drawText, _drawPosition, _color);
-    //        }
-    //        else
-    //        {
-    //            _spriteBatch.DrawString(_spriteFontAsset.SpriteFont, _drawText, _drawPosition, _disabledColor);
-    //        }
-    //    }
-    //}
-
-    //public override void Draw(GameTime gameTime) => Draw(gameTime, null, null);
-
-    //public override void Draw(GameTime gameTime, Vector2? drawPosition, SpriteBatch spriteBatch)
-    //{
-    //    Vector2 _drawPosition = DrawPosition;
-    //    SpriteBatch _spriteBatch = this._spriteBatch;
-
-    //    // Handle optional parameters
-    //    if (drawPosition.HasValue) _drawPosition = drawPosition.Value;
-    //    if (spriteBatch != null) _spriteBatch = spriteBatch;
-
-    //    if (Visible && _spriteFontAsset.Loaded)
-    //    {
-    //        if (Enabled)
-    //        {
-    //            _spriteBatch.DrawString(_spriteFontAsset.SpriteFont, _drawText, _drawPosition, _color);
-    //        }
-    //        else
-    //        {
-    //            _spriteBatch.DrawString(_spriteFontAsset.SpriteFont, _drawText, _drawPosition, _disabledColor);
-    //        }
-    //    }
-    //}
 
     public override IGraphic2D Copy()
     {
-        return new Text(_entityId, _name, _spriteFontAsset, _color, _disabledColor, _positionOffset, _dimensions, _fullText);
+        return new Text(_spriteFontAsset, _color, _disabledColor, _positionOffset, _dimensions, _fullText);
     }
 
     public string TrimText(string text, Vector2 dimensions)

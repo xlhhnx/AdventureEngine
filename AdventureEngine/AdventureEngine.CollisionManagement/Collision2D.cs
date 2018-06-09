@@ -23,7 +23,7 @@ public class Collision2D
     /// <summary>
     /// Gets and Sets the collision bounds of the first entity.
     /// </summary>
-    public Bounds Entity1Bounds
+    public Shape Entity1Bounds
     {
         get { return _entity1Bounds; }
         set { _entity1Bounds = value; }
@@ -32,7 +32,7 @@ public class Collision2D
     /// <summary>
     /// Gets and Sets the collision bounds of the second entity.
     /// </summary>
-    public Bounds Entity2Bounds
+    public Shape Entity2Bounds
     {
         get { return _entity2Bounds; }
         set { _entity2Bounds = value; }
@@ -51,11 +51,11 @@ public class Collision2D
     protected string _entity1;
     protected string _entity2;
     protected float _penetration;
-    protected Bounds _entity1Bounds;
-    protected Bounds _entity2Bounds;
+    protected Shape _entity1Bounds;
+    protected Shape _entity2Bounds;
     protected Vector2 _normal;
     
-    public Collision2D(string entity1, string entity2, float penetration, Bounds entity1Bounds, Bounds entity2Bounds, Vector2 normal)
+    public Collision2D(string entity1, string entity2, float penetration, Shape entity1Bounds, Shape entity2Bounds, Vector2 normal)
     {
         _entity1 = entity1;
         _entity2 = entity2;

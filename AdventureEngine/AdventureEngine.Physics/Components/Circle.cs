@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
 
-public class Circle : Bounds
+public class Circle : Shape
 {
     public override float Area { get { return (float)(Math.PI * _radius * _radius); } }
 
