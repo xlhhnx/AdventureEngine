@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 
-public interface IContextOwner : IUserInterfaceObject
+namespace AdventureEngine.UserInterface.Menus
 {
-    List<IMenuOption> ContextOptions { get; set; }
+    public interface IContextOwner : IUserInterfaceObject
+    {
+        List<IMenuOption> ContextOptions { get; set; }
 
-    void OpenContext();
+        void OpenContext();
+    }
 }

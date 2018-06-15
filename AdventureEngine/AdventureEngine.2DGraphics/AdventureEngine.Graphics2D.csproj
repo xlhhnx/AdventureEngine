@@ -45,12 +45,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Effect.cs" />
-    <Compile Include="Assets\GraphicType.cs" />
+    <Compile Include="GraphicType.cs" />
     <Compile Include="Components\ImageComponent.cs" />
     <Compile Include="Components\SpriteComponent.cs" />
     <Compile Include="Components\TextComponent.cs" />
+    <Compile Include="Extensions\SpriteBatchExtensions.cs" />
     <Compile Include="Managers\IGraphicsManager.cs" />
-    <Compile Include="Configuration\Graphics2DConfiguration.cs" />
+    <Compile Include="Config\Graphics2DConfig.cs" />
     <Compile Include="Assets\BaseGraphic2D.cs" />
     <Compile Include="Managers\GraphicsManager.cs" />
     <Compile Include="Assets\Image.cs" />

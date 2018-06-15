@@ -1,6 +1,11 @@
-﻿public interface IMenuOption : IControl
-{
-    int Index { get; set; }
+﻿using AdventureEngine.UserInterface.Controls;
 
-    void Select();
+namespace AdventureEngine.UserInterface.Menus
+{
+    public interface IMenuOption : IControl
+    {
+        int Index { get; set; }
+
+        void Select();
+    }
 }

@@ -41,16 +41,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\BaseButton.cs" />
-    <Compile Include="Controls\IButton.cs" />
-    <Compile Include="Controls\ImageButton.cs" />
-    <Compile Include="Controls\ISlider.cs" />
-    <Compile Include="Controls\ITextBox.cs" />
-    <Compile Include="Controls\SpriteButton.cs" />
-    <Compile Include="Controls\TextButton.cs" />
+    <Compile Include="Controls\BaseControls\BaseButton.cs" />
+    <Compile Include="Controls\BaseControls\BaseLabel.cs" />
+    <Compile Include="Controls\BaseControls\BaseRadioButton.cs" />
+    <Compile Include="Controls\BaseControls\BaseRadioButtonCollection.cs" />
+    <Compile Include="Controls\BaseControls\BaseSlider.cs" />
+    <Compile Include="Controls\BaseControls\BaseTextBox.cs" />
+    <Compile Include="Controls\BaseControls\BaseToggle.cs" />
+    <Compile Include="Controls\Controls\ImageTextBox.cs" />
+    <Compile Include="Controls\Interfaces\IButton.cs" />
+    <Compile Include="Controls\Interfaces\IToggle.cs" />
+    <Compile Include="Controls\Interfaces\ILabel.cs" />
+    <Compile Include="Controls\Controls\ImageButton.cs" />
+    <Compile Include="Controls\Controls\ImageSlider.cs" />
+    <Compile Include="Controls\Interfaces\IRadioButton.cs" />
+    <Compile Include="Controls\Interfaces\IRadioButtonCollection.cs" />
+    <Compile Include="Controls\Interfaces\ISlider.cs" />
+    <Compile Include="Controls\Interfaces\ITextBox.cs" />
+    <Compile Include="Controls\Controls\Label.cs" />
+    <Compile Include="Controls\Controls\TextButton.cs" />
     <Compile Include="Screens\BaseScreen.cs" />
     <Compile Include="Menus\IContextOwner.cs" />
-    <Compile Include="Controls\IControl.cs" />
+    <Compile Include="Controls\Interfaces\IControl.cs" />
     <Compile Include="Menus\IMenu.cs" />
     <Compile Include="Menus\IMenuOption.cs" />
     <Compile Include="IUserInterfaceObject.cs" />
@@ -59,9 +71,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdventureEngine.2DGraphics\AdventureEngine.2DGraphics.csproj">
+    <ProjectReference Include="..\AdventureEngine.2DGraphics\AdventureEngine.Graphics2D.csproj">
       <Project>{efc32a9a-0e8e-4cc1-bbfc-7645ec43650f}</Project>
-      <Name>AdventureEngine.2DGraphics</Name>
+      <Name>AdventureEngine.Graphics2D</Name>
     </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj">
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>

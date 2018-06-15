@@ -52,9 +52,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdventureEngine.2DGraphics\AdventureEngine.2DGraphics.csproj">
+    <ProjectReference Include="..\AdventureEngine.2DGraphics\AdventureEngine.Graphics2D.csproj">
       <Project>{efc32a9a-0e8e-4cc1-bbfc-7645ec43650f}</Project>
-      <Name>AdventureEngine.2DGraphics</Name>
+      <Name>AdventureEngine.Graphics2D</Name>
     </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj">
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>

@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using AdventureEngine.UserInterface.Controls;
+using System.Collections.Generic;
 
-public interface IScreen : IUserInterfaceObject, ISubscriber
+namespace AdventureEngine.UserInterface.Screens
 {
-    List<IControl> Controls { get; set; }
+    public interface IScreen : IUserInterfaceObject, ISubscriber
+    {
+        List<IControl> Controls { get; set; }
+    }
 }

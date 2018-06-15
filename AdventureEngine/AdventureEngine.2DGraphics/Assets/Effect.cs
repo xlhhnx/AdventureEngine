@@ -1,12 +1,15 @@
 ﻿using System;
 
-public class Effect : BaseGraphic2D
+namespace AdventureEngine.Graphics2D.Assets
 {
-    public override bool Loaded { get { throw new NotImplementedException(); } }
-    public override GraphicType GraphicType { get { return GraphicType.Effect; } }
-
-    public override IGraphic2D Copy()
+    public class Effect : BaseGraphic2D
     {
-        throw new NotImplementedException();
+        public override bool Loaded { get { throw new NotImplementedException(); } }
+        public override GraphicType GraphicType { get { return GraphicType.Effect; } }
+
+        public override IGraphic2D Copy()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

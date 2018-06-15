@@ -1,13 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using AdventureEngine.Graphics2D.Assets;
+using System.Collections.Generic;
 
-public interface IGraphic2DLoader
+namespace AdventureEngine.Graphics2D.Loading
 {
-    Image LoadImage(string filePath, string id);
-    Sprite LoadSprite(string filePath, string id);
-    Text LoadText(string filePath, string id);
-    Effect LoadEffect(string filePath, string id);
-    IGraphic2D LoadGraphic(string filePath, string id);
-    List<IGraphic2D> LoadGraphics(string filePath);
-    void StageFile(string filePath, bool overwrite = false);
-    void UnstageFile(string filePath);
+    public interface IGraphic2DLoader
+    {
+        Image LoadImage(string filePath, string id);
+        Sprite LoadSprite(string filePath, string id);
+        Text LoadText(string filePath, string id);
+        Effect LoadEffect(string filePath, string id);
+        IGraphic2D LoadGraphic(string filePath, string id);
+        List<IGraphic2D> LoadGraphics(string filePath);
+        void StageFile(string filePath, bool overwrite = false);
+        void UnstageFile(string filePath);
+    }
 }

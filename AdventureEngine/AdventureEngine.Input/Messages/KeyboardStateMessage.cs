@@ -1,19 +1,64 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class KeyboardStateMessage : Message, ButtonsMessage<Keys>
 {
-    /// <summary>
-    /// Gets the dictionary of Keys => Key ButtonStates.
-    /// </summary>
     public Dictionary<Keys, ButtonState> KeyStates { get { return _keyStates; } }
 
-    /// <summary>
-    /// Indexer of Keys => Key ButtonState.
-    /// </summary>
-    /// <param name="k">Key used to lookup Key ButtonState</param>
-    /// <returns>ButtonState if found, otherwise null.</returns>
+    public List<Keys> DownKeys
+    {
+        get
+        {
+            if (_downKeys == null)
+            {
+                _downKeys = _keyStates.Keys.Where(k => _keyStates[k] == ButtonState.Down)
+                                    .ToList();
+            }
+            return _downKeys;
+        }
+    }
+
+    public List<Keys> PressedKeys
+    {
+        get
+        {
+            if (_pressedKeys == null)
+            {
+                _pressedKeys = _keyStates.Keys.Where(k => _keyStates[k] == ButtonState.Pressed)
+                                    .ToList();
+            }
+            return _pressedKeys;
+        }
+    }
+
+    public List<Keys> UpKeys
+    {
+        get
+        {
+            if (_upKeys == null)
+            {
+                _upKeys = _keyStates.Keys.Where(k => _keyStates[k] == ButtonState.Up)
+                                    .ToList();
+            }
+            return _upKeys;
+        }
+    }
+
+    public List<Keys> ReleasedKeys
+    {
+        get
+        {
+            if (_releasedKeys == null)
+            {
+                _releasedKeys = _keyStates.Keys.Where(k => _keyStates[k] == ButtonState.Released)
+                                    .ToList();
+            }
+            return _releasedKeys;
+        }
+    }
+
     public ButtonState? this[Keys k]
     {
         get
@@ -29,13 +74,14 @@ public class KeyboardStateMessage : Message, ButtonsMessage<Keys>
         }
     }
 
-    protected Dictionary<Keys, ButtonState> _keyStates;
 
-    /// <summary>
-    /// Builds a KEYBOARD_KEY_STATES message.
-    /// </summary>
-    /// <param name="keyStates">The dictionary of Keys => Key ButtonStates.</param>
-    /// <param name="sender">The object that created the message.</param>
+    protected Dictionary<Keys, ButtonState> _keyStates;
+    protected List<Keys> _downKeys;
+    protected List<Keys> _pressedKeys;
+    protected List<Keys> _upKeys;
+    protected List<Keys> _releasedKeys;
+    
+
     public KeyboardStateMessage(Dictionary<Keys, ButtonState> keyStates, object sender) : base("KEYBOARD_KEY_STATES", sender)
     {
         _keyStates = keyStates;

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine", "AdventureEngine\AdventureEngine.csproj", "{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.AssetManagement", "AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj", "{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Logging", "AdventureEngine.Logging\AdventureEngine.Logging.csproj", "{40375B04-268C-4D23-B402-43ED772F927A}"
@@ -15,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Common", "A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Communication", "AdventureEngine.Communication\AdventureEngine.Communication.csproj", "{697942F3-E732-4988-8F3B-402EA8DD876B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.2DGraphics", "AdventureEngine.2DGraphics\AdventureEngine.2DGraphics.csproj", "{EFC32A9A-0E8E-4CC1-BBFC-7645EC43650F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Graphics2D", "AdventureEngine.2DGraphics\AdventureEngine.Graphics2D.csproj", "{EFC32A9A-0E8E-4CC1-BBFC-7645EC43650F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdventureEngine.Input", "AdventureEngine.Input\AdventureEngine.Input.csproj", "{8C6963A1-636F-4FEF-BA35-549163921213}"
 EndProject
@@ -43,14 +41,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Debug|x86.Build.0 = Debug|Any CPU
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Release|x86.ActiveCfg = Release|Any CPU
-		{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}.Release|x86.Build.0 = Release|Any CPU
 		{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1C1FCBF1-6268-4C02-8E1B-EE6D7C5F32CE}.Debug|x86.ActiveCfg = Debug|Any CPU
