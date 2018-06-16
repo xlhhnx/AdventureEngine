@@ -1,4 +1,8 @@
 ﻿using System;
+using AdventureEngine.Common.Bounding;
+using AdventureEngine.Input;
+using AdventureEngine.Input.Messages;
+using AdventureEngine.Messaging;
 using AdventureEngine.UserInterface.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;

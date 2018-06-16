@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AdventureEngine.Physics2D.Components;
+using Microsoft.Xna.Framework;
 
 public class Collision2D
 {

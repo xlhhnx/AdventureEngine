@@ -1,8 +1,10 @@
-﻿using AdventureEngine.Graphics2D.Assets;
+﻿using AdventureEngine.Game;
+using AdventureEngine.Game.Components;
+using AdventureEngine.Game.Systems;
+using AdventureEngine.Graphics2D.Assets;
 using AdventureEngine.Graphics2D.Config;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 
 namespace AdventureEngine.Graphics2D.Systems

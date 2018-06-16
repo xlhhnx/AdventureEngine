@@ -4,10 +4,11 @@ using AdventureEngine.UserInterface.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using AdventureEngine.Graphics2D.Extensions;
+using AdventureEngine.Common.Bounding;
 
 namespace AdventureEngine.UserInterface.Controls
 {
-    public class ImageTextBox : BaseTextBox
+    public class TextBox : BaseTextBox
     {
         public virtual bool CursorFlash
         {
@@ -41,7 +42,7 @@ namespace AdventureEngine.UserInterface.Controls
         protected Text _cursorText;
 
 
-        public ImageTextBox(Image background, Text text, Text cursorText, int tabIndex, int keyDownPauseTime, IBounds bounds, IScreen screen, Vector2 position, string fullText = "", bool visible = true, bool enabled = true, bool focused = false)
+        public TextBox(Image background, Text text, Text cursorText, int tabIndex, int keyDownPauseTime, IBounds bounds, IScreen screen, Vector2 position, string fullText = "", bool visible = true, bool enabled = true, bool focused = false)
             : base(tabIndex, keyDownPauseTime, bounds, screen, position, fullText, visible, enabled, focused)
         {
             FullText = fullText;
@@ -70,6 +71,8 @@ namespace AdventureEngine.UserInterface.Controls
             }
 
             if (_text.Loaded) _cursorText.PositionOffset = new Vector2(_text.SpriteFontAsset.SpriteFont.MeasureString(FullText.Substring(0, Cursor)).X, _cursorText.PositionOffset.Y);
+
+            _text.Enabled = Enabled;
 
             base.Update(gameTime);
         }

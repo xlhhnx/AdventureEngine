@@ -1,19 +1,23 @@
-﻿using NAudio.Wave;
+﻿using AdventureEngine.AssetManagement.Assets;
+using NAudio.Wave;
 
-public class Song : BaseAudio
+namespace AdventureEngine.AudioManagement.Assets
 {
-    public Song(string id, AudioAsset audioAsset) : base(id, audioAsset)
-    { }
-
-    public WaveStream CreateWaveStream()
+    public class Song : BaseAudio
     {
-        if (_audioAsset.Loaded)
+        public Song(string id, AudioAsset audioAsset) : base(id, audioAsset)
+        { }
+
+        public WaveStream CreateWaveStream()
         {
-            return new WaveChannel32(_audioAsset.Stream);
-        }
-        else
-        {
-            return null;
+            if (_audioAsset.Loaded)
+            {
+                return new WaveChannel32(_audioAsset.Stream);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

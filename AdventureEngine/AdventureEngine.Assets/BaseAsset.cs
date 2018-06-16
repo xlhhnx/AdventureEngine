@@ -1,14 +1,17 @@
-﻿public abstract class BaseAsset : IAsset
+﻿namespace AdventureEngine.AssetManagement
 {
-    public virtual string Id { get { return _id; } }
-    public abstract bool Loaded { get; }
-
-    protected string _id;
-     
-    public BaseAsset(string id)
+    public abstract class BaseAsset : IAsset
     {
-        _id = id;
-    }
+        public virtual string Id { get { return _id; } }
+        public abstract bool Loaded { get; }
 
-    public abstract void Unload();
+        protected string _id;
+
+        public BaseAsset(string id)
+        {
+            _id = id;
+        }
+
+        public abstract void Unload();
+    }
 }

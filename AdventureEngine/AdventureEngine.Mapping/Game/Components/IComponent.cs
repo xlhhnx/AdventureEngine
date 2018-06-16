@@ -1,9 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 
-public interface IComponent
+namespace AdventureEngine.Game.Components
 {
-    string EntityId { get; }
-    string Name { get; }
+    public interface IComponent
+    {
+        string EntityId { get; }
+        string Name { get; }
 
-    string Serilize();
+        string Serilize();
+    }
 }

@@ -1,12 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AdventureEngine.Game.Components;
+using AdventureEngine.Game.Systems;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-public interface IWorld
+namespace AdventureEngine.Game
 {
-    Dictionary<string,List<IComponent>> Entities { get; set; }
-    List<ISystem> Systems { get; set; }
+    public interface IWorld
+    {
+        Dictionary<string, List<IComponent>> Entities { get; set; }
+        List<ISystem> Systems { get; set; }
 
-    void Update(GameTime gameTime);
-    void Draw();
-    string Serialize();
+        void Update(GameTime gameTime);
+        void Draw();
+        string Serialize();
+    }
 }

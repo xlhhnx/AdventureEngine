@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using AdventureEngine.Graphics2D.Config;
+using AdventureEngine.AssetManagement.Assets;
+using AdventureEngine.Common.Extensions;
 
 namespace AdventureEngine.Graphics2D.Assets
 {

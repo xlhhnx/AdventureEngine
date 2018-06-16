@@ -1,4 +1,10 @@
-﻿public interface IAudio : IAsset
+﻿using AdventureEngine.AssetManagement;
+using AdventureEngine.AssetManagement.Assets;
+
+namespace AdventureEngine.AudioManagement.Assets
 {
-    AudioAsset AudioAsset { get; }
+    public interface IAudio : IAsset
+    {
+        AudioAsset AudioAsset { get; }
+    }
 }

@@ -1,25 +1,31 @@
-﻿public class MessagingMouseController : MouseController
+﻿using AdventureEngine.Input.Messages;
+using AdventureEngine.Messaging;
+
+namespace AdventureEngine.Input.Controllers
 {
-    public override void Update()
+    public class MessagingMouseController : MouseController
     {
-        base.Update();
-
-        if (_positionStateChanged)
+        public override void Update()
         {
-            var message = new MouseMoveMessage(_previousMouseState.Position, this);
-            MessageManager.EnqueueMessage(message);
-        }
+            base.Update();
 
-        if (_buttonsStateChanged)
-        {
-            var message = new MouseButtonStatesMessage(_buttonStates, this);
-            MessageManager.EnqueueMessage(message);
-        }
+            if (_positionStateChanged)
+            {
+                var message = new MouseMoveMessage(_previousMouseState.Position, this);
+                MessageManager.EnqueueMessage(message);
+            }
 
-        if (_scrollWheelValueChanged)
-        {
-            var message = new MouseScrollWheelChangedMessage(_scrollWheelDifference, this);
-            MessageManager.EnqueueMessage(message);
+            if (_buttonsStateChanged)
+            {
+                var message = new MouseButtonStatesMessage(_buttonStates, this);
+                MessageManager.EnqueueMessage(message);
+            }
+
+            if (_scrollWheelValueChanged)
+            {
+                var message = new MouseScrollWheelChangedMessage(_scrollWheelDifference, this);
+                MessageManager.EnqueueMessage(message);
+            }
         }
     }
 }

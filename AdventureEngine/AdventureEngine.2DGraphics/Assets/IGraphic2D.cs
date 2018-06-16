@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AdventureEngine.AssetManagement;
+using Microsoft.Xna.Framework;
 
 namespace AdventureEngine.Graphics2D.Assets
 {

@@ -44,10 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actors\IAudioPlayer.cs" />
+    <Compile Include="Players\IAudioPlayer.cs" />
     <Compile Include="Assets\BaseAudio.cs" />
     <Compile Include="Managers\AudioManager.cs" />
-    <Compile Include="Actors\AudioPlayer.cs" />
+    <Compile Include="Players\AudioPlayer.cs" />
     <Compile Include="Assets\AudioType.cs" />
     <Compile Include="Assets\IAudio.cs" />
     <Compile Include="Loading\AudioLoader.cs" />

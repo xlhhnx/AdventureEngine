@@ -1,6 +1,9 @@
-﻿public interface IObservable
+﻿namespace AdventureEngine.Communication
 {
-    void Subscribe(IObserver observer);
-    void Unsubscribe(IObserver observer);
-    bool Observing(IObserver observer);
+    public interface IObservable
+    {
+        void Subscribe(IObserver observer);
+        void Unsubscribe(IObserver observer);
+        bool Observing(IObserver observer);
+    }
 }

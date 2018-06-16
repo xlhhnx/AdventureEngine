@@ -1,5 +1,6 @@
 ﻿using AdventureEngine.Graphics2D.Assets;
 using AdventureEngine.Graphics2D.Loading;
+using AdventureEngine.Messaging;
 
 namespace AdventureEngine.Graphics2D.Managers
 {

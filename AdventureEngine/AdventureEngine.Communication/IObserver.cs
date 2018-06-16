@@ -1,3 +1,6 @@
 ﻿using System;
 
-public interface IObserver : IDisposable { }
+namespace AdventureEngine.Communication
+{
+    public interface IObserver : IDisposable { }
+}

@@ -1,4 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using AdventureEngine.Game;
+using AdventureEngine.Game.Components;
+using AdventureEngine.Physics2D.Components;
+using Microsoft.Xna.Framework;
 using System;
 using System.Linq;
 

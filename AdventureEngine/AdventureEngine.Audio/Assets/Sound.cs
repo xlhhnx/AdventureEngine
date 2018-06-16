@@ -1,32 +1,36 @@
-﻿using NAudio.Wave;
+﻿using AdventureEngine.AssetManagement.Assets;
+using NAudio.Wave;
 
-public class Sound : BaseAudio
+namespace AdventureEngine.AudioManagement.Assets
 {
-    public float[] AudioData { get { return _audioData; } }
-    public WaveFormat WaveFormat
+    public class Sound : BaseAudio
     {
-        get
+        public float[] AudioData { get { return _audioData; } }
+        public WaveFormat WaveFormat
         {
-            if (_audioAsset.Loaded)
+            get
             {
-                return _audioAsset.Stream.WaveFormat;
-            }
-            else
-            {
-                return null;
+                if (_audioAsset.Loaded)
+                {
+                    return _audioAsset.Stream.WaveFormat;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
-    }
 
-    protected float[] _audioData;
+        protected float[] _audioData;
 
-    public Sound(string id, float[] audioData, AudioAsset audioAsset) : base(id, audioAsset)
-    {
-        _audioData = audioData;
-    }
+        public Sound(string id, float[] audioData, AudioAsset audioAsset) : base(id, audioAsset)
+        {
+            _audioData = audioData;
+        }
 
-    public ISampleProvider CreateSampleProvider()
-    {
-        return new SoundSampleProvider(this);
+        public ISampleProvider CreateSampleProvider()
+        {
+            return new SoundSampleProvider(this);
+        }
     }
 }

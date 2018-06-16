@@ -5,10 +5,12 @@ using System.Collections.Generic;
 using AdventureEngine.UserInterface.Screens;
 using AdventureEngine.Graphics2D.Assets;
 using AdventureEngine.Graphics2D.Extensions;
+using AdventureEngine.Communication;
+using AdventureEngine.Common.Bounding;
 
 namespace AdventureEngine.UserInterface.Controls
 {
-    public class ImageButton : BaseButton
+    public class Button : BaseButton
     {
         protected ICommand _command;
         protected CommandManager _commandManager;
@@ -19,7 +21,7 @@ namespace AdventureEngine.UserInterface.Controls
         protected Text _unfocusedText;
         protected Text _clickedText;
 
-        public ImageButton(Image focusedImage, Image unfocusedImage, Image clickedImage, Text focusedText, Text unfocusedText, Text clickedText, CommandManager commandManager, ICommand command, IBounds bounds, IScreen screen, Vector2 position, Vector2 dimensions, int tabIndex, bool visible = true, bool enabled = true)
+        public Button(Image focusedImage, Image unfocusedImage, Image clickedImage, Text focusedText, Text unfocusedText, Text clickedText, CommandManager commandManager, ICommand command, IBounds bounds, IScreen screen, Vector2 position, Vector2 dimensions, int tabIndex, bool visible = true, bool enabled = true)
             : base(bounds, screen, position, tabIndex, visible, enabled)
         {
             _focusedImage = focusedImage;
@@ -46,7 +48,9 @@ namespace AdventureEngine.UserInterface.Controls
 
             foreach (var s in sprites)
             {
+                s.ElapsedTime += gameTime.ElapsedGameTime;
                 if (s.ElapsedTime.TotalMilliseconds > s.FrameTime) s.ChangeFrame();
+                s.Enabled = Enabled;
             }
 
             _focusedText.Enabled = Enabled;

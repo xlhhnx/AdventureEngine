@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using AdventureEngine.Game.Components;
+using System.Collections.Generic;
 
-public class ComponentComparer : IEqualityComparer<IComponent>
+namespace AdventureEngine.Game
 {
-    public bool Equals(IComponent x, IComponent y)
+    public class ComponentComparer : IEqualityComparer<IComponent>
     {
-        return x.Name == y.Name;
-    }
+        public bool Equals(IComponent x, IComponent y)
+        {
+            return x.Name == y.Name;
+        }
 
-    public int GetHashCode(IComponent obj)
-    {
-        return obj.GetHashCode();
+        public int GetHashCode(IComponent obj)
+        {
+            return obj.GetHashCode();
+        }
     }
 }

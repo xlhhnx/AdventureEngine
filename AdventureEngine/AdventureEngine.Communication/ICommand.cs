@@ -1,4 +1,7 @@
-﻿public interface ICommand
+﻿namespace AdventureEngine.Communication
 {
-    void Execute();
+    public interface ICommand
+    {
+        void Execute();
+    }
 }

@@ -1,28 +1,30 @@
-﻿using System;
-using NAudio.Wave;
+﻿using NAudio.Wave;
 
-public class AudioAsset : BaseAsset
+namespace AdventureEngine.AssetManagement.Assets
 {
-    public override bool Loaded
+    public class AudioAsset : BaseAsset
     {
-        get { return _loaded; }
-    }
+        public override bool Loaded
+        {
+            get { return _loaded; }
+        }
 
-    public virtual WaveStream Stream { get { return _stream; } }
-
-
-    protected bool _loaded;
-    protected WaveStream _stream;
+        public virtual WaveStream Stream { get { return _stream; } }
 
 
-    public AudioAsset(string id, WaveStream stream) : base(id)
-    {
-        _stream = stream;
-        _loaded = true;
-    }
+        protected bool _loaded;
+        protected WaveStream _stream;
 
-    public override void Unload()
-    {
-        _loaded = false;
+
+        public AudioAsset(string id, WaveStream stream) : base(id)
+        {
+            _stream = stream;
+            _loaded = true;
+        }
+
+        public override void Unload()
+        {
+            _loaded = false;
+        }
     }
 }

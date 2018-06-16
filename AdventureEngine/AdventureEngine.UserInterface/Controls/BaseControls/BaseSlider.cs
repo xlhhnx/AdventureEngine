@@ -2,6 +2,11 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using AdventureEngine.UserInterface.Screens;
+using AdventureEngine.Input.Messages;
+using AdventureEngine.Messaging;
+using AdventureEngine.Input;
+using AdventureEngine.Common.Bounding;
+using AdventureEngine.Common;
 
 namespace AdventureEngine.UserInterface.Controls
 {
@@ -169,7 +174,10 @@ namespace AdventureEngine.UserInterface.Controls
 
         public virtual void ReceiveMessage(Message message)
         {
-            throw new NotImplementedException();
+            if (message is MouseButtonStatesMessage)
+                HandleMouseButtonStateMessage(message as MouseButtonStatesMessage);
+            else if (message is MouseMoveMessage)
+                HandleMouseMoveMessage(message as MouseMoveMessage);
         }
 
         public abstract void Update(GameTime gameTime);

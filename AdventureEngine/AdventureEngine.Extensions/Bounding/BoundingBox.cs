@@ -1,55 +1,59 @@
 ﻿using System;
+using AdventureEngine.Common.Extensions;
 using Microsoft.Xna.Framework;
 
-public class BoundingBox : IBounds
+namespace AdventureEngine.Common.Bounding
 {
-    public Vector2 Position
+    public class BoundingBox : IBounds
     {
-        get { return _position; }
-        set
+        public Vector2 Position
         {
-            _position = value;
+            get { return _position; }
+            set
+            {
+                _position = value;
+                _rectangle = new Rectangle(_position.ToPoint(), _dimensions.ToPoint());
+            }
+        }
+
+        public Vector2 Dimensions
+        {
+            get { return _dimensions; }
+            set
+            {
+                _dimensions = value;
+                _rectangle = new Rectangle(_position.ToPoint(), _dimensions.ToPoint());
+            }
+        }
+
+
+        protected Vector2 _position;
+        protected Vector2 _dimensions;
+        protected Rectangle _rectangle;
+
+
+        public BoundingBox(Vector2 position, Vector2 dimensions)
+        {
+            _position = position;
+            _dimensions = dimensions;
             _rectangle = new Rectangle(_position.ToPoint(), _dimensions.ToPoint());
         }
-    }
 
-    public Vector2 Dimensions
-    {
-        get { return _dimensions; }
-        set
+        public BoundingBox(Rectangle rectangle)
         {
-            _dimensions = value;
-            _rectangle = new Rectangle(_position.ToPoint(), _dimensions.ToPoint());
+            _rectangle = rectangle;
+            _position = _rectangle.GetPosition();
+            _dimensions = _rectangle.GetDimensions();
         }
-    }
 
+        public bool Contains(Point point)
+        {
+            return _rectangle.Contains(point);
+        }
 
-    protected Vector2 _position;
-    protected Vector2 _dimensions;
-    protected Rectangle _rectangle;
-
-
-    public BoundingBox(Vector2 position, Vector2 dimensions)
-    {
-        _position = position;
-        _dimensions = dimensions;
-        _rectangle = new Rectangle(_position.ToPoint(), _dimensions.ToPoint());
-    }
-
-    public BoundingBox(Rectangle rectangle)
-    {
-        _rectangle = rectangle;
-        _position = _rectangle.GetPosition();
-        _dimensions = _rectangle.GetDimensions();
-    }
-
-    public bool Contains(Point point)
-    {
-        return _rectangle.Contains(point);
-    }
-
-    public bool Contains(Vector2 point)
-    {
-        return _rectangle.Contains(point);
+        public bool Contains(Vector2 point)
+        {
+            return _rectangle.Contains(point);
+        }
     }
 }

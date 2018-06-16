@@ -1,12 +1,15 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using System.Collections.Generic;
 
-public interface IAssetBatch : IAsset
+namespace AdventureEngine.AssetManagement
 {
-    ContentManager Content { get; }
-    Dictionary<string, List<string>> FileIdDictionary { get; set; }
-    List<IAsset> Assets { get; set; }
+    public interface IAssetBatch : IAsset
+    {
+        ContentManager Content { get; }
+        Dictionary<string, List<string>> FileIdDictionary { get; set; }
+        List<IAsset> Assets { get; set; }
 
-    void AddAssetDefinition(string filePath, string assetId);
-    void AddAsset(IAsset asset);
+        void AddAssetDefinition(string filePath, string assetId);
+        void AddAsset(IAsset asset);
+    }
 }

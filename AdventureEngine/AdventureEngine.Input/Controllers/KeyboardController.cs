@@ -4,126 +4,131 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class KeyboardController : IController
+namespace AdventureEngine.Input.Controllers
 {
-    /// <summary>
-    /// Gets the flg determining if the state has changed since the last update.
-    /// </summary>
-    public bool StateChanged { get { return _stateChanged; } }
-
-    /// <summary>
-    /// Gets a list of all keys.
-    /// </summary>
-    public List<Keys> AllKeys { get { return _allKeys; } }
-
-    /// <summary>
-    /// Accesses the button state of the key provided.
-    /// </summary>
-    /// <param name="key">The key to access.</param>
-    /// <returns>A button state or null.</returns>
-    public ButtonState? this[Keys key]
+    public class KeyboardController : IController
     {
-        get
+        /// <summary>
+        /// Gets the flg determining if the state has changed since the last update.
+        /// </summary>
+        public bool StateChanged { get { return _stateChanged; } }
+
+        /// <summary>
+        /// Gets a list of all keys.
+        /// </summary>
+        public List<Keys> AllKeys { get { return _allKeys; } }
+
+        /// <summary>
+        /// Accesses the button state of the key provided.
+        /// </summary>
+        /// <param name="key">The key to access.</param>
+        /// <returns>A button state or null.</returns>
+        public ButtonState? this[Keys key]
         {
-            if (_keyStates.ContainsKey(key))
+            get
             {
-                return _keyStates[key];
+                if (_keyStates.ContainsKey(key))
+                {
+                    return _keyStates[key];
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+        }
+
+        protected bool _stateChanged;
+        protected KeyboardState _previousKeyboardState;
+        protected Dictionary<Keys, ButtonState> _keyStates;
+        protected List<Keys> _allKeys;
+
+        /// <summary>
+        /// Creates a keybard controller.
+        /// </summary>
+        public KeyboardController()
+        {
+            _previousKeyboardState = new KeyboardState();
+            _keyStates = new Dictionary<Keys, ButtonState>();
+            _allKeys = new List<Keys>();
+
+            foreach (Keys k in Enum.GetValues(typeof(Keys)).Cast<Keys>())
             {
-                return null;
+                _keyStates.Add(k, ButtonState.Up);
+                _allKeys.Add(k);
             }
+            _stateChanged = false;
         }
-    }
 
-    protected bool _stateChanged;
-    protected KeyboardState _previousKeyboardState;
-    protected Dictionary<Keys, ButtonState> _keyStates;
-    protected List<Keys> _allKeys;
-
-    /// <summary>
-    /// Creates a keybard controller.
-    /// </summary>
-    public KeyboardController()
-    {
-        _previousKeyboardState = new KeyboardState();
-        _keyStates = new Dictionary<Keys, ButtonState>();
-        _allKeys = new List<Keys>();
-
-        foreach (Keys k in Enum.GetValues(typeof(Keys)).Cast<Keys>())
+        /// <summary>
+        /// Updates the keyboard controller with the current keyboard state.
+        /// </summary>
+        public virtual void Update()
         {
-            _keyStates.Add(k, ButtonState.Up);
-            _allKeys.Add(k);
-        }
-        _stateChanged = false;
-    }
+            var _currentKeyboardState = Keyboard.GetState();
+            _stateChanged = false;
 
-    /// <summary>
-    /// Updates the keyboard controller with the current keyboard state.
-    /// </summary>
-    public virtual void Update()
-    {
-        var _currentKeyboardState = Keyboard.GetState();
-        _stateChanged = false;
-
-        foreach (Keys k in _allKeys)
-        {
-            switch (_keyStates[k]) {
-                case (ButtonState.Up):
-                    {
-                        if (_currentKeyboardState.IsKeyDown(k))
+            foreach (Keys k in _allKeys)
+            {
+                switch (_keyStates[k])
+                {
+                    case (ButtonState.Up):
                         {
-                            _keyStates[k] = ButtonState.Pressed;
-                            _stateChanged = true;
+                            if (_currentKeyboardState.IsKeyDown(k))
+                            {
+                                _keyStates[k] = ButtonState.Pressed;
+                                _stateChanged = true;
+                            }
+                            else
+                            {
+                                _keyStates[k] = ButtonState.Up;
+                            }
                         }
-                        else
+                        break;
+                    case (ButtonState.Pressed):
                         {
-                            _keyStates[k] = ButtonState.Up;
+                            if (_currentKeyboardState.IsKeyDown(k))
+                            {
+                                _keyStates[k] = ButtonState.Down;
+                                _stateChanged = true;
+                            }
+                            else
+                            {
+                                _keyStates[k] = ButtonState.Released;
+                                _stateChanged = true;
+                            }
                         }
-                    }break;
-                case (ButtonState.Pressed):
-                    {
-                        if (_currentKeyboardState.IsKeyDown(k))
+                        break;
+                    case (ButtonState.Down):
                         {
-                            _keyStates[k] = ButtonState.Down;
-                            _stateChanged = true;
+                            if (_currentKeyboardState.IsKeyDown(k))
+                            {
+                                _keyStates[k] = ButtonState.Down;
+                            }
+                            else
+                            {
+                                _keyStates[k] = ButtonState.Released;
+                                _stateChanged = true;
+                            }
                         }
-                        else
+                        break;
+                    case (ButtonState.Released):
                         {
-                            _keyStates[k] = ButtonState.Released;
-                            _stateChanged = true;
+                            if (_currentKeyboardState.IsKeyDown(k))
+                            {
+                                _keyStates[k] = ButtonState.Pressed;
+                                _stateChanged = true;
+                            }
+                            else
+                            {
+                                _keyStates[k] = ButtonState.Up;
+                                _stateChanged = true;
+                            }
                         }
-                    }
-                    break;
-                case (ButtonState.Down):
-                    {
-                        if (_currentKeyboardState.IsKeyDown(k))
-                        {
-                            _keyStates[k] = ButtonState.Down;
-                        }
-                        else
-                        {
-                            _keyStates[k] = ButtonState.Released;
-                            _stateChanged = true;
-                        }
-                    }
-                    break;
-                case (ButtonState.Released):
-                    {
-                        if (_currentKeyboardState.IsKeyDown(k))
-                        {
-                            _keyStates[k] = ButtonState.Pressed;
-                            _stateChanged = true;
-                        }
-                        else
-                        {
-                            _keyStates[k] = ButtonState.Up;
-                            _stateChanged = true;
-                        }
-                    }
-                    break;
+                        break;
+                }
             }
+            _previousKeyboardState = _currentKeyboardState;
         }
-        _previousKeyboardState = _currentKeyboardState;
     }
 }

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using AdventureEngine.UserInterface.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using AdventureEngine.Input.Messages;
+using AdventureEngine.Messaging;
+using AdventureEngine.Common.Bounding;
+using AdventureEngine.Common;
+using AdventureEngine.Input;
 using Microsoft.Xna.Framework.Input;
-using System.Linq;
 
 namespace AdventureEngine.UserInterface.Controls
 {
@@ -201,7 +205,7 @@ namespace AdventureEngine.UserInterface.Controls
         protected virtual void HandleKeyboardStateMessage(KeyboardStateMessage keyboardStateMessage)
         {
             if (!_selected) return;
-            var shift = keyboardStateMessage.KeyStates[Keys.RightShift] == ButtonState.Down || keyboardStateMessage.KeyStates[Keys.LeftShift] == ButtonState.Down;
+            var shift = keyboardStateMessage.KeyStates[Keys.RightShift] == Input.ButtonState.Down || keyboardStateMessage.KeyStates[Keys.LeftShift] == Input.ButtonState.Down;
 
             foreach (var k in keyboardStateMessage.PressedKeys)
             {
@@ -357,15 +361,15 @@ namespace AdventureEngine.UserInterface.Controls
 
         protected virtual void HandleMouseButtonStateMessage(MouseButtonStatesMessage message)
         {
-            if (!_clicked && _mouseInBounds && message.ButtonState["LeftButton"] == ButtonState.Pressed) _clicked = true;
-            else if (_clicked && _mouseInBounds && message.ButtonState["LeftButton"] == ButtonState.Released)
+            if (!_clicked && _mouseInBounds && message.ButtonState["LeftButton"] == Input.ButtonState.Pressed) _clicked = true;
+            else if (_clicked && _mouseInBounds && message.ButtonState["LeftButton"] == Input.ButtonState.Released)
             {
                 _clicked = false;
                 _shiftStart = -1;
                 _shiftEnd = -1;
                 Select();
             }
-            else if (_clicked && !_mouseInBounds && message.ButtonState["LeftButton"] == ButtonState.Released)
+            else if (_clicked && !_mouseInBounds && message.ButtonState["LeftButton"] == Input.ButtonState.Released)
             {
                 _clicked = false;
                 _shiftStart = -1;

@@ -1,59 +1,62 @@
 ﻿using System.Collections.Generic;
 
-public class InputManager
+namespace AdventureEngine.Input
 {
-    protected List<IController> _inputControllers;
-
-    /// <summary>
-    /// Creates an input manager.
-    /// </summary>
-    public InputManager()
+    public class InputManager
     {
-        _inputControllers = new List<IController>();
-    }
+        protected List<IController> _inputControllers;
 
-    /// <summary>
-    /// Updates all controllers in the input manager.
-    /// </summary>
-    public void Update()
-    {
-        foreach (IController ctrl in _inputControllers)
+        /// <summary>
+        /// Creates an input manager.
+        /// </summary>
+        public InputManager()
         {
-            ctrl.Update();
+            _inputControllers = new List<IController>();
         }
-    }
 
-    /// <summary>
-    /// Determines if a controller is in the input manager.
-    /// </summary>
-    /// <param name="controller">The controller to check.</param>
-    /// <returns>A flag deterining if the controller is in the input manager.</returns>
-    public bool ContainsController(IController controller)
-    {
-        return _inputControllers.Contains(controller);
-    }
-
-    /// <summary>
-    /// Adds a controller to the input manager.
-    /// </summary>
-    /// <param name="controller">The controller to add.</param>
-    public void AddController(IController controller)
-    {
-        if (!ContainsController(controller))
+        /// <summary>
+        /// Updates all controllers in the input manager.
+        /// </summary>
+        public void Update()
         {
-            _inputControllers.Add(controller);
+            foreach (IController ctrl in _inputControllers)
+            {
+                ctrl.Update();
+            }
         }
-    }
 
-    /// <summary>
-    /// Removes a controller from the input manager.
-    /// </summary>
-    /// <param name="controller">The controller to remove.</param>
-    public void RemoveController(IController controller)
-    {
-        if (ContainsController(controller))
+        /// <summary>
+        /// Determines if a controller is in the input manager.
+        /// </summary>
+        /// <param name="controller">The controller to check.</param>
+        /// <returns>A flag deterining if the controller is in the input manager.</returns>
+        public bool ContainsController(IController controller)
         {
-            _inputControllers.Remove(controller);
+            return _inputControllers.Contains(controller);
+        }
+
+        /// <summary>
+        /// Adds a controller to the input manager.
+        /// </summary>
+        /// <param name="controller">The controller to add.</param>
+        public void AddController(IController controller)
+        {
+            if (!ContainsController(controller))
+            {
+                _inputControllers.Add(controller);
+            }
+        }
+
+        /// <summary>
+        /// Removes a controller from the input manager.
+        /// </summary>
+        /// <param name="controller">The controller to remove.</param>
+        public void RemoveController(IController controller)
+        {
+            if (ContainsController(controller))
+            {
+                _inputControllers.Remove(controller);
+            }
         }
     }
 }

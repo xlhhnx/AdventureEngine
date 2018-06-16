@@ -1,9 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 
-public interface IBounds
+namespace AdventureEngine.Common.Bounding
 {
-    Vector2 Position { get; set; }
+    public interface IBounds
+    {
+        Vector2 Position { get; set; }
 
-    bool Contains(Vector2 point);
-    bool Contains(Point point);
+        bool Contains(Vector2 point);
+        bool Contains(Point point);
+    }
 }

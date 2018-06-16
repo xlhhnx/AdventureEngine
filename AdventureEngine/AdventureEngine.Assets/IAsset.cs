@@ -1,7 +1,11 @@
-﻿public interface IAsset
+﻿
+namespace AdventureEngine.AssetManagement
 {
-    string Id { get; }
-    bool Loaded { get; }
+    public interface IAsset
+    {
+        string Id { get; }
+        bool Loaded { get; }
 
-    void Unload();
+        void Unload();
+    }
 }

@@ -1,7 +1,9 @@
-﻿using AdventureEngine.UserInterface.Controls;
+﻿using AdventureEngine.Messaging;
+using AdventureEngine.UserInterface.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AdventureEngine.UserInterface.Screens
 {
@@ -31,11 +33,8 @@ namespace AdventureEngine.UserInterface.Screens
             set { _drawDimensions = value; }
         }
 
-        public virtual List<IControl> Controls
-        {
-            get { return _controls; }
-            set { _controls = value; }
-        }
+        public virtual List<IControl> Controls { get { return _controls; } }
+        public bool Focused { get { return _focused; } }
 
 
         protected bool _focused;
@@ -44,6 +43,18 @@ namespace AdventureEngine.UserInterface.Screens
         protected Vector2 _drawPosition;
         protected Vector2 _drawDimensions;
         protected List<IControl> _controls;
+
+
+        public BaseScreen(Vector2 drawPosition, Vector2 drawDimensions, bool focused = false, bool visible = true, bool enabled = true)
+        {
+            _drawPosition = drawPosition;
+            _drawDimensions = drawDimensions;
+            _focused = focused;
+            _enabled = enabled;
+            _visible = visible;
+            
+            _controls = new List<IControl>();
+        }
 
         public virtual void Focus()
         {

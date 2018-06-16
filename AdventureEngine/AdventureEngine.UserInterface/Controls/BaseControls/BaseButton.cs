@@ -2,6 +2,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using AdventureEngine.UserInterface.Screens;
+using AdventureEngine.Common.Bounding;
+using AdventureEngine.Messaging;
+using AdventureEngine.Input.Messages;
+using AdventureEngine.Input;
 
 namespace AdventureEngine.UserInterface.Controls
 {

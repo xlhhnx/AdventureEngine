@@ -1,17 +1,22 @@
-﻿public abstract class BaseAudio : IAudio
+﻿using AdventureEngine.AssetManagement.Assets;
+
+namespace AdventureEngine.AudioManagement.Assets
 {
-    public string Id { get { return _id; } }
-    public bool Loaded { get { return _audioAsset.Loaded; } }
-    public AudioAsset AudioAsset { get { return _audioAsset; } }
-
-    protected string _id;
-    protected AudioAsset _audioAsset;
-
-    public BaseAudio(string id, AudioAsset audioAsset)
+    public abstract class BaseAudio : IAudio
     {
-        _id = id;
-        _audioAsset = audioAsset;
-    }
+        public string Id { get { return _id; } }
+        public bool Loaded { get { return _audioAsset.Loaded; } }
+        public AudioAsset AudioAsset { get { return _audioAsset; } }
 
-    public void Unload() { /* No op */ }
+        protected string _id;
+        protected AudioAsset _audioAsset;
+
+        public BaseAudio(string id, AudioAsset audioAsset)
+        {
+            _id = id;
+            _audioAsset = audioAsset;
+        }
+
+        public void Unload() { /* No op */ }
+    }
 }

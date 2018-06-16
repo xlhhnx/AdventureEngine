@@ -1,4 +1,6 @@
-﻿using AdventureEngine.UserInterface.Screens;
+﻿using AdventureEngine.Common.Bounding;
+using AdventureEngine.Messaging;
+using AdventureEngine.UserInterface.Screens;
 
 namespace AdventureEngine.UserInterface.Controls
 {

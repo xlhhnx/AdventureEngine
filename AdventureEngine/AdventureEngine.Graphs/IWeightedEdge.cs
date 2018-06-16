@@ -1,4 +1,7 @@
-﻿public interface IWeightedEdge : IEdge
+﻿namespace AdventureEngine.Graphing
 {
-    float Weight { get; set; }
+    public interface IWeightedEdge : IEdge
+    {
+        float Weight { get; set; }
+    }
 }

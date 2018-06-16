@@ -1,4 +1,7 @@
-﻿public interface IController
+﻿namespace AdventureEngine.Input
 {
-    void Update();
+    public interface IController
+    {
+        void Update();
+    }
 }

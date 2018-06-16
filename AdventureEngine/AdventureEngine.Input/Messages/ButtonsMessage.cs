@@ -1,4 +1,7 @@
-﻿public interface ButtonsMessage<T>
+﻿namespace AdventureEngine.Input.Messages
 {
-    ButtonState? this[T button] { get; }
+    public interface ButtonsMessage<T>
+    {
+        ButtonState? this[T button] { get; }
+    }
 }

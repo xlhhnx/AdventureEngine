@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using AdventureEngine.UserInterface.Screens;
 using AdventureEngine.Graphics2D.Assets;
 using AdventureEngine.Graphics2D.Extensions;
+using AdventureEngine.Common.Bounding;
+using AdventureEngine.Communication;
 
 namespace AdventureEngine.UserInterface.Controls
 {

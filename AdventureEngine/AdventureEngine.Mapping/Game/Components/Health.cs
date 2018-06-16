@@ -1,38 +1,41 @@
 ﻿using System;
 
-public class Health : IComponent
+namespace AdventureEngine.Game.Components
 {
-    public string EntityId { get { return _entityId; } }
-    public string Name { get { return _name; } }
-
-    /// <summary>
-    /// Gets and Sets the health of the entity.
-    /// </summary>
-    public int _Health
+    public class Health : IComponent
     {
-        get { return _health; }
-        set { _health = value; }
-    }
+        public string EntityId { get { return _entityId; } }
+        public string Name { get { return _name; } }
 
-    protected string _entityId;
-    protected string _name;
-    protected int _health;
+        /// <summary>
+        /// Gets and Sets the health of the entity.
+        /// </summary>
+        public int _Health
+        {
+            get { return _health; }
+            set { _health = value; }
+        }
 
-    /// <summary>
-    /// Creates a health component.
-    /// </summary>
-    /// <param name="entityId">The id of the entity this component is a part of you.</param>
-    /// <param name="name">The name of thi component.</param>
-    /// <param name="health">The starting health of the entity.</param>
-    public Health(string entityId, string name, int health)
-    {
-        _entityId = entityId;
-        _name = name;
-        _health = health;
-    }
+        protected string _entityId;
+        protected string _name;
+        protected int _health;
 
-    public string Serilize()
-    {
-        throw new NotImplementedException();
+        /// <summary>
+        /// Creates a health component.
+        /// </summary>
+        /// <param name="entityId">The id of the entity this component is a part of you.</param>
+        /// <param name="name">The name of thi component.</param>
+        /// <param name="health">The starting health of the entity.</param>
+        public Health(string entityId, string name, int health)
+        {
+            _entityId = entityId;
+            _name = name;
+            _health = health;
+        }
+
+        public string Serilize()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Runtime.InteropServices;
+using AdventureEngine.AssetManagement.Assets;
 
 namespace AdventureEngine.Graphics2D.Assets
 {

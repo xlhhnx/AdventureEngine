@@ -2,48 +2,53 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-public class CompoundBounds : IBounds
+namespace AdventureEngine.Common.Bounding
 {
-    public Vector2 Position
+    public class CompoundBounds : IBounds
     {
-        get { return _position; }
-        set { _position = value; }
-    }
-
-
-    protected Vector2 _position;
-    protected List<IBounds> _subBounds;
-
-
-    public CompoundBounds(Vector2 position)
-    {
-        _position = position;
-        _subBounds = new List<IBounds>();
-    }
-
-    public bool Contains(Point point)
-    {
-        bool contains = false;
-
-        foreach (var b in _subBounds)
+        public Vector2 Position
         {
-            var relativePoint = point.ToVector2() - _position;
-            contains = b.Contains(relativePoint);
-            if (contains) break;
+            get { return _position; }
+            set { _position = value; }
         }
-        return contains;
-    }
 
-    public bool Contains(Vector2 point)
-    {
-        bool contains = false;
 
-        foreach (var b in _subBounds)
+        protected Vector2 _position;
+        protected List<IBounds> _subBounds;
+
+
+        public CompoundBounds(Vector2 position)
         {
-            var relativePoint = point - _position;
-            contains = b.Contains(relativePoint);
-            if (contains) break;
+            _position = position;
+            _subBounds = new List<IBounds>();
         }
-        return contains;
+
+        public bool Contains(Point point)
+        {
+            bool contains = false;
+
+            foreach (var b in _subBounds)
+            {
+                var relativePoint = point.ToVector2() - _position;
+                contains = b.Contains(relativePoint);
+                if (contains)
+                    break;
+            }
+            return contains;
+        }
+
+        public bool Contains(Vector2 point)
+        {
+            bool contains = false;
+
+            foreach (var b in _subBounds)
+            {
+                var relativePoint = point - _position;
+                contains = b.Contains(relativePoint);
+                if (contains)
+                    break;
+            }
+            return contains;
+        }
     }
 }

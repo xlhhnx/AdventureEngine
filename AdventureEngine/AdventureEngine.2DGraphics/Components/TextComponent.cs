@@ -1,4 +1,6 @@
-﻿using AdventureEngine.Graphics2D.Assets;
+﻿using AdventureEngine.AssetManagement.Assets;
+using AdventureEngine.Game.Components;
+using AdventureEngine.Graphics2D.Assets;
 using Microsoft.Xna.Framework;
 
 namespace AdventureEngine.Graphics2D.Components

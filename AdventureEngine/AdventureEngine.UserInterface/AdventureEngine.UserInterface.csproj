@@ -48,12 +48,16 @@
     <Compile Include="Controls\BaseControls\BaseSlider.cs" />
     <Compile Include="Controls\BaseControls\BaseTextBox.cs" />
     <Compile Include="Controls\BaseControls\BaseToggle.cs" />
-    <Compile Include="Controls\Controls\ImageTextBox.cs" />
+    <Compile Include="Controls\Controls\Checkbox.cs" />
+    <Compile Include="Controls\Controls\TextBox.cs" />
+    <Compile Include="Controls\Controls\Toggle.cs" />
+    <Compile Include="Controls\Controls\RadioButton.cs" />
+    <Compile Include="Controls\Controls\RadioButtonCollection.cs" />
     <Compile Include="Controls\Interfaces\IButton.cs" />
     <Compile Include="Controls\Interfaces\IToggle.cs" />
     <Compile Include="Controls\Interfaces\ILabel.cs" />
-    <Compile Include="Controls\Controls\ImageButton.cs" />
-    <Compile Include="Controls\Controls\ImageSlider.cs" />
+    <Compile Include="Controls\Controls\Button.cs" />
+    <Compile Include="Controls\Controls\Slider.cs" />
     <Compile Include="Controls\Interfaces\IRadioButton.cs" />
     <Compile Include="Controls\Interfaces\IRadioButtonCollection.cs" />
     <Compile Include="Controls\Interfaces\ISlider.cs" />
@@ -67,7 +71,7 @@
     <Compile Include="Menus\IMenuOption.cs" />
     <Compile Include="IUserInterfaceObject.cs" />
     <Compile Include="Screens\IScreen.cs" />
-    <Compile Include="Screens\StaticBackgroundScreen.cs" />
+    <Compile Include="Screens\BackgroundScreen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,41 +1,44 @@
 ﻿using System;
 
-public class DirectedEdge : IEdge
+namespace AdventureEngine.Graphing
 {
-    public virtual Graph Graph { get { return _graph; } }
-
-    public virtual INode Node1
+    public class DirectedEdge : IEdge
     {
-        get { return _startNode; }
-        set { _startNode = value; }
-    }
+        public virtual Graph Graph { get { return _graph; } }
 
-    public virtual INode Node2
-    {
-        get { return _endNode; }
-        set { _endNode = value; }
-    }
-
-    protected INode _startNode;
-    protected INode _endNode;
-    protected Graph _graph;
-
-    public DirectedEdge(INode startNode, INode endNode, Graph graph)
-    {
-        _startNode = startNode;
-        _endNode = endNode;
-        _graph = graph;
-    }
-
-    public virtual INode Traverse(INode startNode)
-    {
-        if (_startNode == startNode)
+        public virtual INode Node1
         {
-            return _endNode;
+            get { return _startNode; }
+            set { _startNode = value; }
         }
-        else
+
+        public virtual INode Node2
         {
-            return null;
+            get { return _endNode; }
+            set { _endNode = value; }
+        }
+
+        protected INode _startNode;
+        protected INode _endNode;
+        protected Graph _graph;
+
+        public DirectedEdge(INode startNode, INode endNode, Graph graph)
+        {
+            _startNode = startNode;
+            _endNode = endNode;
+            _graph = graph;
+        }
+
+        public virtual INode Traverse(INode startNode)
+        {
+            if (_startNode == startNode)
+            {
+                return _endNode;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

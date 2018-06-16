@@ -1,4 +1,7 @@
-﻿public interface ISubscriber
+﻿namespace AdventureEngine.Messaging
 {
-    void ReceiveMessage(Message message);
+    public interface ISubscriber
+    {
+        void ReceiveMessage(Message message);
+    }
 }

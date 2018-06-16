@@ -4,6 +4,8 @@ using Microsoft.Xna.Framework.Graphics;
 using AdventureEngine.UserInterface.Screens;
 using AdventureEngine.Graphics2D.Assets;
 using AdventureEngine.Graphics2D.Extensions;
+using AdventureEngine.Messaging;
+using AdventureEngine.Common.Bounding;
 
 namespace AdventureEngine.UserInterface.Controls
 {
@@ -18,7 +20,9 @@ namespace AdventureEngine.UserInterface.Controls
         }
 
         public override void Update(GameTime gameTime)
-        { /* No op */ }
+        {
+            _text.Enabled = Enabled;
+        }
 
         public override void ReceiveMessage(Message message)
         { /* No op */ }

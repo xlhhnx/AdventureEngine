@@ -1,38 +1,40 @@
 ﻿using Microsoft.Xna.Framework;
-using System;
 
-public class OrientedBox : Shape
+namespace AdventureEngine.Physics2D.Components
 {
-    public override float Area { get { return _extent.X * _extent.Y * 4; } }
-    
-    /// <summary>
-    /// Gets and Sets the axis of the oriented box.
-    /// </summary>
-    public Vector2 Axis
+    public class OrientedBox : Shape
     {
-        get { return _axis; }
-        set { _axis = value; }
-    }
+        public override float Area { get { return _extent.X * _extent.Y * 4; } }
 
-    /// <summary>
-    /// Gets and Sets the extent of the oriented box.
-    /// </summary>
-    public Vector2 Extent
-    {
-        get { return _extent; }
-        set { _extent = value; }
-    }
+        /// <summary>
+        /// Gets and Sets the axis of the oriented box.
+        /// </summary>
+        public Vector2 Axis
+        {
+            get { return _axis; }
+            set { _axis = value; }
+        }
 
-    protected Vector2 _axis;
-    protected Vector2 _extent;
+        /// <summary>
+        /// Gets and Sets the extent of the oriented box.
+        /// </summary>
+        public Vector2 Extent
+        {
+            get { return _extent; }
+            set { _extent = value; }
+        }
 
-    /// <summary>
-    /// Creates an oriented box.
-    /// </summary>
-    /// <param name="extent">The extent of the </param>
-    public OrientedBox(string entityId, string name, Vector2 positionOffset, Vector2 axis, Vector2 extent) : base(entityId, name, positionOffset)
-    {
-        _axis = axis;
-        _extent = extent;
+        protected Vector2 _axis;
+        protected Vector2 _extent;
+
+        /// <summary>
+        /// Creates an oriented box.
+        /// </summary>
+        /// <param name="extent">The extent of the </param>
+        public OrientedBox(string entityId, string name, Vector2 positionOffset, Vector2 axis, Vector2 extent) : base(entityId, name, positionOffset)
+        {
+            _axis = axis;
+            _extent = extent;
+        }
     }
 }

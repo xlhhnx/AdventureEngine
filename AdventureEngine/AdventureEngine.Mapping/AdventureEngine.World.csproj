@@ -60,9 +60,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\AdventureEngine.Graphs\AdventureEngine.Graphs.csproj">
+    <ProjectReference Include="..\AdventureEngine.Graphs\AdventureEngine.Graphing.csproj">
       <Project>{98cf88ec-290f-4bdc-b2d1-8f729eab7aec}</Project>
-      <Name>AdventureEngine.Graphs</Name>
+      <Name>AdventureEngine.Graphing</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

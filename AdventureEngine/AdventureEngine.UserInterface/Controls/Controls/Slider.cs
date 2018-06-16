@@ -5,10 +5,11 @@ using System.Collections.Generic;
 using AdventureEngine.UserInterface.Screens;
 using AdventureEngine.Graphics2D.Assets;
 using AdventureEngine.Graphics2D.Extensions;
+using AdventureEngine.Common.Bounding;
 
 namespace AdventureEngine.UserInterface.Controls
 {
-    public class ImageSlider : BaseSlider
+    public class Slider : BaseSlider
     {
         protected Image _silderBackground;
         protected Image _focusedIndicator;
@@ -16,7 +17,7 @@ namespace AdventureEngine.UserInterface.Controls
         protected Image _clickedIndicator;
 
 
-        public ImageSlider(Image sliderBackground, Image focusedIndicator, Image unfocusedIndicator, Image clickedIndicator, IBounds bounds, IScreen screen, Vector2 position, Vector2 dimensions, int tabIndex, float min, float max, float step, float value, bool visible = true, bool enabled = true)
+        public Slider(Image sliderBackground, Image focusedIndicator, Image unfocusedIndicator, Image clickedIndicator, IBounds bounds, IScreen screen, Vector2 position, Vector2 dimensions, int tabIndex, float min, float max, float step, float value, bool visible = true, bool enabled = true)
             : base(bounds, screen, position, dimensions, tabIndex, min, max, step, value, visible, enabled)
         {
             _silderBackground = sliderBackground;
@@ -35,6 +36,7 @@ namespace AdventureEngine.UserInterface.Controls
 
             foreach (var s in sprites)
             {
+                s.ElapsedTime += gameTime.ElapsedGameTime;
                 if (s.ElapsedTime.TotalMilliseconds > s.FrameTime) s.ChangeFrame();
             }
         }

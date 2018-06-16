@@ -1,1 +1,4 @@
-﻿public enum AssetType { AudioAsset, Texture2DAsset, SpriteFontAsset }
+﻿namespace AdventureEngine.AssetManagement
+{
+    public enum AssetType { AudioAsset, Texture2DAsset, SpriteFontAsset }
+}
