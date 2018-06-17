@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18C7C169-FBDC-4A19-BB9C-1A61598E3E1B}</ProjectGuid>
+    <ProjectGuid>{0EF8F2C1-BF9D-49F1-A175-80C39C8B7B2B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdventureEngine</RootNamespace>
-    <AssemblyName>AdventureEngine</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>AdventureEngine.Loading</RootNamespace>
+    <AssemblyName>AdventureEngine.Loading</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -45,16 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoadingConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <None Include="packages.config" />
+    <Folder Include="2DGraphics\" />
+    <Folder Include="Communication\" />
+    <Folder Include="UserInterface\" />
+    <Folder Include="World\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AdventureEngine.2DGraphics\AdventureEngine.Graphics2D.csproj">
+    <ProjectReference Include="..\AdventureEngine.2DGraphics\AdventureEngine.2DGraphics.csproj">
       <Project>{efc32a9a-0e8e-4cc1-bbfc-7645ec43650f}</Project>
-      <Name>AdventureEngine.Graphics2D</Name>
+      <Name>AdventureEngine.2DGraphics</Name>
     </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Assets\AdventureEngine.AssetManagement.csproj">
       <Project>{1c1fcbf1-6268-4c02-8e1b-ee6d7c5f32ce}</Project>
@@ -63,10 +65,6 @@
     <ProjectReference Include="..\AdventureEngine.Audio\AdventureEngine.AudioManagement.csproj">
       <Project>{bdd571de-7ad0-4470-8dc6-bd65127defbd}</Project>
       <Name>AdventureEngine.AudioManagement</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.CollisionManagement\AdventureEngine.CollisionManagement.csproj">
-      <Project>{fcd875b0-ee55-4efe-b664-a7a4c257b344}</Project>
-      <Name>AdventureEngine.CollisionManagement</Name>
     </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Communication\AdventureEngine.Communication.csproj">
       <Project>{697942f3-e732-4988-8f3b-402ea8dd876b}</Project>
@@ -80,10 +78,6 @@
       <Project>{98cf88ec-290f-4bdc-b2d1-8f729eab7aec}</Project>
       <Name>AdventureEngine.Graphs</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Input\AdventureEngine.Input.csproj">
-      <Project>{8c6963a1-636f-4fef-ba35-549163921213}</Project>
-      <Name>AdventureEngine.Input</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.Logging\AdventureEngine.Logging.csproj">
       <Project>{40375b04-268c-4d23-b402-43ed772f927a}</Project>
       <Name>AdventureEngine.Logging</Name>
@@ -91,22 +85,6 @@
     <ProjectReference Include="..\AdventureEngine.Mapping\AdventureEngine.World.csproj">
       <Project>{591a5b90-1835-48b5-94a7-2f3d4725f391}</Project>
       <Name>AdventureEngine.World</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Messages\AdventureEngine.Messaging.csproj">
-      <Project>{6054df5b-c4e4-43bd-b9f0-5adb159379f6}</Project>
-      <Name>AdventureEngine.Messaging</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Pathfinding\AdventureEngine.Pathfinding.csproj">
-      <Project>{dea0c77b-b187-4490-898f-5fd343e11c70}</Project>
-      <Name>AdventureEngine.Pathfinding</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Persistance\AdventureEngine.Persistance.csproj">
-      <Project>{24901048-5f96-4cbe-96ff-801504aa7ada}</Project>
-      <Name>AdventureEngine.Persistance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AdventureEngine.Physics\AdventureEngine.2DPhysics.csproj">
-      <Project>{b4d86b71-d027-45ce-b0f1-cda921f2b2d2}</Project>
-      <Name>AdventureEngine.2DPhysics</Name>
     </ProjectReference>
     <ProjectReference Include="..\AdventureEngine.UserInterface\AdventureEngine.UserInterface.csproj">
       <Project>{6233e22f-b775-410d-9af0-68ad7cfb413b}</Project>
